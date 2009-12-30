@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/halo" 
+			   minWidth="1024" minHeight="768"
+			   
+			   applicationComplete="application1_applicationCompleteHandler(event)"
+			   
+			   xmlns:playlisturl="cc.varga.mvc.views.playlisturl.*" 
+			   xmlns:list="cc.varga.mvc.views.playlisturl.list.*" 
+			   xmlns:mvc="cc.varga.mvc.*" xmlns:player="cc.varga.mvc.views.player.*">
+	
+	<s:layout><s:HorizontalLayout/></s:layout>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+
+			protected function application1_applicationCompleteHandler(event:FlexEvent):void
+			{
+				
+			}
+
+		]]>
+	</fx:Script>
+	
+	
+	<fx:Declarations>
+		<mvc:ApplicationContext contextView="{this}" />
+	</fx:Declarations>
+	
+	<s:Group id="leftContainer" height="100%" width="100%">
+		<playlisturl:PlaylistURL top="0" left="0" right="0"  height="47"/>
+		<s:Scroller top="55" left="0" right="0"  bottom="20">
+			<list:Playlist id="playlist"/>	
+		</s:Scroller>
+	</s:Group>
+	
+	<s:Group id="rightContainer">
+		<player:PlayerWindow  width="458" height="100%"/>
+	</s:Group>
+		
+</s:Application>

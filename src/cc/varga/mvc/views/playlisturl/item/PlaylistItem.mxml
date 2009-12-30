@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/halo" 
+		 xmlns:controller="cc.varga.mvc.views.playlisturl.controller.*">
+	<fx:Script>
+		<![CDATA[
+			import cc.varga.mvc.events.playlist.controller.PlaylistControllerEvent;
+			
+			import flash.events.MouseEvent;
+			
+			import mx.rpc.events.ResultEvent;
+			import mx.rpc.http.mxml.HTTPService;
+
+			[Bindable]
+			private var content : Object;
+			
+			private var _artist : String;
+			
+			public function set jsonObj(value : Object):void{
+				content = value;
+				getArtist();
+			}
+			
+			public function get jsonObj():Object{
+				return content;
+			}
+			
+			private function getArtist():void{
+				
+				var http:HTTPService = new HTTPService();
+				http.addEventListener(ResultEvent.RESULT, onResult);
+				http.url = String("http://aludose/" + content['written_by'][0]);
+				http.send();
+				
+			}
+			
+			private function onResult(event : ResultEvent):void{
+				_artist = event.result as String;	
+			}
+
+
+			protected function addToPlaylist_clickHandler(event:MouseEvent):void
+			{
+				dispatchEvent( new PlaylistControllerEvent( PlaylistControllerEvent.ADD_TO_PLAYLIST) );
+			}
+
+
+			protected function play_clickHandler(event:MouseEvent):void
+			{
+				dispatchEvent( new PlaylistControllerEvent( PlaylistControllerEvent.PLAY_THIS_ITEM) );
+			}
+
+
+			protected function remove_clickHandler(event:MouseEvent):void
+			{
+				dispatchEvent( new PlaylistControllerEvent( PlaylistControllerEvent.REMOVE_THIS_ITEM) );
+			}
+
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<s:layout><s:HorizontalLayout/></s:layout>
+	
+	<s:Group>
+		<s:layout><s:HorizontalLayout/></s:layout>
+		<s:Label id="artist" text="{this._artist}"  verticalAlign="middle" width="150"/>
+		<s:Label id="title" text="{this.content['title']}"  verticalAlign="middle" width="150"/>
+		<s:Label id="url" text="{this.content['source']}"  verticalAlign="middle" width="150"/>
+	</s:Group>
+	<s:Group width="100%" height="50">
+		<mx:ApplicationControlBar>
+			<s:Button id="addToPlaylist" label="Add To Playlist" click="addToPlaylist_clickHandler(event)" />
+			<s:Button id="play" label="Play" click="play_clickHandler(event)" />
+			<s:Button id="remove" label="Remove" click="remove_clickHandler(event)" />
+		</mx:ApplicationControlBar>
+	</s:Group>	
+</s:Group>
