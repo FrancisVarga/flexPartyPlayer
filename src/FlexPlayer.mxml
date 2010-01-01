@@ -2,7 +2,7 @@
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
 			   xmlns:mx="library://ns.adobe.com/flex/halo" 
-			   minWidth="1024" minHeight="768"
+			   minWidth="1024" minHeight="568"
 			   
 			   xmlns:playlisturl="cc.varga.mvc.views.playlisturl.*" 
 			   xmlns:list="cc.varga.mvc.views.playlisturl.list.*" 
