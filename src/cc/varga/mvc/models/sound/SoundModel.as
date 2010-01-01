@@ -34,7 +34,7 @@
 //The best way to do this is with a link to this web page.																	
 //
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-package cc.varga.mvc.models
+package cc.varga.mvc.models.sound
 {
 	import cc.varga.mvc.models.playlist.PlaylistModel;
 	import cc.varga.utils.logging.Logger;
@@ -71,12 +71,12 @@ package cc.varga.mvc.models
 		private var soundURL : String;
 		private var contentURL : String;
 		private var currentCT : String;
+		private var _player : String;
 		
 		public var currentJSONObj : Object = new Object();
 		
-		public function SoundModel()
-		{
-			super();
+		public function set player(value:String):void{
+			player = value;
 		}
 		
 		public function setCurrentJSONObj(json : Object):void{
@@ -93,10 +93,10 @@ package cc.varga.mvc.models
 			
 			sound 					= null;
 			sound			 		= new Sound();
-			soundChannel 		= null;
-			soundChannel 		= new SoundChannel();
+			soundChannel 			= null;
+			soundChannel 			= new SoundChannel();
 			decoder 				= null;
-			decoder		 		= new AudioDecoder();	
+			decoder		 			= new AudioDecoder();	
 			
 			soundChannel.addEventListener(Event.SOUND_COMPLETE, onSoundComplete);
 			

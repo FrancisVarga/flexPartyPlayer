@@ -15,7 +15,7 @@
 			import cc.varga.mvc.events.player.PlayerEvent;
 			
 			import mx.events.FlexEvent;
-
+			
 			protected function titlewindow1_creationCompleteHandler(event:FlexEvent):void
 			{
 				
@@ -31,14 +31,17 @@
 			{
 				dispatchEvent(new PlayerEvent(PlayerEvent.UNLOCK));				
 			}
-
+			
+			
 		]]>
 	</fx:Script>
 	
 	<controllers:Controllers id="controllers" width="100%" height="55" />
 	
-	<mx:DataGrid id="dataGrid" width="100%" height="100%">
-		
+	<mx:DataGrid id="dataGrid" width="100%" height="100%" fontSize="14">
+		<mx:columns>
+			<mx:DataGridColumn dataField="title" headerText="Title"/>
+		</mx:columns>
 	</mx:DataGrid>
 	
 	<s:Group>

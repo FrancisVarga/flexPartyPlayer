@@ -36,7 +36,7 @@
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 package cc.varga.mvc.views.player
 {
-	import cc.varga.mvc.events.contrllers.ControllersEvent;
+	import cc.varga.mvc.events.controllers.ControllersEvent;
 	import cc.varga.mvc.events.player.PlayerEvent;
 	import cc.varga.mvc.models.player.PlayerModel;
 	import cc.varga.utils.logging.Logger;
@@ -89,9 +89,7 @@ package cc.varga.mvc.views.player
 		}
 		
 		private function onAddItemToPlaylist(event : PlayerEvent):void{
-			
-			Logger.tracing("refresh playlist", this.toString());
-			
+				
 			view.dataGrid.dataProvider = playerModel.playlist;
 			
 		}

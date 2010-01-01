@@ -4,7 +4,7 @@
 		 xmlns:mx="library://ns.adobe.com/flex/halo">
 	<fx:Script>
 		<![CDATA[
-			import cc.varga.mvc.events.contrllers.ControllersEvent;
+			import cc.varga.mvc.events.controllers.ControllersEvent;
 		]]>
 	</fx:Script>
 	
