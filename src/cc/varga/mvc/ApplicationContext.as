@@ -42,7 +42,10 @@ package cc.varga.mvc
 	import cc.varga.utils.logging.Logger;
 	
 	import flash.display.DisplayObjectContainer;
-	import flash.system.System;
+	import flash.system.Security;
+	
+	import org.robotlegs.base.ContextEvent;
+	import org.robotlegs.mvcs.Context;
 	
 	public class ApplicationContext extends Context
 	{
