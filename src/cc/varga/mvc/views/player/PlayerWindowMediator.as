@@ -36,9 +36,10 @@
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 package cc.varga.mvc.views.player
 {
-	import cc.varga.mvc.events.playlist.PlaylistURLEvent;
+	import cc.varga.mvc.events.contrllers.ControllersEvent;
+	import cc.varga.mvc.events.player.PlayerEvent;
 	import cc.varga.mvc.models.player.PlayerModel;
-	import cc.varga.mvc.views.playlisturl.list.Playlist;
+	import cc.varga.utils.logging.Logger;
 	
 	import org.robotlegs.mvcs.Mediator;
 	
@@ -58,11 +59,38 @@ package cc.varga.mvc.views.player
 		
 		override public function onRegister() : void{
 			
-			eventMap.mapListener(eventDispatcher, PlaylistURLEvent.ADD_TO_PLAYLIST, onAddItemToPlaylist);
-		
+			eventMap.mapListener(eventDispatcher, PlayerEvent.ITEM_ADD_TO_PLAYLIST, onAddItemToPlaylist);
+			eventMap.mapListener(view, PlayerEvent.LOCK, lockPlayer);
+			eventMap.mapListener(view, PlayerEvent.UNLOCK, unlockPlayer);
+			eventMap.mapListener(view, ControllersEvent.PLAY_CLICK, playPlaylist); 
+			
 		}
 		
-		private function onAddItemToPlaylist(event : PlaylistURLEvent):void{
+		private function playPlaylist(event : ControllersEvent):void{
+			
+			Logger.tracing("play playlist", this.toString());
+			
+		}
+		
+		private function lockPlayer(event : PlayerEvent):void{
+			
+			Logger.tracing("lock player", this.toString());
+			view.controllers.Btn_next.enabled = false;
+			view.controllers.Btn_prev.enabled = false;
+			
+		}
+		
+		private function unlockPlayer(event : PlayerEvent):void{
+			
+			Logger.tracing("unlock", this.toString());
+			view.controllers.Btn_next.enabled = true;
+			view.controllers.Btn_prev.enabled = true;	
+			
+		}
+		
+		private function onAddItemToPlaylist(event : PlayerEvent):void{
+			
+			Logger.tracing("refresh playlist", this.toString());
 			
 			view.dataGrid.dataProvider = playerModel.playlist;
 			

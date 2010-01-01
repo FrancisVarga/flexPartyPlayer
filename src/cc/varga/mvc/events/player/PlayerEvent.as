@@ -10,6 +10,8 @@ package cc.varga.mvc.events.player
 		public static const OPEN_PLAYER : String = "open_player";
 		public static const CLOSE_PLAYER : String = "close_player";
 		
+		public static const ITEM_ADD_TO_PLAYLIST : String = "item_add_to_playlist";
+		
 		public function PlayerEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
 			super(type, bubbles, cancelable);

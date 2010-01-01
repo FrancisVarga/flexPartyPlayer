@@ -38,16 +38,14 @@ package cc.varga.mvc.commands.registry
 {
 	import cc.varga.mvc.views.controllers.Controllers;
 	import cc.varga.mvc.views.controllers.ControllersMediator;
-	
+	import cc.varga.mvc.views.player.PlayerWindow;
+	import cc.varga.mvc.views.player.PlayerWindowMediator;
 	import cc.varga.mvc.views.playlisturl.PlaylistURL;
 	import cc.varga.mvc.views.playlisturl.PlaylistURLMediator;
-	
 	import cc.varga.mvc.views.playlisturl.item.PlaylistItem;
 	import cc.varga.mvc.views.playlisturl.item.PlaylistItemMediator;
-	
 	import cc.varga.mvc.views.playlisturl.list.Playlist;
 	import cc.varga.mvc.views.playlisturl.list.PlaylistMediator;
-	
 	import cc.varga.utils.logging.Logger;
 	
 	import org.robotlegs.mvcs.Command;
@@ -67,7 +65,7 @@ package cc.varga.mvc.commands.registry
 			mediatorMap.mapView(PlaylistItem, PlaylistItemMediator);
 			mediatorMap.mapView(Controllers, ControllersMediator);
 			mediatorMap.mapView(Playlist, PlaylistMediator);
-			
+			mediatorMap.mapView(PlayerWindow, PlayerWindowMediator);
 		}
 		
 		public function toString():String{ return "cc.varga.mvc.commands.registry.RegisterViews"}
