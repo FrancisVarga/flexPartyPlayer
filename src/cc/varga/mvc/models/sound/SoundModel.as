@@ -72,6 +72,7 @@ package cc.varga.mvc.models.sound
 		private var contentURL : String;
 		private var currentCT : String;
 		private var _player : String;
+		private var currentPlaylist : ISound;
 		
 		public var currentJSONObj : Object = new Object();
 		
@@ -83,6 +84,10 @@ package cc.varga.mvc.models.sound
 			Logger.tracing("set current json object", this.toString());
 			currentJSONObj = json;
 			checkFileType();
+		}
+		
+		public function playPlaylist(playlist:ISound):void{
+			
 		}
 		
 		private function checkFileType(playTo : String = ""):void{
