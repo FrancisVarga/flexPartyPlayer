@@ -36,13 +36,36 @@
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 package cc.varga.mvc.views.player
 {
+	import cc.varga.mvc.events.playlist.PlaylistURLEvent;
+	import cc.varga.mvc.models.player.PlayerModel;
+	import cc.varga.mvc.views.playlisturl.list.Playlist;
+	
 	import org.robotlegs.mvcs.Mediator;
 	
 	public class PlayerWindowMediator extends Mediator
 	{
+		
+		[Inject]
+		public var view : PlayerWindow;
+		
+		[Inject]
+		public var playerModel : PlayerModel;
+		
 		public function PlayerWindowMediator()
 		{
 			super();
+		}
+		
+		override public function onRegister() : void{
+			
+			eventMap.mapListener(eventDispatcher, PlaylistURLEvent.ADD_TO_PLAYLIST, onAddItemToPlaylist);
+		
+		}
+		
+		private function onAddItemToPlaylist(event : PlaylistURLEvent):void{
+			
+			view.dataGrid.dataProvider = playerModel.playlist;
+			
 		}
 		
 		public function toString():String{ return "cc.varga.mvc.views.player.PlayerWindowMediator"}

@@ -77,7 +77,6 @@ package cc.varga.mvc.models
 		public function SoundModel()
 		{
 			super();
-			//loadmp4();
 		}
 		
 		public function setCurrentJSONObj(json : Object):void{
@@ -187,6 +186,9 @@ package cc.varga.mvc.models
 		
 		private function onDecoderComplete(event : Event):void{
 			Logger.tracing("Decode Complete", this.toString());	
+			
+			setCurrentJSONObj(playlistModel.getNextItem());
+			
 		}
 		
 		private function onDecoderIOError(event : Event):void{

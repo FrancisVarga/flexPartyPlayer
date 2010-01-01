@@ -39,6 +39,8 @@ package cc.varga.utils.logging
 //	import flash.filesystem.File;
 //	import flash.filesystem.FileMode;
 //	import flash.filesystem.FileStream;
+	import cc.varga.mvc.ApplicationContext;
+	
 	import flash.utils.getTimer;
 
 	public class Logger
@@ -58,18 +60,21 @@ package cc.varga.utils.logging
 		public static function tracing(message:String, classpath : String):void{
 			traceingStr = "["+getTimer()+"].[TRACING].["+classpath+"] --> " + message;
 			trace(traceingStr);
+			(ApplicationContext.INSTANCE.contextView as FlexPlayer).debug.text += traceingStr + "\n";
 			//writeToFile(tracingFile, traceingStr);
 		}
 		
 		public static function errorTracing(message:String, classpath : String):void{
 			errorStr = "["+getTimer()+"].[ERROR].["+classpath+"]--> " + message;
 			trace(errorStr);
+			(ApplicationContext.INSTANCE.contextView as FlexPlayer).debug.text += traceingStr + "\n";
 			//writeToFile(errorFile, errorStr);
 		}
 		
 		public static function debugTracing(message:String, classpath : String):void{
 			debugStr= "["+getTimer()+"].[DEBUG].["+classpath+"]--> " + message;	
 			trace(debugStr);
+			(ApplicationContext.INSTANCE.contextView as FlexPlayer).debug.text += traceingStr + "\n";
 			//writeToFile(debugFile, debugStr);
 		}
 		

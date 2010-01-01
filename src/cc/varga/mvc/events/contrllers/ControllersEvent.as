@@ -41,6 +41,7 @@ package cc.varga.mvc.events.contrllers
 	public class ControllersEvent extends Event
 	{
 		
+		public static const LOCK_CLICK : String = "lock_click";
 		public static const PLAY_CLICK : String = "play_click";
 		public static const STOP_CLICK : String = "stop_click";
 		public static const NEXT_CLICK : String = "next_click";

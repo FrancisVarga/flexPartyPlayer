@@ -42,9 +42,10 @@ package cc.varga.mvc.commands.playlist
 	
 	import com.adobe.serialization.json.JSON;
 	
-	import flash.ui.Mouse;
-	import flash.ui.MouseCursor;
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
 	
+	import mx.controls.Alert;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
 	import mx.rpc.http.mxml.HTTPService;
@@ -57,6 +58,8 @@ package cc.varga.mvc.commands.playlist
 		[Inject]
 		public var model : PlaylistModel;
 		
+		private var pollTimer : Timer;
+		
 		public function LoadPlaylistCommand()
 		{
 			super();
@@ -66,23 +69,24 @@ package cc.varga.mvc.commands.playlist
 			
 			Logger.tracing("load playlist command", this.toString());
 			
-			var httpRequest : HTTPService = new HTTPService();
-			httpRequest.showBusyCursor = true;
-			httpRequest.resultFormat = "text";
-			httpRequest.url = model.playListURL;
-			httpRequest.addEventListener(FaultEvent.FAULT, onFault);
-			httpRequest.addEventListener(ResultEvent.RESULT, onResult);
-			httpRequest.send();
+			pollTimer = new Timer(1000);
+			pollTimer.addEventListener(TimerEvent.TIMER, onTime);
+			pollTimer.start();			
 			
 		}
 		
-		private function onResult(event : ResultEvent):void{
-			
-			Logger.tracing("Playlist loaded", this.toString());
-			
-			Mouse.cursor = MouseCursor.ARROW;
-			
-			(contextView as FlexPlayer).playlist.removeAllElements();
+		private function onTime(event : TimerEvent):void{
+			var httpRequest : HTTPService = new HTTPService();
+			//httpRequest.showBusyCursor = true;
+			httpRequest.resultFormat = "text";
+			httpRequest.url = model.playListURL;//"http://localserver/dev/songs.json"; //model.playListURL;
+			httpRequest.addEventListener(FaultEvent.FAULT, onFault);
+			httpRequest.addEventListener(ResultEvent.RESULT, onResult);
+			httpRequest.send();
+		}
+		
+		private function onResult(event : ResultEvent):void{			
+			//Mouse.cursor = MouseCursor.ARROW;
 			
 			model.playlistObj = JSON.decode(event.result.toString());
 			
@@ -91,7 +95,9 @@ package cc.varga.mvc.commands.playlist
 		}
 		
 		private function onFault(event : FaultEvent):void{
-		
+			
+			pollTimer.stop();
+			Alert.show("Something is wrong!!!", "Error");
 			Logger.tracing("Playlist Error: " + event.message, this.toString());
 			
 		}

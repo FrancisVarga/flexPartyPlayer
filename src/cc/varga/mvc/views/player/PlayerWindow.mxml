@@ -8,6 +8,8 @@
 				
 				creationComplete="titlewindow1_creationCompleteHandler(event)" >
 	
+	<s:layout><s:VerticalLayout/></s:layout>
+	
 	<fx:Script>
 		<![CDATA[
 			import mx.events.FlexEvent;
@@ -20,6 +22,10 @@
 		]]>
 	</fx:Script>
 	
-	<controllers:Controllers width="100%" />
+	<controllers:Controllers width="100%" height="55" />
+	
+	<mx:DataGrid id="dataGrid" width="100%" height="100%">
+		
+	</mx:DataGrid>
 	
 </s:Group>

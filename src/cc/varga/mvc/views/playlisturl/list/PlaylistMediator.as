@@ -36,8 +36,8 @@
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 package cc.varga.mvc.views.playlisturl.list
 {
-	import cc.varga.mvc.events.contrllers.ControllersEvent;
 	import cc.varga.mvc.events.playlist.PlaylistURLEvent;
+	import cc.varga.mvc.models.player.PlayerModel;
 	import cc.varga.mvc.models.playlist.PlaylistModel;
 	import cc.varga.mvc.views.playlisturl.item.PlaylistItem;
 	import cc.varga.utils.logging.Logger;
@@ -53,6 +53,11 @@ package cc.varga.mvc.views.playlisturl.list
 		[Inject]
 		public var model : PlaylistModel;
 		
+		[Inject]
+		public var playerModel : PlayerModel;
+		
+		private var currentLength : uint = 0;
+		
 		public function PlaylistMediator()
 		{
 			super();
@@ -63,28 +68,25 @@ package cc.varga.mvc.views.playlisturl.list
 			Logger.tracing("Register PlaylistMediator", this.toString());
 			
 			eventMap.mapListener(eventDispatcher, PlaylistURLEvent.PLAYLIST_DISPLAYED, buildPlaylist); 
-			eventMap.mapListener(eventDispatcher, ControllersEvent.PLAY_CLICK, playSound);
 			
 		}
 		
-		private function playSound(event : ControllersEvent):void{
-			
-		}
-		
-		private function buildPlaylist(event : *):void{
-			
-			Logger.tracing("Build Playlist", this.toString());
-			
-			var playlist : Array = model.playlistObj as Array;
+		private function buildPlaylist(event : *):void{			
+			var playlist : Array = model.getItems();
 			
 			if(playlist.length > 0){
 				
-				for(var i:uint=0; i < playlist.length; i++){
+				if(currentLength < 1 || currentLength != playlist.length){
 					
-					var item : PlaylistItem = new PlaylistItem();
-					item.jsonObj = playlist[i];
-					view.addElement(item);
+					currentLength = playlist.length;
 					
+					for(var i:uint=0; i < playlist.length; i++){
+						
+						var item : PlaylistItem = new PlaylistItem();
+						item.jsonObj = playlist[i];
+						view.addElement(item);
+						
+					}	
 				}
 				
 			}

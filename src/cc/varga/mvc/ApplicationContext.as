@@ -39,24 +39,26 @@ package cc.varga.mvc
 	import cc.varga.mvc.commands.registry.RegisterCommands;
 	import cc.varga.mvc.commands.registry.RegisterInjections;
 	import cc.varga.mvc.commands.registry.RegisterViews;
-	import cc.varga.mvc.models.SoundModel;
 	import cc.varga.utils.logging.Logger;
 	
 	import flash.display.DisplayObjectContainer;
-	
-	import org.robotlegs.base.ContextEvent;
-	import org.robotlegs.mvcs.Context;
+	import flash.system.System;
 	
 	public class ApplicationContext extends Context
 	{
+		
+		public static var INSTANCE : ApplicationContext;
+		
 		public function ApplicationContext(contextView:DisplayObjectContainer=null, autoStartup:Boolean=true)
 		{
 			super(contextView, autoStartup);
+			
+			Security.loadPolicyFile("http://aludose/crossdomain.xml");
+			
+			INSTANCE = this;
 		}
 		
 		override public function startup() : void{
-			
-			new SoundModel();
 			
 			Logger.tracing("Application Startup", this.toString());
 			

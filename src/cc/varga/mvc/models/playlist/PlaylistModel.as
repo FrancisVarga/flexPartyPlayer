@@ -41,26 +41,26 @@ package cc.varga.mvc.models.playlist
 	public class PlaylistModel extends Actor
 	{
 		
+		private var _playlistObj : Array = new Array();
+		
 		public var playListURL :String = "";
-		public var playlistObj : Array = new Array();
 		public var currentItem : uint = 0;
 		
-		public function PlaylistModel()
-		{
-			super();
+		public function set playlistObj(value : Array):void{
+			_playlistObj = value;
 		}
 		
 		public function getItems():Array{
-			return playlistObj;
+			return _playlistObj;
 		}
 		
 		public function getNextItem():Object{
 			currentItem++;
-			if(currentItem >= playlistObj.length){
+			if(currentItem >= _playlistObj.length){
 				currentItem = 0;
 			}
 			
-			return playlistObj[currentItem];				
+			return _playlistObj[currentItem];				
 		}
 		
 		public function getPrevItem():Object{
@@ -69,11 +69,11 @@ package cc.varga.mvc.models.playlist
 				currentItem = 0;
 			}
 			
-			return playlistObj[currentItem];
+			return _playlistObj[currentItem];
 		}
 		
 		public function getCurrentItem():Object{
-			return playlistObj[currentItem];
+			return _playlistObj[currentItem];
 		}
 		
 		public function toString():String{ return "cc.varga.mvc.models.playlist.PlaylistModel"}

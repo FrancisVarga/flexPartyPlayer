@@ -45,9 +45,12 @@ package cc.varga.mvc.events.playlist.controller
 		public static const PLAY_THIS_ITEM : String = "play_this_item";
 		public static const REMOVE_THIS_ITEM : String = "remove_this_item";
 		
-		public function PlaylistControllerEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
+		public var currentJSONObj : Object;
+		
+		public function PlaylistControllerEvent(type:String, json:Object, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
 			super(type, bubbles, cancelable);
+			currentJSONObj = json;
 		}
 	
 	}

@@ -37,6 +37,7 @@
 package cc.varga.mvc.commands.registry
 {
 	import cc.varga.mvc.models.SoundModel;
+	import cc.varga.mvc.models.player.PlayerModel;
 	import cc.varga.mvc.models.playlist.PlaylistModel;
 	import cc.varga.utils.logging.Logger;
 	
@@ -55,6 +56,7 @@ package cc.varga.mvc.commands.registry
 			
 			injector.mapSingleton(PlaylistModel);
 			injector.mapSingleton(SoundModel);
+			injector.mapSingleton(PlayerModel);		
 			
 		}
 		

@@ -36,9 +36,9 @@
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 package cc.varga.mvc.views.playlisturl.item
 {
-	import cc.varga.mvc.events.contrllers.ControllersEvent;
 	import cc.varga.mvc.events.playlist.controller.PlaylistControllerEvent;
 	import cc.varga.mvc.models.SoundModel;
+	import cc.varga.mvc.models.player.PlayerModel;
 	import cc.varga.mvc.models.playlist.PlaylistModel;
 	import cc.varga.utils.logging.Logger;
 	
@@ -56,20 +56,24 @@ package cc.varga.mvc.views.playlisturl.item
 		[Inject]
 		public var soundModel : SoundModel;
 		
+		[Inject]
+		public var playlistPlayerModel : PlayerModel;
+		
 		override public function onRegister() : void{
-	
-			eventMap.mapListener(view, PlaylistControllerEvent.PLAY_THIS_ITEM, playThisItem); 
-			eventMap.mapListener(view, ControllersEvent.PLAY_CLICK, playThisItem);
+			
+			eventMap.mapListener(view, PlaylistControllerEvent.PLAY_THIS_ITEM, playThisItem);
+			eventMap.mapListener(view, PlaylistControllerEvent.ADD_TO_PLAYLIST, addToPL);
 			
 		}
 		
-		private function playThisItem(...args):void{
+		private function playThisItem(event : PlaylistControllerEvent):void{
 			Logger.tracing("Play this item", this.toString());
-			soundModel.setCurrentJSONObj(view.jsonObj);	
+			soundModel.setCurrentJSONObj(view.jsonObj);
 		}
 		
-		private function addToFavs(...args):void{
-			
+		private function addToPL(event : PlaylistControllerEvent):void{
+			Logger.tracing("Add to Playlist", this.toString());
+			playlistPlayerModel.addItemToPlaylist(event.currentJSONObj);
 		}
 		
 		public function toString():String{ return "cc.varga.mvc.views.plalisturl.item.PlaylistItemMediator"}

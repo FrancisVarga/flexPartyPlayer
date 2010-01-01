@@ -7,8 +7,6 @@
 		<![CDATA[
 			import cc.varga.mvc.events.playlist.controller.PlaylistControllerEvent;
 			
-			import flash.events.MouseEvent;
-			
 			import mx.rpc.events.ResultEvent;
 			import mx.rpc.http.mxml.HTTPService;
 
@@ -42,19 +40,19 @@
 
 			protected function addToPlaylist_clickHandler(event:MouseEvent):void
 			{
-				dispatchEvent( new PlaylistControllerEvent( PlaylistControllerEvent.ADD_TO_PLAYLIST) );
+				dispatchEvent( new PlaylistControllerEvent( PlaylistControllerEvent.ADD_TO_PLAYLIST, jsonObj) );
 			}
 
 
 			protected function play_clickHandler(event:MouseEvent):void
 			{
-				dispatchEvent( new PlaylistControllerEvent( PlaylistControllerEvent.PLAY_THIS_ITEM) );
+				dispatchEvent( new PlaylistControllerEvent( PlaylistControllerEvent.PLAY_THIS_ITEM, new Object()) );
 			}
 
 
 			protected function remove_clickHandler(event:MouseEvent):void
 			{
-				dispatchEvent( new PlaylistControllerEvent( PlaylistControllerEvent.REMOVE_THIS_ITEM) );
+				dispatchEvent( new PlaylistControllerEvent( PlaylistControllerEvent.REMOVE_THIS_ITEM, new Object()) );
 			}
 
 		]]>
@@ -76,7 +74,6 @@
 		<mx:ApplicationControlBar>
 			<s:Button id="addToPlaylist" label="Add To Playlist" click="addToPlaylist_clickHandler(event)" />
 			<s:Button id="play" label="Play" click="play_clickHandler(event)" />
-			<s:Button id="remove" label="Remove" click="remove_clickHandler(event)" />
 		</mx:ApplicationControlBar>
 	</s:Group>	
 </s:Group>
