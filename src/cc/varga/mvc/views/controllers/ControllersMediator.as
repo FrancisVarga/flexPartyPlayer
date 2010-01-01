@@ -38,8 +38,11 @@ package cc.varga.mvc.views.controllers
 {
 	import cc.varga.mvc.events.contrllers.ControllersEvent;
 	import cc.varga.mvc.models.SoundModel;
+	import cc.varga.mvc.models.player.PlayerModel;
 	import cc.varga.mvc.models.playlist.*;
 	import cc.varga.utils.logging.Logger;
+	
+	import mx.controls.Alert;
 	
 	import org.robotlegs.mvcs.Mediator;
 	
@@ -54,6 +57,9 @@ package cc.varga.mvc.views.controllers
 		
 		[Inject]
 		public var playlistModel : PlaylistModel;
+		
+		[Inject]
+		public var listModel : PlayerModel;
 		
 		public function ControllersMediator()
 		{
@@ -82,9 +88,13 @@ package cc.varga.mvc.views.controllers
 		private function playClicked(event : ControllersEvent):void{
 			
 			Logger.tracing("Play Playlist", this.toString());
+			var item : Object = listModel.getCurrentItem();
+			if(item){
+				model.setCurrentJSONObj( item );
+			} else {
+				Alert.show("Playlist is empty!", "Error");
+			}
 			
-			model.setCurrentJSONObj(	playlistModel.getCurrentItem() );
-		
 		}
 		
 		private function nextClicked(event : ControllersEvent):void{

@@ -1,6 +1,6 @@
 package cc.varga.mvc.models.player
 {
-	import cc.varga.mvc.events.playlist.PlaylistURLEvent;
+	import cc.varga.mvc.events.player.PlayerEvent;
 	import cc.varga.mvc.views.player.PlayerWindow;
 	
 	import mx.collections.ArrayCollection;
@@ -14,8 +14,25 @@ package cc.varga.mvc.models.player
 		
 		private var window : PlayerWindow = new PlayerWindow();
 		
+		private var currentItem : uint = 0;
+		
 		public function addItemToPlaylist(json:Object):void{
 			playlist.addItem(json);
+			dispatch(new PlayerEvent(PlayerEvent.ITEM_ADD_TO_PLAYLIST));
+		}
+		
+		public function getCurrentItem():Object{
+			return playlist.getItemAt(currentItem);	
+		}
+		
+		public function getNextItem():Object{
+			currentItem++;
+			return playlist.getItemAt(currentItem);
+		}
+		
+		public function getPrevItem():Object{
+			currentItem--;
+			return playlist.getItemAt(currentItem);
 		}
 		
 		public function removeItemByID(id : int):void{
