@@ -79,7 +79,7 @@ package cc.varga.mvc.commands.playlist
 			var httpRequest : HTTPService = new HTTPService();
 			//httpRequest.showBusyCursor = true;
 			httpRequest.resultFormat = "text";
-			httpRequest.url = model.playListURL;//"http://localserver/dev/songs.json"; //model.playListURL;
+			httpRequest.url = "http://iris/dev/sample.json"; //"http://iris/dev/sample.json"; //model.playListURL;
 			httpRequest.addEventListener(FaultEvent.FAULT, onFault);
 			httpRequest.addEventListener(ResultEvent.RESULT, onResult);
 			httpRequest.send();

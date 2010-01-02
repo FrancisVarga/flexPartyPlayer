@@ -52,6 +52,7 @@ package cc.varga.mvc.models.sound
 	import flash.net.NetStream;
 	import flash.net.URLRequest;
 	import flash.net.URLStream;
+	import flash.system.System;
 	
 	import org.robotlegs.mvcs.*;
 	
@@ -86,7 +87,36 @@ package cc.varga.mvc.models.sound
 			checkFileType();
 		}
 		
+		private function clearSound():void{
+			
+			soundChannel = null;
+			soundChannel = new SoundChannel();
+			sound = null;
+			sound = new Sound();
+			decoder = null;
+			decoder = new AudioDecoder();
+			
+			System.gc();
+			
+		}
+		
 		public function playPlaylist(playlist:ISound):void{
+			
+			clearSound();
+			
+			currentPlaylist = playlist;
+			
+			sound.addEventListener(Event.COMPLETE, onItemComplete);
+			decoder.addEventListener(Event.COMPLETE, onItemComplete);
+			
+			setCurrentJSONObj(currentPlaylist.getCurrentItem());
+			
+		}
+		
+		private function onItemComplete(event : *):void{
+			
+			Logger.tracing("Item Complete from Playlist", this.toString());
+			setCurrentJSONObj(currentPlaylist.getNextItem());
 			
 		}
 		

@@ -36,9 +36,11 @@
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 package cc.varga.mvc.models.playlist
 {
+	import cc.varga.mvc.models.sound.ISound;
+	
 	import org.robotlegs.mvcs.Actor;
 	
-	public class PlaylistModel extends Actor
+	public class PlaylistModel extends Actor implements ISound
 	{
 		
 		private var _playlistObj : Array = new Array();

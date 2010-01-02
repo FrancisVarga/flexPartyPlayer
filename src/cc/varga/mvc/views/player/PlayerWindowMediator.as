@@ -39,6 +39,7 @@ package cc.varga.mvc.views.player
 	import cc.varga.mvc.events.controllers.ControllersEvent;
 	import cc.varga.mvc.events.player.PlayerEvent;
 	import cc.varga.mvc.models.player.PlayerModel;
+	import cc.varga.mvc.models.sound.SoundModel;
 	import cc.varga.utils.logging.Logger;
 	
 	import org.robotlegs.mvcs.Mediator;
@@ -51,6 +52,9 @@ package cc.varga.mvc.views.player
 		
 		[Inject]
 		public var playerModel : PlayerModel;
+		
+		[Inject]
+		public var sound : SoundModel;
 		
 		public function PlayerWindowMediator()
 		{
@@ -69,6 +73,7 @@ package cc.varga.mvc.views.player
 		private function playPlaylist(event : ControllersEvent):void{
 			
 			Logger.tracing("play playlist", this.toString());
+			
 			
 		}
 		

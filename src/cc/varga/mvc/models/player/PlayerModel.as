@@ -1,13 +1,14 @@
 package cc.varga.mvc.models.player
 {
 	import cc.varga.mvc.events.player.PlayerEvent;
+	import cc.varga.mvc.models.sound.ISound;
 	import cc.varga.mvc.views.player.PlayerWindow;
 	
 	import mx.collections.ArrayCollection;
 	
-	import org.robotlegs.mvcs.Actor;
+	import org.robotlegs.mvcs.*;
 	
-	public class PlayerModel extends Actor
+	public class PlayerModel extends Actor implements ISound
 	{
 		
 		private var currentPlayList : ArrayCollection = new ArrayCollection();
