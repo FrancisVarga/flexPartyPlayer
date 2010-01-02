@@ -13,6 +13,7 @@
 	<fx:Script>
 		<![CDATA[
 			import cc.varga.mvc.events.player.PlayerEvent;
+			import cc.varga.mvc.events.playlist.PlaylistURLEvent;
 			
 			import mx.events.FlexEvent;
 			
@@ -33,6 +34,18 @@
 			}
 			
 			
+
+			protected function loadpl_clickHandler(event:MouseEvent):void
+			{
+				dispatchEvent(new PlaylistURLEvent(PlaylistURLEvent.PLAYLIST_LOAD));
+			}
+
+
+			protected function savepl_clickHandler(event:MouseEvent):void
+			{
+				dispatchEvent(new PlayerEvent(PlayerEvent.SAVE_PLAYLIST));				
+			}
+
 		]]>
 	</fx:Script>
 	
@@ -48,6 +61,8 @@
 		<s:layout><s:HorizontalLayout/></s:layout>
 		<s:Button id="lockBtn" label="Lock Player" click="lockBtn_clickHandler(event)" width="100%"/>
 		<s:Button id="unlockBtn" label="UnLock Player" click="unlockBtn_clickHandler(event)" width="100%"/>	
+		<s:Button id="savepl" label="Save Playlist" click="savepl_clickHandler(event)" width="100%"/>
+		<s:Button id="loadpl" label="Load Playlist" click="loadpl_clickHandler(event)" width="100%"/>
 	</s:Group>
 	
 </s:Group>

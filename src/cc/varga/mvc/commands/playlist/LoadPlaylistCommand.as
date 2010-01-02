@@ -76,10 +76,12 @@ package cc.varga.mvc.commands.playlist
 		}
 		
 		private function onTime(event : TimerEvent):void{
+		
+			Logger.tracing("Load Playlist", this.toString());
 			var httpRequest : HTTPService = new HTTPService();
 			//httpRequest.showBusyCursor = true;
 			httpRequest.resultFormat = "text";
-			httpRequest.url = "http://iris/dev/sample.json"; //"http://iris/dev/sample.json"; //model.playListURL;
+			httpRequest.url = "http://aludose/web/songs.json";//model.playListURL;//"http://iris/dev/sample.json"; //model.playListURL;
 			httpRequest.addEventListener(FaultEvent.FAULT, onFault);
 			httpRequest.addEventListener(ResultEvent.RESULT, onResult);
 			httpRequest.send();

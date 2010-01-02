@@ -72,7 +72,8 @@ package cc.varga.mvc.views.playlisturl
 		
 		private function onLoadPlaylistClick(event : MouseEvent):void{ 
 			model.playListURL = view.listURL.text;
-			dispatch(new PlaylistURLEvent(PlaylistURLEvent.PLAYLIST_LOAD)); 
+			//dispatch(new PlaylistURLEvent(PlaylistURLEvent.PLAYLIST_LOAD));
+			model.search(view.listURL.text);
 		}
 		
 		public function toString():String{ return "cc.varga.mvc.views.plalisturl.PlaylistURLMediator"; }

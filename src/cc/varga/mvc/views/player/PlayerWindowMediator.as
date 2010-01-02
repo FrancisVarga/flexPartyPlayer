@@ -66,7 +66,12 @@ package cc.varga.mvc.views.player
 			eventMap.mapListener(eventDispatcher, PlayerEvent.ITEM_ADD_TO_PLAYLIST, onAddItemToPlaylist);
 			eventMap.mapListener(view, PlayerEvent.LOCK, lockPlayer);
 			eventMap.mapListener(view, PlayerEvent.UNLOCK, unlockPlayer);
-			eventMap.mapListener(view, ControllersEvent.PLAY_CLICK, playPlaylist); 
+			eventMap.mapListener(view, ControllersEvent.PLAY_CLICK, playPlaylist);
+			eventMap.mapListener(view, PlayerEvent.LOAD_PLAYLIST, loadPlaylist);
+			
+		}
+		
+		private function loadPlaylist(event : PlayerEvent):void{
 			
 		}
 		

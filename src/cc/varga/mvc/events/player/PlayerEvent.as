@@ -12,6 +12,9 @@ package cc.varga.mvc.events.player
 		
 		public static const ITEM_ADD_TO_PLAYLIST : String = "item_add_to_playlist";
 		
+		public static const LOAD_PLAYLIST : String = "load_playlist";
+		public static const SAVE_PLAYLIST : String = "save_playlist";
+		
 		public function PlayerEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
 			super(type, bubbles, cancelable);

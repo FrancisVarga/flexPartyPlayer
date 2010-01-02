@@ -38,12 +38,17 @@ package cc.varga.mvc.models.playlist
 {
 	import cc.varga.mvc.models.sound.ISound;
 	
-	import org.robotlegs.mvcs.Actor;
+	import mx.rpc.events.FaultEvent;
+	import mx.rpc.events.ResultEvent;
+	import mx.rpc.http.mxml.HTTPService;
+	
+	import org.robotlegs.mvcs.*;
 	
 	public class PlaylistModel extends Actor implements ISound
 	{
 		
 		private var _playlistObj : Array = new Array();
+		private var searchText : String;
 		
 		public var playListURL :String = "";
 		public var currentItem : uint = 0;
@@ -76,6 +81,24 @@ package cc.varga.mvc.models.playlist
 		
 		public function getCurrentItem():Object{
 			return _playlistObj[currentItem];
+		}
+		
+		public function search(value : String):void{
+			this.searchText = value;
+			var http : HTTPService = new HTTPService();
+			http.addEventListener(FaultEvent.FAULT, onSerachFault);
+			http.addEventListener(ResultEvent.RESULT, onSearchResult);
+			http.method = "POST";
+			http.url = "http://aludose/web/search/";
+			http.send( {"query":value} );
+		}
+		
+		private function onSearchResult(event : ResultEvent):void{
+			
+		}
+		
+		private function onSerachFault(event : FaultEvent):void{
+			
 		}
 		
 		public function toString():String{ return "cc.varga.mvc.models.playlist.PlaylistModel"}
