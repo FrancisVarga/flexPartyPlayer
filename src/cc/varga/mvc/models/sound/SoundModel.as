@@ -253,11 +253,11 @@ package cc.varga.mvc.models.sound
 		}
 		
 		public function prev():void{
-			//setCurrentJSONObj(currentP
+			setCurrentJSONObj(currentPlaylist.getPrevItem() );
 		}
 		
 		private function onSoundComplete(event : Event):void{
-			
+				
 		}
 		
 		public function toString():String{ return "cc.varga.mvc.models.SoundModel"}

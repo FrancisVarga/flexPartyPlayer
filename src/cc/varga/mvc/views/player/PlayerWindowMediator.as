@@ -44,7 +44,7 @@ package cc.varga.mvc.views.player
 	import cc.varga.mvc.models.sound.SoundModel;
 	import cc.varga.utils.logging.Logger;
 	
-	import org.robotlegs.mvcs.Mediator;
+	import org.robotlegs.mvcs.*;
 	
 	public class PlayerWindowMediator extends Mediator
 	{
@@ -73,7 +73,25 @@ package cc.varga.mvc.views.player
 			eventMap.mapListener(view, PlayerEvent.UNLOCK, unlockPlayer);
 			eventMap.mapListener(view, ControllersEvent.PLAY_CLICK, playPlaylist);
 			eventMap.mapListener(view, PlaylistURLEvent.PLAYLIST_LOAD, loadPlaylist);
+			eventMap.mapListener(view, ControllersEvent.NEXT_CLICK,onNextClick);
+			eventMap.mapListener(view, ControllersEvent.PREV_CLICK, onPrevClick);
+			eventMap.mapListener(view, PlayerEvent.LOAD_BLIP_FM_FEED, onBlipFeedLoader);
 			
+		}
+		
+		private function onBlipFeedLoader(event : ControllersEvent):void{
+			
+			var bloadBlipFeed : 
+			
+		}
+		
+		private function onPrevClick(event : ControllersEvent):void{
+			Logger.tracing("Previous Song", this.toString());	
+			sound.prev();
+		}
+		
+		private function onNextClick(event : ControllersEvent):void{
+			sound.next();
 		}
 		
 		private function loadPlaylist(event : PlaylistURLEvent):void{
