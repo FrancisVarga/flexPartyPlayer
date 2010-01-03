@@ -19,6 +19,8 @@ if File.exists? bundler_env
       gemspec.homepage = "http://github.com/FrancisVarga/flexPartyPlayer/"
       gemspec.authors = ["Francis Varga"]
       gemspec.add_dependency('airake')
+      gemspec.add_dependency('rake')
+
       files = FileList[%w{src/**/* test/* views/* lib/* script/* sample.json airake.yml Gemfile}]
       gemspec.files = files.to_a
     end
