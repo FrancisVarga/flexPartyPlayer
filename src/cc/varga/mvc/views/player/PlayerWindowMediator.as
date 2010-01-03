@@ -42,7 +42,10 @@ package cc.varga.mvc.views.player
 	import cc.varga.mvc.models.player.PlayerModel;
 	import cc.varga.mvc.models.playlist.PlaylistModel;
 	import cc.varga.mvc.models.sound.SoundModel;
+	import cc.varga.mvc.views.blipfm.feedloader.FeedLoader;
 	import cc.varga.utils.logging.Logger;
+	
+	import mx.managers.PopUpManager;
 	
 	import org.robotlegs.mvcs.*;
 	
@@ -69,6 +72,7 @@ package cc.varga.mvc.views.player
 		override public function onRegister() : void{
 			
 			eventMap.mapListener(eventDispatcher, PlayerEvent.ITEM_ADD_TO_PLAYLIST, onAddItemToPlaylist);
+			eventMap.mapListener(view, ControllersEvent.NEXT_CLICK, onNextClick);
 			eventMap.mapListener(view, PlayerEvent.LOCK, lockPlayer);
 			eventMap.mapListener(view, PlayerEvent.UNLOCK, unlockPlayer);
 			eventMap.mapListener(view, ControllersEvent.PLAY_CLICK, playPlaylist);
@@ -79,9 +83,10 @@ package cc.varga.mvc.views.player
 			
 		}
 		
-		private function onBlipFeedLoader(event : ControllersEvent):void{
+		private function onBlipFeedLoader(event : PlayerEvent):void{
 			
-			var bloadBlipFeed : 
+			var loadBlipFeed : FeedLoader = FeedLoader(PopUpManager.createPopUp(contextView, FeedLoader, true));
+			PopUpManager.centerPopUp(loadBlipFeed);
 			
 		}
 		
@@ -91,6 +96,7 @@ package cc.varga.mvc.views.player
 		}
 		
 		private function onNextClick(event : ControllersEvent):void{
+			Logger.tracing("Next Song", this.toString());	
 			sound.next();
 		}
 		

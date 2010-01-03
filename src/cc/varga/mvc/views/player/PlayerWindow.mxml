@@ -4,9 +4,7 @@
 				xmlns:mx="library://ns.adobe.com/flex/halo"
 				xmlns:controllers="cc.varga.mvc.views.controllers.*"
 				
-				width="458" height="100%"
-				
-				creationComplete="titlewindow1_creationCompleteHandler(event)" >
+				width="458" height="100%" >
 	
 	<s:layout><s:VerticalLayout/></s:layout>
 	
@@ -16,12 +14,6 @@
 			import cc.varga.mvc.events.playlist.PlaylistURLEvent;
 			
 			import mx.events.FlexEvent;
-			
-			protected function titlewindow1_creationCompleteHandler(event:FlexEvent):void
-			{
-				
-			}
-
 
 			protected function lockBtn_clickHandler(event:MouseEvent):void
 			{
