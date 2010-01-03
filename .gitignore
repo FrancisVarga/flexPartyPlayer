@@ -1,1 +1,6 @@
 bin/FlexPlayer.swf
+vendor/gems/dirs
+vendor/gems/gems
+vendor/gems/specifications
+vendor/gems/doc
+vendor/gems/environment.rb
