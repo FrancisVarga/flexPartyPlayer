@@ -44,6 +44,12 @@
 				dispatchEvent(new PlayerEvent(PlayerEvent.SAVE_PLAYLIST));				
 			}
 
+
+			protected function loadBlipFeed_clickHandler(event:MouseEvent):void
+			{
+				dispatchEvent(new PlayerEvent(PlayerEvent.LOAD_BLIP_FM_FEED));	
+			}
+
 		]]>
 	</fx:Script>
 	
@@ -61,6 +67,7 @@
 		<s:Button id="unlockBtn" label="UnLock Player" click="unlockBtn_clickHandler(event)" width="100%"/>	
 		<s:Button id="savepl" label="Save Playlist" click="savepl_clickHandler(event)" width="100%"/>
 		<s:Button id="loadpl" label="Load Playlist" click="loadpl_clickHandler(event)" width="100%"/>
+		<s:Button id="loadBlipFeed" label="Load Blip.fm Feed" click="loadBlipFeed_clickHandler(event)" width="100%"/>
 	</s:Group>
 	
 </s:Group>

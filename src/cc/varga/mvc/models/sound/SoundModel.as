@@ -85,8 +85,13 @@ package cc.varga.mvc.models.sound
 		
 		public function setCurrentJSONObj(json : Object):void{
 			Logger.tracing("set current json object", this.toString());
-			currentJSONObj = json;
-			checkFileType();
+			
+			if(json != null){
+				currentJSONObj = json;
+				checkFileType();
+			}else{
+				Alert.show("Somthing is wrong hit the developer!", "Error");
+			}
 		}
 		
 		private function clearSound():void{
@@ -248,7 +253,7 @@ package cc.varga.mvc.models.sound
 		}
 		
 		public function prev():void{
-				
+			//setCurrentJSONObj(currentP
 		}
 		
 		private function onSoundComplete(event : Event):void{

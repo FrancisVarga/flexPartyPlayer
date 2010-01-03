@@ -15,6 +15,8 @@ package cc.varga.mvc.events.player
 		public static const LOAD_PLAYLIST : String = "load_playlist";
 		public static const SAVE_PLAYLIST : String = "save_playlist";
 		
+		public static const LOAD_BLIP_FM_FEED : String = "load_blip_fm_feed";
+		
 		public function PlayerEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
 			super(type, bubbles, cancelable);
