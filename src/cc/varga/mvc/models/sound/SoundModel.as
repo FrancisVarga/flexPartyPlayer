@@ -185,7 +185,6 @@ package cc.varga.mvc.models.sound
 		
 		private function loadMp3File():void{
 			
-			sound = new Sound();
 			sound.addEventListener(Event.COMPLETE, onLoadComplete_mp3);
 			sound.addEventListener(SampleDataEvent.SAMPLE_DATA, onSoundData);
 			sound.addEventListener(IOErrorEvent.IO_ERROR, onIOError_mp3);
@@ -210,10 +209,10 @@ package cc.varga.mvc.models.sound
 		
 		private function loadOGGFile():void{	
 			decoder.addEventListener(Event.INIT, onDecoderInit);
-			decoder.addEventListener(IOErrorEvent.IO_ERROR, onDecoderIOError);
+			/*decoder.addEventListener(IOErrorEvent.IO_ERROR, onDecoderIOError);
 			decoder.addEventListener(Event.COMPLETE, onComplete);
 			
-			soundChannel.addEventListener(Event.SOUND_COMPLETE, onComplete);
+			soundChannel.addEventListener(Event.SOUND_COMPLETE, onComplete);*/
 			
 			var oggStream : URLStream = new URLStream();
 			
