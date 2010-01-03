@@ -32,11 +32,17 @@ package cc.varga.mvc.models.player
 		
 		public function getNextItem():Object{
 			currentItem++;
+			if(currentItem > currentPlayList.length){
+				currentItem = 0;
+			}
 			return playlist.getItemAt(currentItem);
 		}
 		
 		public function getPrevItem():Object{
 			currentItem--;
+			if(currentItem < 0){
+				currentItem = 0;
+			}
 			return playlist.getItemAt(currentItem);
 		}
 		

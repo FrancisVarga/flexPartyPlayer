@@ -131,7 +131,7 @@ package cc.varga.mvc.models.sound
 			decoder.addEventListener(Event.COMPLETE, onItemComplete);
 			decoder.addEventListener(Event.SOUND_COMPLETE, onItemComplete);
 			
-			if(playlist.listlength() > 0){
+			if(currentPlaylist.listlength() > 0){
 				playSound(currentPlaylist.getCurrentItem());
 			}else{
 				Alert.show("Playlist is null", "Error");
