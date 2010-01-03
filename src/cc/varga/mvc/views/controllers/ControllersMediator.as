@@ -86,7 +86,7 @@ package cc.varga.mvc.views.controllers
 		}
 		
 		private function prevClicked(event : ControllersEvent):void{
-			
+			model.prev();
 		}
 		
 		private function playClicked(event : ControllersEvent):void{
@@ -98,7 +98,7 @@ package cc.varga.mvc.views.controllers
 		}
 		
 		private function nextClicked(event : ControllersEvent):void{
-			
+			model.next();	
 		}
 		
 		public function toString():String{ return "cc.varga.mvc.views.controllers.ControllersMediator"}

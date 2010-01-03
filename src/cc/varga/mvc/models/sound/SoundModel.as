@@ -84,14 +84,23 @@ package cc.varga.mvc.models.sound
 		}
 		
 		public function setCurrentJSONObj(json : Object):void{
+			
+			clearSound();
+			
 			Logger.tracing("set current json object", this.toString());
 			
-			if(json != null){
-				currentJSONObj = json;
+			playSound(json);
+		}
+		
+		private function playSound(playObj:Object):void{
+			
+			if(playObj != null){
+				currentJSONObj = playObj;
 				checkFileType();
 			}else{
-				Alert.show("Somthing is wrong hit the developer!", "Error");
+				Alert.show("Something is wrong hit the developer FLEX!", "Error");
 			}
+			
 		}
 		
 		private function clearSound():void{
@@ -123,7 +132,7 @@ package cc.varga.mvc.models.sound
 			decoder.addEventListener(Event.SOUND_COMPLETE, onItemComplete);
 			
 			if(playlist.listlength() > 0){
-				setCurrentJSONObj(currentPlaylist.getCurrentItem());
+				playSound(currentPlaylist.getCurrentItem());
 			}else{
 				Alert.show("Playlist is null", "Error");
 			}
@@ -193,7 +202,6 @@ package cc.varga.mvc.models.sound
 			sound.addEventListener(Event.COMPLETE, onLoadComplete_mp3);
 			sound.addEventListener(SampleDataEvent.SAMPLE_DATA, onSoundData);
 			sound.addEventListener(IOErrorEvent.IO_ERROR, onIOError_mp3);
-			soundChannel.addEventListener(Event.SOUND_COMPLETE, onLoadComplete_mp3);
 			//sound.load(new URLRequest("http://localserver:5984/musiclib/737fa73795ac1bff9f3c1145ccacd16c/04-gentleman_reg--when_heroes_change_professions-oma.mp3"));
 			sound.load(new URLRequest("http://aludose/" + currentJSONObj["_id"] + "/" + contentURL));
 			soundChannel = sound.play();

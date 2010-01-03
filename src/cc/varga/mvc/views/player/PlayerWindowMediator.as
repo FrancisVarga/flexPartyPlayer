@@ -72,14 +72,12 @@ package cc.varga.mvc.views.player
 		override public function onRegister() : void{
 			
 			eventMap.mapListener(eventDispatcher, PlayerEvent.ITEM_ADD_TO_PLAYLIST, onAddItemToPlaylist);
-			eventMap.mapListener(view, ControllersEvent.NEXT_CLICK, onNextClick);
+			
 			eventMap.mapListener(view, PlayerEvent.LOCK, lockPlayer);
 			eventMap.mapListener(view, PlayerEvent.UNLOCK, unlockPlayer);
-			eventMap.mapListener(view, ControllersEvent.PLAY_CLICK, playPlaylist);
-			eventMap.mapListener(view, PlaylistURLEvent.PLAYLIST_LOAD, loadPlaylist);
-			eventMap.mapListener(view, ControllersEvent.NEXT_CLICK,onNextClick);
-			eventMap.mapListener(view, ControllersEvent.PREV_CLICK, onPrevClick);
 			eventMap.mapListener(view, PlayerEvent.LOAD_BLIP_FM_FEED, onBlipFeedLoader);
+			
+			eventMap.mapListener(view, PlaylistURLEvent.PLAYLIST_LOAD, loadPlaylist);
 			
 		}
 		
@@ -88,16 +86,6 @@ package cc.varga.mvc.views.player
 			var loadBlipFeed : FeedLoader = FeedLoader(PopUpManager.createPopUp(contextView, FeedLoader, true));
 			PopUpManager.centerPopUp(loadBlipFeed);
 			
-		}
-		
-		private function onPrevClick(event : ControllersEvent):void{
-			Logger.tracing("Previous Song", this.toString());	
-			sound.prev();
-		}
-		
-		private function onNextClick(event : ControllersEvent):void{
-			Logger.tracing("Next Song", this.toString());	
-			sound.next();
 		}
 		
 		private function loadPlaylist(event : PlaylistURLEvent):void{
