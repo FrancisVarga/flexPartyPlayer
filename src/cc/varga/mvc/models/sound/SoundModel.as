@@ -128,6 +128,15 @@ package cc.varga.mvc.models.sound
 		private function onItemComplete(event : *):void{
 			
 			Logger.tracing("Item Complete from Playlist", this.toString());
+			
+			clearSound();
+			
+			soundChannel.addEventListener(Event.SOUND_COMPLETE, onItemComplete);
+			sound.addEventListener(Event.COMPLETE, onItemComplete);
+			sound.addEventListener(Event.SOUND_COMPLETE, onItemComplete);
+			decoder.addEventListener(Event.COMPLETE, onItemComplete);
+			decoder.addEventListener(Event.SOUND_COMPLETE, onItemComplete);
+			
 			setCurrentJSONObj(currentPlaylist.getNextItem());
 			
 		}
@@ -136,13 +145,6 @@ package cc.varga.mvc.models.sound
 			
 			Logger.tracing("check file type", this.toString());	
 			
-			sound 					= null;
-			sound			 		= new Sound();
-			soundChannel 			= null;
-			soundChannel 			= new SoundChannel();
-			decoder 				= null;
-			decoder		 			= new AudioDecoder();	
-			
 			for (var item : * in currentJSONObj){
 				
 				if(item == "_attachments"){
@@ -150,11 +152,13 @@ package cc.varga.mvc.models.sound
 						var cont:String = att;
 						
 						if(cont.lastIndexOf(".ogg") >= 1){
+							Logger.tracing("Play OGG File", this.toString());
 							contentURL = cont;
 							currentCT = "ogg";
 							loadOGGFile();
 							break;
 						}else if(cont.indexOf(".mp3") >= 1){
+							Logger.tracing("Play Mp3 File", this.toString());
 							contentURL = cont;
 							currentCT = "mp3"
 							loadMp3File();
@@ -205,9 +209,6 @@ package cc.varga.mvc.models.sound
 		}
 		
 		private function loadOGGFile():void{	
-			
-			soundChannel.stop();
-			
 			decoder.addEventListener(Event.INIT, onDecoderInit);
 			decoder.addEventListener(IOErrorEvent.IO_ERROR, onDecoderIOError);
 			decoder.addEventListener(Event.COMPLETE, onComplete);
@@ -218,13 +219,12 @@ package cc.varga.mvc.models.sound
 			
 			decoder.load(oggStream, OggVorbisDecoder, BUFFER_SIZE);
 			oggStream.load(new URLRequest("http://aludose/" + currentJSONObj["_id"] + "/" + contentURL));
-			
+			Logger.tracing("Play File: " + "http://aludose/" + currentJSONObj["_id"] + "/" + contentURL, this.toString());
 		}
 		
 		private function onComplete(event : Event):void{
-			
-			Logger.tracing("OGG File Complete", this.toString());
-			
+			Logger.tracing("OGG File Complete: " + event + " || Target: " + event.currentTarget, this.toString());
+			clearSound();
 		}
 		
 		private function onDecoderInit(event : Event):void{
