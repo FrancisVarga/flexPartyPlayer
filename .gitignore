@@ -1,4 +1,6 @@
-bin/FlexPlayer.swf
+bin
+*.swp
+*.swo
 vendor/gems/dirs
 vendor/gems/gems
 vendor/gems/specifications

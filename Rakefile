@@ -6,22 +6,9 @@ if File.exists? bundler_env
   require bundler_env
   Bundler.require_env
 
-  require 'airake'
+  require 'lib/fpp'
+  Jukebox.tasks_for_building_to("bin")
 
-
-  # Aliases
-  task :test => [ "air:test" ] do; end
-  namespace :flex do
-    task :compile do
-      `mxmlc +configname=flex -include-libraries /Users/lenni/Source/flexPartyPlayer/libs/extLib/oggvorbis.swc -source-path /Users/lenni/Source/flexPartyPlayer/src /Users/lenni/Source/flexPartyPlayer/libs/extLib/httpclient/src/ /Users/lenni/Source/flexPartyPlayer/libs/extLib/robo/src/ /Users/lenni/Source/flexPartyPlayer/libs/extLib/swift/src/ /Users/lenni/Source/flexPartyPlayer/libs/extLib/core/src/ -output /Users/lenni/Source/flexPartyPlayer/bin/FlexPlayer.swf -debug=true -- /Users/lenni/Source/flexPartyPlayer/src/FlexPlayer.mxml`
-    end
-  end
-  task :package => [ "air:package" ] do; end
-  task :certificate => [ "air:certificate" ] do; end
-  task :adl => [ "air:adl" ] do; end
-  task :docs => [ "air:docs" ] do; end
-  task :clean => [ "air:clean" ] do; end
-  task :acompc => [ "air:acompc" ] do; end
   begin
     require 'jeweler'
     Jeweler::Tasks.new do |gemspec|
@@ -31,6 +18,7 @@ if File.exists? bundler_env
       gemspec.email = "github@varga-net"
       gemspec.homepage = "http://github.com/FrancisVarga/flexPartyPlayer/"
       gemspec.authors = ["Francis Varga"]
+      gemspec.add_dependency('airake')
     end
   rescue LoadError
     puts "Jeweler not available. Install it with: gem install jeweler"
