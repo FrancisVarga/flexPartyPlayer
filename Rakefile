@@ -7,7 +7,7 @@ if File.exists? bundler_env
   Bundler.require_env
 
   require 'lib/fpp'
-  Jukebox.tasks_for_building_to("bin")
+  Jukebox::Tasks.new "bin"
 
   begin
     require 'jeweler'
