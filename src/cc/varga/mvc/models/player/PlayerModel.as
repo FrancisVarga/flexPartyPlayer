@@ -17,6 +17,10 @@ package cc.varga.mvc.models.player
 		
 		private var currentItem : uint = 0;
 		
+		public function listlength():uint{
+			return currentPlayList.source.length;
+		}
+		
 		public function addItemToPlaylist(json:Object):void{
 			playlist.addItem(json);
 			dispatch(new PlayerEvent(PlayerEvent.ITEM_ADD_TO_PLAYLIST));
@@ -56,6 +60,10 @@ package cc.varga.mvc.models.player
 		
 		public function get playlist():ArrayCollection{
 			return currentPlayList;
+		}
+		
+		public function get lengthPlaylist():uint{
+			return currentPlayList.length;
 		}
 			
 	}

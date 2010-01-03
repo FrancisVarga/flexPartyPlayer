@@ -54,6 +54,8 @@ package cc.varga.mvc.models.sound
 	import flash.net.URLStream;
 	import flash.system.System;
 	
+	import mx.controls.Alert;
+	
 	import org.robotlegs.mvcs.*;
 	
 	public class SoundModel extends Actor
@@ -89,6 +91,9 @@ package cc.varga.mvc.models.sound
 		
 		private function clearSound():void{
 			
+			Logger.tracing("Clear all sound", this.toString());
+			
+			soundChannel.stop();
 			soundChannel = null;
 			soundChannel = new SoundChannel();
 			sound = null;
@@ -106,10 +111,17 @@ package cc.varga.mvc.models.sound
 			
 			currentPlaylist = playlist;
 			
+			soundChannel.addEventListener(Event.SOUND_COMPLETE, onItemComplete);
 			sound.addEventListener(Event.COMPLETE, onItemComplete);
+			sound.addEventListener(Event.SOUND_COMPLETE, onItemComplete);
 			decoder.addEventListener(Event.COMPLETE, onItemComplete);
+			decoder.addEventListener(Event.SOUND_COMPLETE, onItemComplete);
 			
-			setCurrentJSONObj(currentPlaylist.getCurrentItem());
+			if(playlist.listlength() > 0){
+				setCurrentJSONObj(currentPlaylist.getCurrentItem());
+			}else{
+				Alert.show("Playlist is null", "Error");
+			}
 			
 		}
 		
@@ -124,16 +136,12 @@ package cc.varga.mvc.models.sound
 			
 			Logger.tracing("check file type", this.toString());	
 			
-			soundChannel.stop();
-			
 			sound 					= null;
 			sound			 		= new Sound();
 			soundChannel 			= null;
 			soundChannel 			= new SoundChannel();
 			decoder 				= null;
 			decoder		 			= new AudioDecoder();	
-			
-			soundChannel.addEventListener(Event.SOUND_COMPLETE, onSoundComplete);
 			
 			for (var item : * in currentJSONObj){
 				
@@ -173,13 +181,11 @@ package cc.varga.mvc.models.sound
 		
 		private function loadMp3File():void{
 			
-			//Top Level Function
-			//stopAllSounds();
-			
 			sound = new Sound();
 			sound.addEventListener(Event.COMPLETE, onLoadComplete_mp3);
 			sound.addEventListener(SampleDataEvent.SAMPLE_DATA, onSoundData);
 			sound.addEventListener(IOErrorEvent.IO_ERROR, onIOError_mp3);
+			soundChannel.addEventListener(Event.SOUND_COMPLETE, onLoadComplete_mp3);
 			//sound.load(new URLRequest("http://localserver:5984/musiclib/737fa73795ac1bff9f3c1145ccacd16c/04-gentleman_reg--when_heroes_change_professions-oma.mp3"));
 			sound.load(new URLRequest("http://aludose/" + currentJSONObj["_id"] + "/" + contentURL));
 			soundChannel = sound.play();
@@ -191,7 +197,7 @@ package cc.varga.mvc.models.sound
 		}
 		
 		private function onLoadComplete_mp3(event : Event):void{
-			
+			Logger.tracing("mp3 file complete", this.toString());
 		}
 		
 		private function onIOError_mp3(event : IOErrorEvent):void{
@@ -203,27 +209,27 @@ package cc.varga.mvc.models.sound
 			soundChannel.stop();
 			
 			decoder.addEventListener(Event.INIT, onDecoderInit);
-			decoder.addEventListener(Event.COMPLETE, onDecoderComplete);
 			decoder.addEventListener(IOErrorEvent.IO_ERROR, onDecoderIOError);
+			decoder.addEventListener(Event.COMPLETE, onComplete);
+			
+			soundChannel.addEventListener(Event.SOUND_COMPLETE, onComplete);
 			
 			var oggStream : URLStream = new URLStream();
 			
 			decoder.load(oggStream, OggVorbisDecoder, BUFFER_SIZE);
-			//oggStream.load( new URLRequest("http://localserver:5984/musiclib/f8d653522eb65fe2bbff2abc8227289f/1vs0_JuniorGroove.ogg"));
 			oggStream.load(new URLRequest("http://aludose/" + currentJSONObj["_id"] + "/" + contentURL));
+			
+		}
+		
+		private function onComplete(event : Event):void{
+			
+			Logger.tracing("OGG File Complete", this.toString());
 			
 		}
 		
 		private function onDecoderInit(event : Event):void{
 			soundChannel = decoder.play();
 			Logger.tracing("Init OGG Decoder", this.toString());
-		}
-		
-		private function onDecoderComplete(event : Event):void{
-			Logger.tracing("Decode Complete", this.toString());	
-			
-			setCurrentJSONObj(playlistModel.getNextItem());
-			
 		}
 		
 		private function onDecoderIOError(event : Event):void{
@@ -234,14 +240,19 @@ package cc.varga.mvc.models.sound
 			soundChannel.stop();
 		}
 		
-		public function stop():void{
-			soundChannel.stop();
+		public function stop():void{			
+			clearSound();
 		}
 		
+		public function next():void{
+			setCurrentJSONObj(currentPlaylist.getNextItem());
+		}
+		
+		public function prev():void{
+				
+		}
 		
 		private function onSoundComplete(event : Event):void{
-			
-			this.setCurrentJSONObj( playlistModel.getNextItem());
 			
 		}
 		

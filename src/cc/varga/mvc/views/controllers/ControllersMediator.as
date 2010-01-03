@@ -38,9 +38,9 @@ package cc.varga.mvc.views.controllers
 {
 	
 	import cc.varga.mvc.events.controllers.ControllersEvent;
-	import cc.varga.mvc.models.sound.SoundModel;
 	import cc.varga.mvc.models.player.PlayerModel;
 	import cc.varga.mvc.models.playlist.*;
+	import cc.varga.mvc.models.sound.SoundModel;
 	import cc.varga.utils.logging.Logger;
 	
 	import mx.controls.Alert;
@@ -80,6 +80,9 @@ package cc.varga.mvc.views.controllers
 		
 		private function stopClicked(event : ControllersEvent):void{
 			
+			Logger.tracing("stop sound", this.toString());
+			model.stop();
+			
 		}
 		
 		private function prevClicked(event : ControllersEvent):void{
@@ -89,12 +92,8 @@ package cc.varga.mvc.views.controllers
 		private function playClicked(event : ControllersEvent):void{
 			
 			Logger.tracing("Play Playlist", this.toString());
-			var item : Object = listModel.getCurrentItem();
-			if(item){
-				model.setCurrentJSONObj( item );
-			} else {
-				Alert.show("Playlist is empty!", "Error");
-			}
+						
+			model.playPlaylist( listModel );
 			
 		}
 		

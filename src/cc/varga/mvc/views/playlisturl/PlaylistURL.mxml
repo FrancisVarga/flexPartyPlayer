@@ -6,6 +6,19 @@
 		 width="100%" height="100%">
 	
 	<s:layout><s:VerticalLayout/></s:layout>
+
+	<fx:Script>
+		<![CDATA[
+			
+
+			protected function searchInList_clickHandler(event:MouseEvent):void
+			{
+				
+			}
+
+		]]>
+	</fx:Script>
+
 	
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
@@ -14,7 +27,7 @@
 	<s:Group left="0" right="0">
 		<s:layout><s:HorizontalLayout/></s:layout>
 		<s:TextInput id="listURL" text="http://aludose/web/songs.json" width="350" />
-		<s:Button id="loadList" label="Search" />
+		<s:Button id="searchInList" label="Search" click="searchInList_clickHandler(event)" />
 	</s:Group>
 	
 	<s:Group left="0" right="0" height="20">

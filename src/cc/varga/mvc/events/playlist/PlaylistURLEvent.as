@@ -44,6 +44,7 @@ package cc.varga.mvc.events.playlist
 		public static const PLAYLIST_LOAD : String = "load_playlist";
 		public static const PLAYLIST_DISPLAYED : String = "displayed_playlist";
 		public static const ADD_TO_PLAYLIST : String = "add_to_playlist";
+		public static const ADD_ALL_TO_PLAYLIST : String = "add_all_to_playlist";
 		
 		public function PlaylistURLEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{

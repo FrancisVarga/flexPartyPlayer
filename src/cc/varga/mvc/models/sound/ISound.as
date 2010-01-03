@@ -6,6 +6,7 @@ package cc.varga.mvc.models.sound
 		function getCurrentItem():Object
 		function getNextItem():Object
 		function getPrevItem():Object
-		
+		function listlength():uint
+			
 	}
 }

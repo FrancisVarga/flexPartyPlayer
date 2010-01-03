@@ -37,7 +37,9 @@
 package cc.varga.mvc.models.playlist
 {
 	import cc.varga.mvc.models.sound.ISound;
+	import cc.varga.utils.logging.Logger;
 	
+	import mx.collections.ArrayCollection;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
 	import mx.rpc.http.mxml.HTTPService;
@@ -47,18 +49,18 @@ package cc.varga.mvc.models.playlist
 	public class PlaylistModel extends Actor implements ISound
 	{
 		
-		private var _playlistObj : Array = new Array();
+		private var _playlistObj : ArrayCollection = new ArrayCollection();
 		private var searchText : String;
 		
 		public var playListURL :String = "";
 		public var currentItem : uint = 0;
 		
 		public function set playlistObj(value : Array):void{
-			_playlistObj = value;
+			_playlistObj.source = value;
 		}
 		
 		public function getItems():Array{
-			return _playlistObj;
+			return _playlistObj.source;
 		}
 		
 		public function getNextItem():Object{
@@ -67,7 +69,7 @@ package cc.varga.mvc.models.playlist
 				currentItem = 0;
 			}
 			
-			return _playlistObj[currentItem];				
+			return _playlistObj.getItemAt(currentItem);				
 		}
 		
 		public function getPrevItem():Object{
@@ -76,11 +78,15 @@ package cc.varga.mvc.models.playlist
 				currentItem = 0;
 			}
 			
-			return _playlistObj[currentItem];
+			return _playlistObj.getItemAt(currentItem);
 		}
 		
 		public function getCurrentItem():Object{
-			return _playlistObj[currentItem];
+			return _playlistObj.getItemAt(currentItem);
+		}
+		
+		public function listlength():uint{
+			return _playlistObj.source.length;
 		}
 		
 		public function search(value : String):void{
@@ -98,6 +104,13 @@ package cc.varga.mvc.models.playlist
 		}
 		
 		private function onSerachFault(event : FaultEvent):void{
+			
+		}
+		
+		private function searchFunction(item : Object):Boolean{
+			
+			Logger.tracing("call search function", this.toString());
+			return false;
 			
 		}
 		

@@ -77,7 +77,6 @@ package cc.varga.mvc.commands.playlist
 		
 		private function onTime(event : TimerEvent):void{
 		
-			Logger.tracing("Load Playlist", this.toString());
 			var httpRequest : HTTPService = new HTTPService();
 			//httpRequest.showBusyCursor = true;
 			httpRequest.resultFormat = "text";
@@ -85,6 +84,7 @@ package cc.varga.mvc.commands.playlist
 			httpRequest.addEventListener(FaultEvent.FAULT, onFault);
 			httpRequest.addEventListener(ResultEvent.RESULT, onResult);
 			httpRequest.send();
+			
 		}
 		
 		private function onResult(event : ResultEvent):void{			

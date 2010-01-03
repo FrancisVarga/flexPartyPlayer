@@ -32,8 +32,6 @@
 			{
 				dispatchEvent(new PlayerEvent(PlayerEvent.UNLOCK));				
 			}
-			
-			
 
 			protected function loadpl_clickHandler(event:MouseEvent):void
 			{

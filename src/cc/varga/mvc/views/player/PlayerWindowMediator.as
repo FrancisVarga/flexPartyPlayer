@@ -38,7 +38,9 @@ package cc.varga.mvc.views.player
 {
 	import cc.varga.mvc.events.controllers.ControllersEvent;
 	import cc.varga.mvc.events.player.PlayerEvent;
+	import cc.varga.mvc.events.playlist.PlaylistURLEvent;
 	import cc.varga.mvc.models.player.PlayerModel;
+	import cc.varga.mvc.models.playlist.PlaylistModel;
 	import cc.varga.mvc.models.sound.SoundModel;
 	import cc.varga.utils.logging.Logger;
 	
@@ -56,6 +58,9 @@ package cc.varga.mvc.views.player
 		[Inject]
 		public var sound : SoundModel;
 		
+		[Inject]
+		public var playlist : PlaylistModel;
+		
 		public function PlayerWindowMediator()
 		{
 			super();
@@ -67,12 +72,12 @@ package cc.varga.mvc.views.player
 			eventMap.mapListener(view, PlayerEvent.LOCK, lockPlayer);
 			eventMap.mapListener(view, PlayerEvent.UNLOCK, unlockPlayer);
 			eventMap.mapListener(view, ControllersEvent.PLAY_CLICK, playPlaylist);
-			eventMap.mapListener(view, PlayerEvent.LOAD_PLAYLIST, loadPlaylist);
+			eventMap.mapListener(view, PlaylistURLEvent.PLAYLIST_LOAD, loadPlaylist);
 			
 		}
 		
-		private function loadPlaylist(event : PlayerEvent):void{
-			
+		private function loadPlaylist(event : PlaylistURLEvent):void{
+			eventDispatcher.dispatchEvent(new PlaylistURLEvent(PlaylistURLEvent.PLAYLIST_LOAD));
 		}
 		
 		private function playPlaylist(event : ControllersEvent):void{

@@ -15,10 +15,10 @@
 	<s:Group width="100%" height="100%" verticalCenter="0" horizontalCenter="0">
 		<s:layout><s:HorizontalLayout/></s:layout>
 		<s:Button id="Btn_play" label="Play" height="55" click="dispatchEvent(new ControllersEvent(ControllersEvent.PLAY_CLICK))"/>
-		<s:Button id="Btn_stop" label="Stop" height="55" />
-		<s:Button id="Btn_prev" label="Previous" height="55"/>
-		<s:Button id="Btn_next" label="Next" height="55"/>
-		<s:ToggleButton id="Btn_random" label="Random" height="55" />
-		<s:ToggleButton id="Btn_shuffle" label="Shuffle" height="55" />
+		<s:Button id="Btn_stop" label="Stop" height="55" click="dispatchEvent(new ControllersEvent(ControllersEvent.STOP_CLICK))" />
+		<s:Button id="Btn_prev" label="Previous" height="55" click="dispatchEvent(new ControllersEvent(ControllersEvent.PREV_CLICK))"/>
+		<s:Button id="Btn_next" label="Next" height="55" click="dispatchEvent(new ControllersEvent(ControllersEvent.NEXT_CLICK))" />
+		<s:ToggleButton id="Btn_random" label="Random" height="55" click="dispatchEvent(new ControllersEvent(ControllersEvent.RANDOM_CLICK))" />
+		<s:ToggleButton id="Btn_shuffle" label="Shuffle" height="55" click="dispatchEvent(new ControllersEvent(ControllersEvent.SHUFFLE_CLICK))" />
 	</s:Group>
 </s:Group>

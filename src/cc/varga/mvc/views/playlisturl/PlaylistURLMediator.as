@@ -40,8 +40,6 @@ package cc.varga.mvc.views.playlisturl
 	import cc.varga.mvc.models.playlist.PlaylistModel;
 	import cc.varga.utils.logging.Logger;
 	
-	import flash.events.MouseEvent;
-	
 	import org.robotlegs.mvcs.Mediator;
 	
 	public class PlaylistURLMediator extends Mediator
@@ -62,15 +60,16 @@ package cc.varga.mvc.views.playlisturl
 			
 			Logger.tracing("Playlist Mediator OnRegister", this.toString());
 			
-			view.loadList.addEventListener(MouseEvent.CLICK, onLoadPlaylistClick);
+			eventMap.mapListener(view, PlaylistURLEvent.ADD_TO_PLAYLIST, onLoadPlaylistClick);
+			eventMap.mapListener(view, PlaylistURLEvent.ADD_ALL_TO_PLAYLIST, addAllToPlaylist);
 			
 		}
 		
-		public function buildPlaylist():void{
+		private function addAllToPlaylist(event : PlaylistURLEvent):void{
 			
 		}
 		
-		private function onLoadPlaylistClick(event : MouseEvent):void{ 
+		private function onLoadPlaylistClick(event : PlaylistURLEvent):void{ 
 			model.playListURL = view.listURL.text;
 			//dispatch(new PlaylistURLEvent(PlaylistURLEvent.PLAYLIST_LOAD));
 			model.search(view.listURL.text);
