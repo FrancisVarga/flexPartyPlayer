@@ -69,7 +69,7 @@ package cc.varga.mvc.models.sound
 		private static const BUFFER_SIZE:uint = 8192;
 		
 		private var soundChannel : SoundChannel = new SoundChannel();
-		private var sound : Sound;
+		private var sound : Sound = new Sound();
 		private var decoder : AudioDecoder = new AudioDecoder();
 		private var soundURL : String;
 		private var contentURL : String;
@@ -85,8 +85,13 @@ package cc.varga.mvc.models.sound
 		
 		public function setCurrentJSONObj(json : Object):void{
 			Logger.tracing("set current json object", this.toString());
-			currentJSONObj = json;
-			checkFileType();
+			
+			if(json != null){
+				currentJSONObj = json;
+				checkFileType();
+			}else{
+				Alert.show("Somthing is wrong hit the developer!", "Error");
+			}
 		}
 		
 		private function clearSound():void{
@@ -248,11 +253,11 @@ package cc.varga.mvc.models.sound
 		}
 		
 		public function prev():void{
-				
+			setCurrentJSONObj(currentPlaylist.getPrevItem() );
 		}
 		
 		private function onSoundComplete(event : Event):void{
-			
+				
 		}
 		
 		public function toString():String{ return "cc.varga.mvc.models.SoundModel"}
