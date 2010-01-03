@@ -5,6 +5,7 @@
       <compilerSourcePathEntry kind="1" linkType="1" path="libs/extLib/core/src"/>
       <compilerSourcePathEntry kind="1" linkType="1" path="libs/extLib/robo/src"/>
       <compilerSourcePathEntry kind="1" linkType="1" path="libs/extLib/swift/src"/>
+      <compilerSourcePathEntry kind="1" linkType="1" path="libs/youtube/src"/>
     </compilerSourcePath>
     <libraryPath defaultLinkType="0">
       <libraryPathEntry kind="4" path="">

@@ -37,7 +37,7 @@
 package cc.varga.mvc.views.playlisturl.item
 {
 	import cc.varga.mvc.events.playlist.controller.PlaylistControllerEvent;
-	import cc.varga.mvc.models.SoundModel;
+	import cc.varga.mvc.models.sound.SoundModel;
 	import cc.varga.mvc.models.player.PlayerModel;
 	import cc.varga.mvc.models.playlist.PlaylistModel;
 	import cc.varga.utils.logging.Logger;

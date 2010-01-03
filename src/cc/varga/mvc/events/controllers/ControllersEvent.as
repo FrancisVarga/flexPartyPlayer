@@ -34,7 +34,7 @@
 //The best way to do this is with a link to this web page.																	
 //
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-package cc.varga.mvc.events.contrllers
+package cc.varga.mvc.events.controllers
 {
 	import flash.events.Event;
 	

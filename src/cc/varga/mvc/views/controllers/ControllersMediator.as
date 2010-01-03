@@ -36,8 +36,9 @@
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 package cc.varga.mvc.views.controllers
 {
-	import cc.varga.mvc.events.contrllers.ControllersEvent;
-	import cc.varga.mvc.models.SoundModel;
+	
+	import cc.varga.mvc.events.controllers.ControllersEvent;
+	import cc.varga.mvc.models.sound.SoundModel;
 	import cc.varga.mvc.models.player.PlayerModel;
 	import cc.varga.mvc.models.playlist.*;
 	import cc.varga.utils.logging.Logger;
@@ -74,7 +75,7 @@ package cc.varga.mvc.views.controllers
 			eventMap.mapListener(view, ControllersEvent.PLAY_CLICK, playClicked);
 			eventMap.mapListener(view, ControllersEvent.PREV_CLICK, prevClicked);
 			eventMap.mapListener(view, ControllersEvent.STOP_CLICK, stopClicked);
-			
+		
 		}
 		
 		private function stopClicked(event : ControllersEvent):void{
