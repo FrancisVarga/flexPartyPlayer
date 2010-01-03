@@ -1,4 +1,5 @@
-root_path = File.join File.dirname(__FILE__), ".."
+root_path = File.join File.dirname(__FILE__), "..", ".."
+require 'open3'
 if Object.const_defined? :Bundler
   require 'rake'
   require 'airake'
@@ -10,7 +11,7 @@ src_path = File.join root_path, "src"
 libs_src_path = File.expand_path(File.join(root_path,*%w{libs ** src}))
 libs_src_paths = Rake::FileList.new libs_src_path
 libs = Rake::FileList.new File.join(root_path, "libs/extLib/*.swc")
-public_path = ENV["JUKEBOX_PUBLIC_PATH"] || Object.const_defined?(:SINATRA_ROOT) ? sinatra("public") : "public"
+public_path = ENV["JUKEBOX_PUBLIC_PATH"] || File.join(root_path,"public")
 
 task :test => [ "air:test" ] do; end
 namespace :flex do
@@ -23,17 +24,44 @@ namespace :flex do
   end
 
   desc "Prepare Environment for building Flex Party Player"
-  task :setup do
+  task :setup => :setup_as3libs_submodules do
+  end
+
+  desc "Update or Initialize Submodules of as3libs"
+  task :setup_as3libs_submodules => :setup_as3libs do
+      cmds = <<CMDS
+    git submodule 
+    git submodule init
+    git submodule update --init
+CMDS
+    Dir.chdir(::File.join(root_path,*%w{libs})) do
+      Open3::popen3 cmds do |stdin,stdout,stderr|
+        begin
+          while line = stdout.readline
+            puts line
+          end
+        rescue EOFError
+        end
+      end
+    end
+  end
+
+  desc "Update or Initialize as3libs Submodule"
+  task :setup_as3libs do
       cmds = <<CMDS
     git submodule 
     git submodule init
     git submodule update --init
 CMDS
     Dir.chdir(root_path) do
-      puts `#{cmds}`
-    end
-    Dir.chdir(::File.join(root_path,*%w{libs})) do
-      puts `#{cmds}`
+      Open3::popen3 cmds do |stdin,stdout,stderr|
+        begin
+          while line = stdout.readline
+            puts line
+          end
+        rescue EOFError
+        end
+      end
     end
   end
 end
