@@ -12,57 +12,16 @@ Gem::Specification.new do |s|
   s.date = %q{2010-01-03}
   s.description = %q{A Flex Frontend to KitNo}
   s.email = %q{github@varga-net}
-  s.executables = ["edit_json.rb", "FlexPlayer.swf", "jeweler", "prettify_json.rb", "rubyforge"]
   s.extra_rdoc_files = [
     "README"
   ]
   s.files = [
-    ".actionScriptProperties",
-     ".flexProperties",
-     ".gitignore",
-     ".gitmodules",
-     ".project",
-     ".settings/org.eclipse.core.resources.prefs",
-     "README",
-     "Rakefile",
-     "VERSION",
+    "Gemfile",
      "airake.yml",
-     "bin-debug/FlexPlayer.html",
-     "bin-debug/FlexPlayer.swf",
-     "bin-debug/framework_4.0.0.10485.swf",
-     "bin-debug/history/history.css",
-     "bin-debug/history/history.js",
-     "bin-debug/history/historyFrame.html",
-     "bin-debug/libs/appinf/appinf.json",
-     "bin-debug/libs/appinf/config.json",
-     "bin-debug/libs/appinf/server.json",
-     "bin-debug/playerProductInstall.swf",
-     "bin-debug/rpc_4.0.0.10485.swf",
-     "bin-debug/spark_4.0.0.10485.swf",
-     "bin-debug/swfobject.js",
-     "bin-debug/textLayout_4.0.0.10485.swf",
-     "bin-release/FlexPlayer.html",
-     "bin-release/FlexPlayer.swf",
-     "bin-release/framework_4.0.0.10485.swz",
-     "bin-release/history/history.css",
-     "bin-release/history/history.js",
-     "bin-release/history/historyFrame.html",
-     "bin-release/libs/appinf/appinf.json",
-     "bin-release/libs/appinf/config.json",
-     "bin-release/libs/appinf/server.json",
-     "bin-release/playerProductInstall.swf",
-     "bin-release/rpc_4.0.0.10485.swz",
-     "bin-release/spark_4.0.0.10485.swz",
-     "bin-release/swfobject.js",
-     "bin-release/textLayout_4.0.0.10485.swz",
-     "html-template/history/history.css",
-     "html-template/history/history.js",
-     "html-template/history/historyFrame.html",
-     "html-template/index.template.html",
-     "html-template/playerProductInstall.swf",
-     "html-template/swfobject.js",
      "lib/corelib-08.30.2007.swc",
      "lib/flexunit-08.30.2007.swc",
+     "lib/fpp.rb",
+     "sample.json",
      "script/destroy",
      "script/flex_compile",
      "script/generate",
@@ -78,18 +37,22 @@ Gem::Specification.new do |s|
      "src/cc/varga/mvc/commands/system/Startup.as",
      "src/cc/varga/mvc/commands/video/AddVideoCommand.as",
      "src/cc/varga/mvc/events/appBar/AppBarEvent.as",
-     "src/cc/varga/mvc/events/contrllers/ControllersEvent.as",
+     "src/cc/varga/mvc/events/controllers/ControllersEvent.as",
      "src/cc/varga/mvc/events/player/PlayerEvent.as",
      "src/cc/varga/mvc/events/playlist/PlaylistURLEvent.as",
      "src/cc/varga/mvc/events/playlist/controller/PlaylistControllerEvent.as",
      "src/cc/varga/mvc/events/serveradmin/ServerAdminEvent.as",
-     "src/cc/varga/mvc/models/SoundModel.as",
+     "src/cc/varga/mvc/events/sound/SoundEvent.as",
      "src/cc/varga/mvc/models/player/PlayerModel.as",
      "src/cc/varga/mvc/models/playlist/PlaylistModel.as",
+     "src/cc/varga/mvc/models/sound/ISound.as",
+     "src/cc/varga/mvc/models/sound/SoundModel.as",
+     "src/cc/varga/mvc/models/sound/SoundModelPlayer.as",
      "src/cc/varga/mvc/views/controllers/Controllers.mxml",
      "src/cc/varga/mvc/views/controllers/ControllersMediator.as",
      "src/cc/varga/mvc/views/infoDisplay/InfoDisplay.mxml",
      "src/cc/varga/mvc/views/infoDisplay/InfoDisplayMediator.as",
+     "src/cc/varga/mvc/views/player/PlayerItem.mxml",
      "src/cc/varga/mvc/views/player/PlayerWindow.mxml",
      "src/cc/varga/mvc/views/player/PlayerWindowMediator.as",
      "src/cc/varga/mvc/views/playlisturl/PlaylistURL.mxml",
@@ -118,10 +81,10 @@ Gem::Specification.new do |s|
      "src/com/automatastudios/data/riff/RIFFParser.as",
      "src/libs/appinf/appinf.json",
      "src/libs/appinf/config.json",
+     "src/libs/appinf/sample.json",
      "src/libs/appinf/server.json",
      "test/Test-app.xml",
-     "test/Test.mxml",
-     "test/suite/AllTests.as"
+     "test/Test.mxml"
   ]
   s.homepage = %q{http://github.com/FrancisVarga/flexPartyPlayer/}
   s.rdoc_options = ["--charset=UTF-8"]
@@ -134,9 +97,12 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<airake>, [">= 0"])
     else
+      s.add_dependency(%q<airake>, [">= 0"])
     end
   else
+    s.add_dependency(%q<airake>, [">= 0"])
   end
 end
 

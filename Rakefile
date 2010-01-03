@@ -19,7 +19,10 @@ if File.exists? bundler_env
       gemspec.homepage = "http://github.com/FrancisVarga/flexPartyPlayer/"
       gemspec.authors = ["Francis Varga"]
       gemspec.add_dependency('airake')
+      files = FileList[%w{src/**/* test/* views/* lib/* script/* sample.json airake.yml Gemfile}]
+      gemspec.files = files.to_a
     end
+    Rake.application.jeweler.gemspec.executables = []
   rescue LoadError
     puts "Jeweler not available. Install it with: gem install jeweler"
   end
