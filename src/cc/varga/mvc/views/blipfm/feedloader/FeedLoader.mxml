@@ -6,7 +6,7 @@
 				showCloseButton="true" xmlns:feedloader="cc.varga.mvc.views.blipfm.feedloader.*">
 	
 	<fx:Declarations>
-		<feedloader:FeedLoaderContext contextView="{this}" />
+		<feedloader:FeedLoaderMediator contextView="{this}" />
 	</fx:Declarations>
 	
 </mx:TitleWindow>

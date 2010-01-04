@@ -7,13 +7,17 @@
 			   xmlns:mvc="cc.varga.mvc.*" 
 			   xmlns:player="cc.varga.mvc.views.player.*"
 			   
-			   width="100%" height="100%">
+			   width="100%" height="100%" xmlns:menu="cc.varga.mvc.views.menu.*">
 	
 	<s:layout><s:HorizontalLayout/></s:layout>
 	
 	<fx:Declarations>
 		<mvc:ApplicationContext contextView="{this}" />
 	</fx:Declarations>
+	
+	<s:Group height="100%" width="100%">
+		<menu:Menu height="100%" width="100%" />
+	</s:Group>
 	
 	<s:Group id="leftContainer" height="100%" width="100%">
 		<playlisturl:PlaylistURL top="0" left="0" right="0"  height="55" width="100%"/>
