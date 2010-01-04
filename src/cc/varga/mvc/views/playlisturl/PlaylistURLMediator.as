@@ -62,9 +62,15 @@ package cc.varga.mvc.views.playlisturl
 			
 			eventMap.mapListener(view, PlaylistURLEvent.ADD_TO_PLAYLIST, onLoadPlaylistClick);
 			eventMap.mapListener(view, PlaylistURLEvent.ADD_ALL_TO_PLAYLIST, addAllToPlaylist);
+      eventMap.mapListener(view, PlaylistURLEvent.SEARCH, onSearchRequest);
 			
 		}
 		
+    private function onSearchRequest(event : PlaylistURLEvent) : void {
+      Logger.tracing("Search Request received: "+event.query, this.toString());
+      model.search(event.query);
+    }
+
 		private function addAllToPlaylist(event : PlaylistURLEvent):void{
 			
 		}
