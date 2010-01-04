@@ -4,9 +4,8 @@
 				xmlns:mx="library://ns.adobe.com/flex/halo" 
 				layout="absolute" width="800" height="600"
 				showCloseButton="true" xmlns:feedloader="cc.varga.mvc.views.blipfm.feedloader.*">
-	
-	<fx:Declarations>
-		<feedloader:FeedLoaderContext contextView="{this}" />
-	</fx:Declarations>
+					
+					
+		
 	
 </mx:TitleWindow>

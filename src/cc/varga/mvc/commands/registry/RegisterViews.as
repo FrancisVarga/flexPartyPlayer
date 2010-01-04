@@ -36,6 +36,8 @@
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 package cc.varga.mvc.commands.registry
 {
+	import cc.varga.mvc.views.blipfm.feedloader.FeedLoader;
+	import cc.varga.mvc.views.blipfm.feedloader.FeedLoaderMediator;
 	import cc.varga.mvc.views.controllers.Controllers;
 	import cc.varga.mvc.views.controllers.ControllersMediator;
 	import cc.varga.mvc.views.player.PlayerWindow;
@@ -66,6 +68,8 @@ package cc.varga.mvc.commands.registry
 			mediatorMap.mapView(Controllers, ControllersMediator);
 			mediatorMap.mapView(Playlist, PlaylistMediator);
 			mediatorMap.mapView(PlayerWindow, PlayerWindowMediator);
+			this.mediatorMap.mapView(FeedLoader, FeedLoaderMediator);
+			
 		}
 		
 		public function toString():String{ return "cc.varga.mvc.commands.registry.RegisterViews"}
