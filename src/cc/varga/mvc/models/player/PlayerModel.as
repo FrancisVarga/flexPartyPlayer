@@ -10,7 +10,7 @@ package cc.varga.mvc.models.player
 	
 	public class PlayerModel extends Actor implements ISound
 	{
-		
+		[Bindable]
 		private var currentPlayList : ArrayCollection = new ArrayCollection();
 		
 		private var window : PlayerWindow = new PlayerWindow();

@@ -39,7 +39,7 @@ package cc.varga.mvc.models.playlist
 	import cc.varga.mvc.models.sound.ISound;
 	import cc.varga.mvc.events.playlist.*;
 	import cc.varga.utils.logging.Logger;
-  import com.adobe.serialization.json.*;
+  	import com.adobe.serialization.json.*;
 	
 	import mx.collections.ArrayCollection;
 	import mx.rpc.events.FaultEvent;
@@ -51,6 +51,7 @@ package cc.varga.mvc.models.playlist
 	public class PlaylistModel extends Actor implements ISound
 	{
 		
+		[Bindable]
 		private var _playlistObj : ArrayCollection = new ArrayCollection();
 		private var searchText : String;
 		

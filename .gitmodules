@@ -1,3 +1,6 @@
 [submodule "libs"]
 	path = libs
 	url = git://github.com/FrancisVarga/as3libs.git
+[submodule "gist-268492"]
+	path = gist-268492
+	url = git://gist.github.com/268492.git
