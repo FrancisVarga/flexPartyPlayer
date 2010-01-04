@@ -57,6 +57,7 @@ package cc.varga.mvc
 			super(contextView, autoStartup);
 			
 			Security.loadPolicyFile("http://aludose/crossdomain.xml");
+			Security.loadPolicyFile("http://s2.youtube.com/crossdomain.xml");//s2.youtube.com/crossdomain.xml
 			
 			INSTANCE = this;
 		}
@@ -76,6 +77,7 @@ package cc.varga.mvc
 		override public function shutdown() : void{
 			
 			Logger.tracing("Shutdown Applikation", this.toString());
+		
 		}
 		
 		public function toString():String{ return "cc.varga.mvc.ApplicationContext"}

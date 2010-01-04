@@ -110,6 +110,8 @@ package cc.varga.mvc.models.playlist
 		
 		private function onSerachFault(event : FaultEvent):void{
 			
+			Logger.tracing("Something is wrong -> " + event.message, this.toString());
+			
 		}
 		
 		public function toString():String{ return "cc.varga.mvc.models.playlist.PlaylistModel"}
