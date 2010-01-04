@@ -78,11 +78,13 @@ package cc.varga.mvc.views.playlisturl.list
 		}
 		
 		private function onAddAll(event : PlaylistEvent):void{
-			for(var i:uint=0; i <= model.listlength(); i++){
-				playerModel.addItemToPlaylist( model.getItems()[i] );
-			}
 			
-			soundModel.playPlaylist( playerModel ); 
+			if(model.listlength() > 0){
+				Logger.tracing("add all to playlist", this.toString());
+				for(var i:uint=0; i <= model.listlength(); i++){
+					playerModel.addItemToPlaylist( model.getItems()[i] );
+				} 
+			}
 		}
 		
 		private function buildPlaylist(event : *):void{			

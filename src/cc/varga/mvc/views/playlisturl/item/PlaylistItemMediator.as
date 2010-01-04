@@ -63,6 +63,11 @@ package cc.varga.mvc.views.playlisturl.item
 			
 			eventMap.mapListener(view, PlaylistControllerEvent.PLAY_THIS_ITEM, playThisItem);
 			eventMap.mapListener(view, PlaylistControllerEvent.ADD_TO_PLAYLIST, addToPL);
+			eventMap.mapListener(view, PlaylistControllerEvent.DOWNLOAD, download);
+			
+		}
+		
+		private function download(event : PlaylistControllerEvent):void{
 			
 		}
 		

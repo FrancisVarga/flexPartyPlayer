@@ -95,7 +95,7 @@ package cc.varga.mvc.models.playlist
 			http.addEventListener(FaultEvent.FAULT, onSerachFault);
 			http.addEventListener(ResultEvent.RESULT, onSearchResult);
 			http.method = "POST";
-			http.url = "http://aludose/web/search/";
+			http.url = "http://aludose/web/search/search.json";
 			http.send( {"query":value} );
 		}
 		
@@ -104,13 +104,6 @@ package cc.varga.mvc.models.playlist
 		}
 		
 		private function onSerachFault(event : FaultEvent):void{
-			
-		}
-		
-		private function searchFunction(item : Object):Boolean{
-			
-			Logger.tracing("call search function", this.toString());
-			return false;
 			
 		}
 		

@@ -55,6 +55,12 @@
 				dispatchEvent( new PlaylistControllerEvent( PlaylistControllerEvent.REMOVE_THIS_ITEM, new Object()) );
 			}
 
+
+			protected function download_clickHandler(event:MouseEvent):void
+			{
+				dispatchEvent( new PlaylistControllerEvent( PlaylistControllerEvent.DOWNLOAD, new Object()) );
+			}
+
 		]]>
 	</fx:Script>
 	
@@ -74,6 +80,7 @@
 		<mx:ApplicationControlBar>
 			<s:Button id="addToPlaylist" label="Add To Playlist" click="addToPlaylist_clickHandler(event)" />
 			<s:Button id="play" label="Play" click="play_clickHandler(event)" />
+			<s:Button id="download" label="Download" click="download_clickHandler(event)" />
 		</mx:ApplicationControlBar>
 	</s:Group>	
 </s:Group>

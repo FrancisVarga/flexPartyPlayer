@@ -44,6 +44,7 @@ package cc.varga.mvc.events.playlist.controller
 		public static const ADD_TO_PLAYLIST : String = "add_to_playlist";
 		public static const PLAY_THIS_ITEM : String = "play_this_item";
 		public static const REMOVE_THIS_ITEM : String = "remove_this_item";
+		public static const DOWNLOAD : String = "download";
 		
 		public var currentJSONObj : Object;
 		
