@@ -37,7 +37,9 @@
 package cc.varga.mvc.models.playlist
 {
 	import cc.varga.mvc.models.sound.ISound;
+	import cc.varga.mvc.events.playlist.*;
 	import cc.varga.utils.logging.Logger;
+  import com.adobe.serialization.json.*;
 	
 	import mx.collections.ArrayCollection;
 	import mx.rpc.events.FaultEvent;
@@ -95,12 +97,14 @@ package cc.varga.mvc.models.playlist
 			http.addEventListener(FaultEvent.FAULT, onSerachFault);
 			http.addEventListener(ResultEvent.RESULT, onSearchResult);
 			http.method = "POST";
-			http.url = "http://aludose/web/search/search.json";
+			http.url = "http://aludose/web/search.json";
+
 			http.send( {"query":value} );
 		}
 		
 		private function onSearchResult(event : ResultEvent):void{
-			
+      		playlistObj = JSON.decode(event.result.toString()) as Array;
+      		dispatch(new PlaylistURLEvent(PlaylistURLEvent.PLAYLIST_DISPLAYED));
 		}
 		
 		private function onSerachFault(event : FaultEvent):void{

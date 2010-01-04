@@ -40,12 +40,13 @@ package cc.varga.mvc.events.playlist
 	
 	public class PlaylistURLEvent extends Event
 	{
-		
+		public static const SEARCH : String = "search";
 		public static const PLAYLIST_LOAD : String = "load_playlist";
 		public static const PLAYLIST_DISPLAYED : String = "displayed_playlist";
 		public static const ADD_TO_PLAYLIST : String = "add_to_playlist";
 		public static const ADD_ALL_TO_PLAYLIST : String = "add_all_to_playlist";
-		
+	
+    public var query:String; 
 		public function PlaylistURLEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
 			super(type, bubbles, cancelable);

@@ -1,3 +1,5 @@
+require 'flexPartyPlayer/flexrake'
+
 module FlexPartyPlayer
   class Server < Sinatra::Base
     dir = File.dirname(File.expand_path(File.join(__FILE__,"..")))
