@@ -1,5 +1,7 @@
 package cc.varga.mvc.views.blipfm.feedloader
 {
+	import cc.varga.utils.logging.Logger;
+	
 	import org.robotlegs.mvcs.*;
 	
 	public class FeedLoaderMediator extends Mediator
@@ -11,6 +13,10 @@ package cc.varga.mvc.views.blipfm.feedloader
 		public function FeedLoaderMediator()
 		{
 			super();
+		}
+		
+		override public function onRegister():void{
+			Logger.tracing("FeedLoaderMediator onRegister", this.toString());
 		}
 		
 		public function toString():String{

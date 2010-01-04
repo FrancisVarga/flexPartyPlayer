@@ -91,8 +91,12 @@ package cc.varga.mvc.views.player
 		
 		private function onBlipFeedLoader(event : PlayerEvent):void{
 			
-			var loadBlipFeed : FeedLoader = FeedLoader(PopUpManager.createPopUp(contextView, FeedLoader, true));
+			Logger.tracing("load blip feed", this.toString());
+			
+			var loadBlipFeed : FeedLoader = new FeedLoader();
+			PopUpManager.addPopUp(loadBlipFeed, contextView, true);
 			PopUpManager.centerPopUp(loadBlipFeed);
+			mediatorMap.createMediator(loadBlipFeed);
 			
 		}
 		
@@ -104,7 +108,6 @@ package cc.varga.mvc.views.player
 		private function playPlaylist(event : ControllersEvent):void{
 			
 			Logger.tracing("play playlist", this.toString());
-			
 			
 		}
 		
