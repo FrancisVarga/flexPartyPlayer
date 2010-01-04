@@ -37,7 +37,7 @@ module Airake
       # Flex compiler command for this project
       def mxmlc(options = {})
         options = options.merge({ :swf_path => @swf_path, :target_file => @mxml_path, :lib_dir => @lib_dir, 
-          :src_dirs => @src_dirs, :debug => @debug, :mxmlc_extra_opts => @mxmlc_extra_opts, 
+          :src_dirs => @src_dirs, :debug => @debug, :mxmlc_extra_opts => @mxmlc_extra_opts, :incremental => true,
           :mxmlc_path => @mxmlc_path })
 
         Airake::Commands::Mxmlc.new(options)

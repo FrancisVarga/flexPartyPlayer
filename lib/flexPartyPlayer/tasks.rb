@@ -34,7 +34,7 @@ namespace :flex do
   desc "Compile"
   task :compile => :clean do
     begin
-      project = Airake::Projects::Flex.new ENV["RACK_ENV"] || "development", root_path, :swf_path => "public/jukebox/FlexPlayer.swf" ,:mxml_path => %w{src FlexPlayer.mxml}.join("/"), :src_dirs => libs_src_paths.to_a, :lib_dir => libs
+      project = Airake::Projects::Flex.new ENV["RACK_ENV"] || "development", root_path, :swf_path => "public/jukebox/FlexPlayer.swf" ,:mxml_path => %w{src FlexPlayer.mxml}.join("/"), :src_dirs => libs_src_paths.to_a, :lib_dir => libs, :debug => ENV["DEBUG"] ? true : false
       fcsh = PatternPark::FCSH.new_from_rake(ENV)
       fcsh.execute([ project.base_dir, project.fmxmlc.compile ])      
     rescue PatternPark::FCSHConnectError => e

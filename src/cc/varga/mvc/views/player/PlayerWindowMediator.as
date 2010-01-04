@@ -89,6 +89,7 @@ package cc.varga.mvc.views.player
 		}
 		
 		private function loadPlaylist(event : PlaylistURLEvent):void{
+      Logger.tracing("Dispatching load Playlist Call",this.toString());
 			eventDispatcher.dispatchEvent(new PlaylistURLEvent(PlaylistURLEvent.PLAYLIST_LOAD));
 		}
 		
