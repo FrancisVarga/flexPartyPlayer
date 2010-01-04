@@ -6,6 +6,7 @@ package cc.varga.mvc.events.playlist
 	{
 		
 		public static const ADD_ALL_TO_PLAYLIST : String = "add_all_to_playlist";
+		public static const DOWNLOAD : String = "download";
 		
 		public function PlaylistEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{

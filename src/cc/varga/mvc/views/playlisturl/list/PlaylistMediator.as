@@ -78,11 +78,13 @@ package cc.varga.mvc.views.playlisturl.list
 		}
 		
 		private function onAddAll(event : PlaylistEvent):void{
-			for(var i:uint=0; i <= model.listlength(); i++){
-				playerModel.addItemToPlaylist( model.getItems()[i] );
-			}
 			
-			soundModel.playPlaylist( playerModel ); 
+			if(model.listlength() > 0){
+				Logger.tracing("add all to playlist", this.toString());
+				for(var i:uint=0; i <= model.listlength(); i++){
+					playerModel.addItemToPlaylist( model.getItems()[i] );
+				} 
+			}
 		}
 		
 		private function buildPlaylist(event : *):void{			
@@ -90,7 +92,7 @@ package cc.varga.mvc.views.playlisturl.list
 			
 			if(playlist.length > 0){
 				
-				if(currentLength < 1 || currentLength != playlist.length){
+				//if(currentLength < 1 || currentLength != playlist.length){
 					
 					currentLength = playlist.length;
 					
@@ -101,7 +103,9 @@ package cc.varga.mvc.views.playlisturl.list
 						view.itemContainer.addElement(item);
 						
 					}	
-				}
+				//}else{
+				//	Logger.tracing("No Changes", this.toString());
+				//}
 				
 			}
 			

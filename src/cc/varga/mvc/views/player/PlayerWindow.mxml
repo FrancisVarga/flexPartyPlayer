@@ -3,8 +3,9 @@
 				xmlns:s="library://ns.adobe.com/flex/spark" 
 				xmlns:mx="library://ns.adobe.com/flex/halo"
 				xmlns:controllers="cc.varga.mvc.views.controllers.*"
+				xmlns:controls="nl.flexcoders.controls.*"
 				
-				width="458" height="100%" >
+				width="458" height="100%">
 	
 	<s:layout><s:VerticalLayout/></s:layout>
 	
@@ -12,8 +13,11 @@
 		<![CDATA[
 			import cc.varga.mvc.events.player.PlayerEvent;
 			import cc.varga.mvc.events.playlist.PlaylistURLEvent;
+			import cc.varga.utils.logging.*;
 			
 			import mx.events.FlexEvent;
+			
+			private var youtubPlayerLoader : Loader = new Loader();
 
 			protected function lockBtn_clickHandler(event:MouseEvent):void
 			{
@@ -44,6 +48,10 @@
 
 		]]>
 	</fx:Script>
+	
+	<s:Group width="100%" height="300" >
+		<controls:YouTubePlayer id="youtubePlayer" width="100%" height="100%" autoPlay="true" />
+	</s:Group>
 	
 	<controllers:Controllers id="controllers" width="100%" height="55" />
 	

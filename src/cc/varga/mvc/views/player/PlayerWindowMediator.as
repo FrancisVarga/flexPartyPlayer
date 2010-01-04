@@ -72,12 +72,20 @@ package cc.varga.mvc.views.player
 		override public function onRegister() : void{
 			
 			eventMap.mapListener(eventDispatcher, PlayerEvent.ITEM_ADD_TO_PLAYLIST, onAddItemToPlaylist);
+			eventMap.mapListener(eventDispatcher, PlayerEvent.PLAY_YOUTUBE_VIDEO, onPlayYoutubeVideo); 
 			
 			eventMap.mapListener(view, PlayerEvent.LOCK, lockPlayer);
 			eventMap.mapListener(view, PlayerEvent.UNLOCK, unlockPlayer);
 			eventMap.mapListener(view, PlayerEvent.LOAD_BLIP_FM_FEED, onBlipFeedLoader);
 			
 			eventMap.mapListener(view, PlaylistURLEvent.PLAYLIST_LOAD, loadPlaylist);
+			
+		}
+		
+		private function onPlayYoutubeVideo(event : PlayerEvent):void{
+			
+			Logger.tracing("Play Youtube Video", this.toString());
+			view.youtubePlayer.videoID = event.youtubeVideoID;
 			
 		}
 		
@@ -89,7 +97,7 @@ package cc.varga.mvc.views.player
 		}
 		
 		private function loadPlaylist(event : PlaylistURLEvent):void{
-      Logger.tracing("Dispatching load Playlist Call",this.toString());
+      		Logger.tracing("Dispatching load Playlist Call",this.toString());
 			eventDispatcher.dispatchEvent(new PlaylistURLEvent(PlaylistURLEvent.PLAYLIST_LOAD));
 		}
 		
