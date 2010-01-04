@@ -90,20 +90,7 @@ package cc.varga.mvc.models.sound
 			
 			Logger.tracing("set current json object", this.toString());
 			
-			if(json['video_id']){
-				Logger.tracing("Is a youtube video", this.toString());
-				playYoutubeVideo(json);	
-			}else{
-				playSound(json);	
-			}
-			
-		}
-		
-		private function playYoutubeVideo(playObj:Object):void{
-			
-			var event : PlayerEvent = new PlayerEvent(PlayerEvent.PLAY_YOUTUBE_VIDEO);
-			event.youtubeVideoID = playObj['video_id'] as String;
-			eventDispatcher.dispatchEvent(event);
+			playSound(json);	
 			
 		}
 		
@@ -111,7 +98,15 @@ package cc.varga.mvc.models.sound
 			
 			if(playObj != null){
 				currentJSONObj = playObj;
-				checkFileType();
+				if(playObj['video_id']){
+					Logger.tracing("Is a youtube video", this.toString());
+					var event : PlayerEvent = new PlayerEvent(PlayerEvent.PLAY_YOUTUBE_VIDEO);
+					event.youtubeVideoID = playObj['video_id'] as String;
+					eventDispatcher.dispatchEvent(event);	
+				}else{
+					checkFileType();	
+				}
+				
 			}else{
 				Alert.show("Something is wrong hit the developer FLEX!", "Error");
 			}
