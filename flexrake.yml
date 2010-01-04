@@ -1,6 +1,5 @@
 ---
-mxml_path: src/FlexPartyPlayer.mxml
-appxml_path: src/FlexPartyPlayer-app.xml
+mxml_path: src/FlexPlayer.mxml
 
 src_dirs:  
   - 'src'
@@ -10,13 +9,10 @@ src_dirs:
   - 'libs/extLib/core/src/'
 
 lib_dir: 
-  - lib
   - 'libs/extLib/'
 
-air_path: bin/FlexPartyPlayer.air
-swf_path: bin/FlexPartyPlayer.swf
+swf_path: public/jukebox/FlexPlayer.swf
 assets: src/assets
-certificate: cert.pfx
 
 development:
   debug: true
@@ -24,6 +20,5 @@ development:
 test:
   swf_path: bin/Test.swf
   mxml_path: test/Test.mxml
-  appxml_path: test/Test-app.xml
   src_dirs: [ 'src', 'test' ]
   debug: true
