@@ -66,7 +66,7 @@ package cc.varga.mvc.views.playlisturl.controller
 		}
 		
 		private function playThisItem(event : PlaylistControllerEvent):void{
-				
+			
 		}
 		
 		private function addToPlaylistClick(event : PlaylistControllerEvent):void{

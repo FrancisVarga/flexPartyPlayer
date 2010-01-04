@@ -92,7 +92,7 @@ package cc.varga.mvc.views.playlisturl.list
 			
 			if(playlist.length > 0){
 				
-				if(currentLength < 1 || currentLength != playlist.length){
+				//if(currentLength < 1 || currentLength != playlist.length){
 					
 					currentLength = playlist.length;
 					
@@ -103,7 +103,9 @@ package cc.varga.mvc.views.playlisturl.list
 						view.itemContainer.addElement(item);
 						
 					}	
-				}
+				//}else{
+				//	Logger.tracing("No Changes", this.toString());
+				//}
 				
 			}
 			

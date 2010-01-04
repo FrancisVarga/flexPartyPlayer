@@ -3,10 +3,9 @@
 				xmlns:s="library://ns.adobe.com/flex/spark" 
 				xmlns:mx="library://ns.adobe.com/flex/halo"
 				xmlns:controllers="cc.varga.mvc.views.controllers.*"
+				xmlns:controls="nl.flexcoders.controls.*"
 				
-				width="458" height="100%"
-				
-				creationComplete="group1_creationCompleteHandler(event)">
+				width="458" height="100%">
 	
 	<s:layout><s:VerticalLayout/></s:layout>
 	
@@ -47,37 +46,12 @@
 				dispatchEvent(new PlayerEvent(PlayerEvent.LOAD_BLIP_FM_FEED));	
 			}
 
-
-			protected function group1_creationCompleteHandler(event:FlexEvent):void
-			{
-				youtubPlayerLoader = new Loader();
-				this.youtubPlayerLoader.addEventListener(Event.ACTIVATE, onContentInit);
-				this.youtubPlayerLoader.addEventListener(IOErrorEvent.IO_ERROR, onIOError);
-				this.youtubPlayerLoader.addEventListener(Event.COMPLETE, onComplete);
-				this.youtubPlayerLoader.load(new URLRequest("http://www.youtube.com/apiplayer?version=3"));
-				
-			}
-			
-			private function onComplete(event : Event):void{
-				Logger.tracing("onComplete youtubePlayerLoader", "PlayerWindow");
-				youtubePlayerContainer.addChild(youtubPlayerLoader.loaderInfo.loader);
-			}
-			
-			private function onIOError(event : IOErrorEvent):void{
-				Logger.tracing("onIOError youtubePlayerLoader", "PlayerWindow");
-			}
-			
-			private function onContentInit(event : Event):void{
-				Logger.tracing("Init content", "PlayerWindow");
-				
-				youtubePlayerContainer.addChild(youtubePlayerContainer.loaderInfo.loader);
-			
-			}
-
 		]]>
 	</fx:Script>
 	
-	<mx:Canvas id="youtubePlayerContainer" width="100%" height="300" />
+	<s:Group width="100%" height="300" >
+		<controls:YouTubePlayer id="youtubePlayer" width="100%" height="100%" autoPlay="true" />
+	</s:Group>
 	
 	<controllers:Controllers id="controllers" width="100%" height="55" />
 	

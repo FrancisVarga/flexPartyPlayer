@@ -36,6 +36,7 @@
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 package cc.varga.mvc.models.sound
 {
+	import cc.varga.mvc.events.player.PlayerEvent;
 	import cc.varga.mvc.models.playlist.PlaylistModel;
 	import cc.varga.utils.logging.Logger;
 	
@@ -89,7 +90,21 @@ package cc.varga.mvc.models.sound
 			
 			Logger.tracing("set current json object", this.toString());
 			
-			playSound(json);
+			if(json['video_id']){
+				Logger.tracing("Is a youtube video", this.toString());
+				playYoutubeVideo(json);	
+			}else{
+				playSound(json);	
+			}
+			
+		}
+		
+		private function playYoutubeVideo(playObj:Object):void{
+			
+			var event : PlayerEvent = new PlayerEvent(PlayerEvent.PLAY_YOUTUBE_VIDEO);
+			event.youtubeVideoID = playObj['video_id'] as String;
+			eventDispatcher.dispatchEvent(event);
+			
 		}
 		
 		private function playSound(playObj:Object):void{

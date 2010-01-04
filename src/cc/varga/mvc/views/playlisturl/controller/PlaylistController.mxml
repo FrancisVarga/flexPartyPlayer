@@ -10,7 +10,7 @@
 
 			protected function play_clickHandler(event:MouseEvent):void
 			{
-				this.owner.parent.parent.parent.parent.dispatchEvent( new PlaylistControllerEvent(PlaylistControllerEvent.PLAY_THIS_ITEM) );
+				dispatchEvent( new PlaylistControllerEvent(PlaylistControllerEvent.PLAY_THIS_ITEM) );
 			}
 
 

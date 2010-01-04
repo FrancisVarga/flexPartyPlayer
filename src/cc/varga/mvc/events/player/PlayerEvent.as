@@ -17,6 +17,10 @@ package cc.varga.mvc.events.player
 		
 		public static const LOAD_BLIP_FM_FEED : String = "load_blip_fm_feed";
 		
+		public static const PLAY_YOUTUBE_VIDEO : String = "play_youtube_video";
+		
+		public var youtubeVideoID : String;
+		
 		public function PlayerEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
 			super(type, bubbles, cancelable);
