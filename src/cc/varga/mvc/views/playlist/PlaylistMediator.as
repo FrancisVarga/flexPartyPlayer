@@ -34,54 +34,84 @@
 //The best way to do this is with a link to this web page.																	
 //
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-package cc.varga.mvc.views.playlisturl.item
+package cc.varga.mvc.views.playlist
 {
-	import cc.varga.mvc.events.playlist.controller.PlaylistControllerEvent;
-	import cc.varga.mvc.models.sound.SoundModel;
+	import cc.varga.mvc.events.playlist.PlaylistEvent;
+	import cc.varga.mvc.events.playlist.PlaylistURLEvent;
 	import cc.varga.mvc.models.player.PlayerModel;
 	import cc.varga.mvc.models.playlist.PlaylistModel;
+	import cc.varga.mvc.models.sound.SoundModel;
+	import cc.varga.mvc.views.playlistItem.PlaylistItem;
 	import cc.varga.utils.logging.Logger;
 	
 	import org.robotlegs.mvcs.Mediator;
 	
-	public class PlaylistItemMediator extends Mediator
+	public class PlaylistMediator  extends Mediator
 	{
+		
+		[Inject]
+		public var view : Playlist;
 		
 		[Inject]
 		public var model : PlaylistModel;
 		
 		[Inject]
-		public var view : PlaylistItem;
+		public var playerModel : PlayerModel;
 		
 		[Inject]
 		public var soundModel : SoundModel;
 		
-		[Inject]
-		public var playlistPlayerModel : PlayerModel;
+		private var currentLength : uint = 0;
+		
+		public function PlaylistMediator()
+		{
+			super();
+		}
 		
 		override public function onRegister() : void{
 			
-			eventMap.mapListener(view, PlaylistControllerEvent.PLAY_THIS_ITEM, playThisItem);
-			eventMap.mapListener(view, PlaylistControllerEvent.ADD_TO_PLAYLIST, addToPL);
-			eventMap.mapListener(view, PlaylistControllerEvent.DOWNLOAD, download);
+			Logger.tracing("Register PlaylistMediator", this.toString());
+			
+			eventMap.mapListener(eventDispatcher, PlaylistURLEvent.PLAYLIST_DISPLAYED, buildPlaylist); 
+			eventMap.mapListener(view, PlaylistEvent.ADD_ALL_TO_PLAYLIST, onAddAll);
 			
 		}
 		
-		private function download(event : PlaylistControllerEvent):void{
+		private function onAddAll(event : PlaylistEvent):void{
+			
+			if(model.listlength() > 0){
+				Logger.tracing("add all to playlist", this.toString());
+				for(var i:uint=0; i <= model.listlength(); i++){
+					playerModel.addItemToPlaylist( model.getItems()[i] );
+				} 
+			}
+		}
+		
+		private function buildPlaylist(event : *):void{			
+			var playlist : Array = model.getItems();
+			
+			if(playlist.length > 0){
+				
+				//if(currentLength < 1 || currentLength != playlist.length){
+					
+					currentLength = playlist.length;
+					
+					for(var i:uint=0; i < playlist.length; i++){
+						
+						var item : PlaylistItem = new PlaylistItem();
+						item.jsonObj = playlist[i];
+						view.itemContainer.addElement(item);
+						
+					}	
+				//}else{
+				//	Logger.tracing("No Changes", this.toString());
+				//}
+				
+			}
 			
 		}
 		
-		private function playThisItem(event : PlaylistControllerEvent):void{
-			Logger.tracing("Play this item", this.toString());
-			soundModel.setCurrentJSONObj(view.jsonObj);
-		}
-		
-		private function addToPL(event : PlaylistControllerEvent):void{
-			Logger.tracing("Add to Playlist", this.toString());
-			playlistPlayerModel.addItemToPlaylist(event.currentJSONObj);
-		}
-		
-		public function toString():String{ return "cc.varga.mvc.views.plalisturl.item.PlaylistItemMediator"}
+		public function toString():String{ return "cc.varga.mvc.views.playlisturl.list.PlaylistMediator"}
 	}
 	
 }

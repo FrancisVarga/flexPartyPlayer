@@ -1,4 +1,4 @@
-package cc.varga.mvc.views.playlisturl.list
+package cc.varga.mvc.views.playlist
 {
 	public class PlaylistStates
 	{

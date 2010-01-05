@@ -36,9 +36,6 @@
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 package cc.varga.mvc
 {
-	import cc.varga.mvc.commands.registry.RegisterCommands;
-	import cc.varga.mvc.commands.registry.RegisterInjections;
-	import cc.varga.mvc.commands.registry.RegisterViews;
 	import cc.varga.utils.logging.Logger;
 	
 	import flash.display.DisplayObjectContainer;
@@ -47,6 +44,26 @@ package cc.varga.mvc
 	import org.robotlegs.base.ContextEvent;
 	import org.robotlegs.mvcs.Context;
 	import cc.varga.mvc.commands.data.LoadArtistDataCommand;
+	import cc.varga.mvc.commands.playlist.LoadPlaylistCommand;
+	import cc.varga.mvc.models.playlist.PlaylistModel;
+	import cc.varga.mvc.models.sound.SoundModel;
+	import cc.varga.mvc.models.player.PlayerModel;
+	import cc.varga.mvc.models.data.AppDataModel;
+	import cc.varga.mvc.views.playlisturl.PlaylistURL;
+	import cc.varga.mvc.views.playlisturl.PlaylistURLMediator;
+	import cc.varga.mvc.views.playlisturl.item.PlaylistItem;
+	import cc.varga.mvc.views.playlisturl.item.PlaylistItemMediator;
+	import cc.varga.mvc.views.controllers.Controllers;
+	import cc.varga.mvc.views.controllers.ControllersMediator;
+	import cc.varga.mvc.views.playlisturl.list.Playlist;
+	import cc.varga.mvc.views.playlisturl.list.PlaylistMediator;
+	import cc.varga.mvc.views.player.PlayerWindow;
+	import cc.varga.mvc.views.player.PlayerWindowMediator;
+	import cc.varga.mvc.views.menu.Menu;
+	import cc.varga.mvc.views.menu.MenuMediator;
+	import cc.varga.mvc.views.blipfm.feedloader.FeedLoader;
+	import cc.varga.mvc.views.blipfm.feedloader.FeedLoaderMediator;
+	import cc.varga.mvc.events.playlist.PlaylistURLEvent;
 	
 	public class ApplicationContext extends Context
 	{
@@ -66,9 +83,21 @@ package cc.varga.mvc
 			
 			Logger.tracing("Application Startup", this.toString());
 			
-			commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, RegisterCommands);
-			commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, RegisterInjections);
-			commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, RegisterViews);
+			injector.mapSingleton(PlaylistModel);
+			injector.mapSingleton(SoundModel);
+			injector.mapSingleton(PlayerModel);
+			injector.mapSingleton(AppDataModel);
+			
+			mediatorMap.mapView(PlaylistURL, PlaylistURLMediator);
+			mediatorMap.mapView(PlaylistItem, PlaylistItemMediator);
+			mediatorMap.mapView(Controllers, ControllersMediator);
+			mediatorMap.mapView(Playlist, PlaylistMediator);
+			mediatorMap.mapView(PlayerWindow, PlayerWindowMediator);
+			mediatorMap.mapView(Menu, MenuMediator);
+			mediatorMap.mapView(FeedLoader, FeedLoaderMediator);
+			
+			commandMap.mapEvent(PlaylistURLEvent.PLAYLIST_LOAD, LoadPlaylistCommand);
+			commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, LoadArtistDataCommand);
 			
 			dispatchEvent(new ContextEvent(ContextEvent.STARTUP_COMPLETE));
 			

@@ -49,6 +49,9 @@ package cc.varga.mvc.views.blipfm.feedloader
 			Logger.tracing("Result " + event, "");
 			
 			var jsonObj : Object = JSON.decode(event.result.toString());
+			
+			
+			
 		}
 		
 		public function toString():String{

@@ -3,6 +3,7 @@
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
 		 xmlns:mx="library://ns.adobe.com/flex/halo" 
 		 xmlns:controller="cc.varga.mvc.views.playlisturl.controller.*">
+	
 	<fx:Script>
 		<![CDATA[
 			import cc.varga.mvc.events.playlist.controller.PlaylistControllerEvent;
@@ -14,6 +15,10 @@
 			private var content : Object;
 			
 			private var _artist : String;
+			
+			public function set state(value : String):void{
+				this.currentState = value;
+			}
 			
 			public function set jsonObj(value : Object):void{
 				content = value;
@@ -63,9 +68,12 @@
 		]]>
 	</fx:Script>
 	
-	<fx:Declarations>
-		<!-- Place non-visual elements (e.g., services, value objects) here -->
-	</fx:Declarations>
+	<s:states>
+		<s:State name="blip" />
+		<s:State name="youtube" />
+		<s:State name="network" />
+		<s:State name="play" />
+	</s:states>
 	
 	<s:layout><s:HorizontalLayout/></s:layout>
 	
