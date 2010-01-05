@@ -46,6 +46,7 @@ package cc.varga.mvc
 	
 	import org.robotlegs.base.ContextEvent;
 	import org.robotlegs.mvcs.Context;
+	import cc.varga.mvc.commands.data.LoadArtistDataCommand;
 	
 	public class ApplicationContext extends Context
 	{

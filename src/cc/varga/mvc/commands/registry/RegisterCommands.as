@@ -41,6 +41,8 @@ package cc.varga.mvc.commands.registry
 	import cc.varga.utils.logging.Logger;
 	
 	import org.robotlegs.mvcs.Command;
+	import cc.varga.mvc.events.system.SystemEvent;
+	import cc.varga.mvc.commands.data.LoadArtistDataCommand;
 	
 	public class RegisterCommands extends Command
 	{
@@ -54,7 +56,7 @@ package cc.varga.mvc.commands.registry
 			Logger.tracing("Register Commands", this.toString());
 			
 			commandMap.mapEvent(PlaylistURLEvent.PLAYLIST_LOAD, LoadPlaylistCommand);
-			
+			commandMap.mapEvent(SystemEvent.FINISHED_RIGSTRY, LoadArtistDataCommand);
 		}
 		
 		public function toString():String{ return "cc.varga.mvc.commands.registry.RegisterCommands"}
