@@ -25,7 +25,7 @@ package cc.varga.mvc.commands.system
 			for(var i:uint=0; i < event.sourcePlaylist.length; i++){
 				
 				var item : PlaylistItem = new PlaylistItem();
-				
+				item.jsonObj = event.sourcePlaylist.getItemAt(i) as Object;
 				view.playlist.addElement(item);
 				
 			}

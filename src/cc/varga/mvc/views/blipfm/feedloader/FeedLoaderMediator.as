@@ -1,15 +1,17 @@
 package cc.varga.mvc.views.blipfm.feedloader
 {
 	import cc.varga.mvc.events.blipfm.feedloader.FeedLoaderEvent;
+	import cc.varga.mvc.events.system.SystemEvent;
 	import cc.varga.utils.logging.Logger;
 	
+	import com.adobe.serialization.json.*;
+	
+	import mx.collections.ArrayCollection;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
 	import mx.rpc.http.mxml.HTTPService;
 	
 	import org.robotlegs.mvcs.*;
-	
-	import com.adobe.serialization.json.*;
 	
 	public class FeedLoaderMediator extends Mediator
 	{
@@ -32,6 +34,8 @@ package cc.varga.mvc.views.blipfm.feedloader
 		
 		private function onFeedLoad(event : FeedLoaderEvent):void{
 			
+			Logger.tracing("onFeed Load", this.toString());
+			
 			var httpService : HTTPService = new HTTPService();
 			httpService.method = "POST";
 			httpService.addEventListener(FaultEvent.FAULT, onFault);
@@ -50,7 +54,9 @@ package cc.varga.mvc.views.blipfm.feedloader
 			
 			var jsonObj : Object = JSON.decode(event.result.toString());
 			
-			
+			var sysEvent : SystemEvent = new SystemEvent(SystemEvent.DRAW_PLAYLIST);
+			sysEvent.sourcePlaylist = jsonObj as ArrayCollection;
+			dispatch(sysEvent);
 			
 		}
 		

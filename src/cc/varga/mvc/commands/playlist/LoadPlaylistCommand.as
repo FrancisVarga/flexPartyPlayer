@@ -88,7 +88,6 @@ package cc.varga.mvc.commands.playlist
 		}
 		
 		private function onResult(event : ResultEvent):void{			
-			//Mouse.cursor = MouseCursor.ARROW;
 			
 			model.playlistObj = JSON.decode(event.result.toString());
 			

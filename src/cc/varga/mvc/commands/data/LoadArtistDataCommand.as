@@ -35,7 +35,7 @@ package cc.varga.mvc.commands.data
 			service.contentType = "text";
 			service.addEventListener(FaultEvent.FAULT, onFault);
 			service.addEventListener(ResultEvent.RESULT, onResult);
-			service.send();
+			//service.send();
 			
 		}
 		
