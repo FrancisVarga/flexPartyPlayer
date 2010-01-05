@@ -30,8 +30,8 @@
 
   <s:Group left="0" right="0">
     <s:layout><s:HorizontalLayout/></s:layout>
-    <s:TextInput id="listURL" text="http://aludose/web/songs.json" width="350" />
-    <s:Button id="searchInList" label="Search" click="searchInList_clickHandler(event)" />
+    <s:TextInput id="listURL" width="350" height="30" />
+    <s:Button id="searchInList" label="Search" click="searchInList_clickHandler(event)" height="30" />
   </s:Group>
 
   <s:Group left="0" right="0" height="20">

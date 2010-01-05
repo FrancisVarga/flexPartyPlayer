@@ -9,10 +9,12 @@
  * LOL! I'm so Funny.
  * */
 package nl.flexcoders.controls{
+
     import flash.display.Loader;
     import flash.display.Stage;
     import flash.display.StageDisplayState;
-    import flash.events.FullScreenEvent;
+import flash.events.Event;
+import flash.events.FullScreenEvent;
     import flash.geom.Rectangle;
     import flash.net.URLRequest;
     import flash.utils.clearInterval;

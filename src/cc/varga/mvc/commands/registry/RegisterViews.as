@@ -47,6 +47,8 @@ package cc.varga.mvc.commands.registry
 	import cc.varga.mvc.views.playlisturl.list.Playlist;
 	import cc.varga.mvc.views.playlisturl.list.PlaylistMediator;
 	import cc.varga.utils.logging.Logger;
+	import cc.varga.mvc.views.menu.*;
+	import cc.varga.mvc.views.blipfm.feedloader.*;
 	
 	import org.robotlegs.mvcs.Command;
 	
@@ -66,6 +68,9 @@ package cc.varga.mvc.commands.registry
 			mediatorMap.mapView(Controllers, ControllersMediator);
 			mediatorMap.mapView(Playlist, PlaylistMediator);
 			mediatorMap.mapView(PlayerWindow, PlayerWindowMediator);
+			mediatorMap.mapView(Menu, MenuMediator);
+			mediatorMap.mapView(FeedLoader, FeedLoaderMediator);
+			
 		}
 		
 		public function toString():String{ return "cc.varga.mvc.commands.registry.RegisterViews"}

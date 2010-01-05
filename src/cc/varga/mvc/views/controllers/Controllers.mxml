@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:mx="library://ns.adobe.com/flex/halo">
+		 xmlns:mx="library://ns.adobe.com/flex/halo" 
+		 xmlns:controls="nl.flexcoders.controls.*"
+		 width="100%" height="100%">
 	<fx:Script>
 		<![CDATA[
 			import cc.varga.mvc.events.controllers.ControllersEvent;
@@ -13,10 +15,22 @@
 	</fx:Declarations>
 	
 	<s:Group width="100%" height="100%" verticalCenter="0" horizontalCenter="0">
-		<s:layout><s:HorizontalLayout/></s:layout>
-		<s:Button id="Btn_play" label="Play" height="55" click="dispatchEvent(new ControllersEvent(ControllersEvent.PLAY_CLICK))"/>
-		<s:Button id="Btn_stop" label="Stop" height="55" click="dispatchEvent(new ControllersEvent(ControllersEvent.STOP_CLICK))" />
-		<s:Button id="Btn_prev" label="Previous" height="55" click="dispatchEvent(new ControllersEvent(ControllersEvent.PREV_CLICK))"/>
-		<s:Button id="Btn_next" label="Next" height="55" click="dispatchEvent(new ControllersEvent(ControllersEvent.NEXT_CLICK))" />
+		<s:layout><s:VerticalLayout/></s:layout>
+		
+		<s:Group width="100%" height="350">
+			<controls:YouTubePlayer id="youtubePlayer" width="100%" height="350" autoPlay="true" />	
+		</s:Group>
+		
+		<s:Group width="100%">
+			<s:layout><s:HorizontalLayout/></s:layout>
+			<s:Button id="Btn_play" label="Play" height="55" click="dispatchEvent(new ControllersEvent(ControllersEvent.PLAY_CLICK))"/>
+			<s:Button id="Btn_stop" label="Stop" height="55" click="dispatchEvent(new ControllersEvent(ControllersEvent.STOP_CLICK))" />
+			<s:Button id="Btn_prev" label="Previous" height="55" click="dispatchEvent(new ControllersEvent(ControllersEvent.PREV_CLICK))"/>
+			<s:Button id="Btn_next" label="Next" height="55" click="dispatchEvent(new ControllersEvent(ControllersEvent.NEXT_CLICK))" />
+		</s:Group>
+		
+		<s:Label text="Volume" height="20" fontSize="16" />
+		<s:HSlider id="volimeSlider" height="20" width="100%" />
+		
 	</s:Group>
 </s:Group>

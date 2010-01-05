@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
 				xmlns:s="library://ns.adobe.com/flex/spark" 
 				xmlns:mx="library://ns.adobe.com/flex/halo" 
-				layout="absolute" width="800" height="600"
-				showCloseButton="true" xmlns:feedloader="cc.varga.mvc.views.blipfm.feedloader.*">
+				xmlns:feedloader="cc.varga.mvc.views.blipfm.feedloader.*" 
+				xmlns:loaderURL="cc.varga.mvc.views.blipfm.feedloader.loaderURL.*">
 	
-	<fx:Declarations>
-		<feedloader:FeedLoaderMediator contextView="{this}" />
-	</fx:Declarations>
+	<s:layout><s:VerticalLayout/></s:layout>
 	
-</mx:TitleWindow>
+	<s:Group width="100%" height="100%">
+		<s:layout><s:HorizontalLayout/></s:layout>
+		<s:Label text="Nickname: " fontSize="14" height="25" horizontalCenter="0" />
+		<s:TextInput fontSize="14" width="100%" height="25" />
+		<s:Button label="Load" width="50" height="25" />
+	</s:Group>
+	
+	<s:Group id="playlistContainer" width="100%" height="100%">
+		<s:layout><s:VerticalLayout/></s:layout>
+	</s:Group>
+	
+</s:Group>
