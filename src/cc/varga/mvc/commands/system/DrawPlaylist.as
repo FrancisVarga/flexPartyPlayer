@@ -2,6 +2,7 @@ package cc.varga.mvc.commands.system
 {
 	import cc.varga.mvc.events.system.SystemEvent;
 	import cc.varga.mvc.views.playlistItem.PlaylistItem;
+	import cc.varga.utils.logging.Logger;
 	
 	import org.robotlegs.mvcs.Command;
 	
@@ -22,12 +23,19 @@ package cc.varga.mvc.commands.system
 			
 			view = contextView as FlexPlayer;
 			
-			for(var i:uint=0; i < event.sourcePlaylist.length; i++){
-				
-				var item : PlaylistItem = new PlaylistItem();
-				item.jsonObj = event.sourcePlaylist.getItemAt(i) as Object;
-				view.playlist.addElement(item);
-				
+			Logger.tracing("Draw PLaylist View: " + view, this.toString());
+			Logger.tracing("Playlist Source: " + event.sourcePlaylist, this.toString());
+			
+			if(event.sourcePlaylist || event.sourcePlaylist.length > 0){
+				for(var i:uint=0; i < event.sourcePlaylist.length; i++){
+					
+					var item : PlaylistItem = new PlaylistItem();
+					item.jsonObj = event.sourcePlaylist.getItemAt(i) as Object;
+					view.playlist.addElement(item);
+					
+				}
+			} else {
+				Logger.tracing("Source of playlist is null", this.toString());
 			}
 			
 		}

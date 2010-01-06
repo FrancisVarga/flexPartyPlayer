@@ -4,7 +4,9 @@
 		 xmlns:mx="library://ns.adobe.com/flex/halo"
          xmlns:controllers="cc.varga.mvc.views.controllers.*"
          xmlns:playlisturl="cc.varga.mvc.views.playlisturl.*"
-         xmlns:feedloader="cc.varga.mvc.views.blipfm.feedloader.*" xmlns:playlistManager="cc.varga.mvc.views.playlistManager.*" xmlns:search="cc.varga.mvc.views.search.*">
+         xmlns:feedloader="cc.varga.mvc.views.blipfm.feedloader.*" 
+		 xmlns:playlistManager="cc.varga.mvc.views.playlistManager.*" 
+		 xmlns:search="cc.varga.mvc.views.search.*">
 
     <fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->

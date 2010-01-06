@@ -39,7 +39,9 @@ package cc.varga.mvc
 	import cc.varga.mvc.commands.data.LoadArtistDataCommand;
 	import cc.varga.mvc.commands.playlist.LoadPlaylistCommand;
 	import cc.varga.mvc.commands.system.DrawPlaylist;
+	import cc.varga.mvc.commands.system.SearchCommand;
 	import cc.varga.mvc.events.playlist.PlaylistURLEvent;
+	import cc.varga.mvc.events.search.SearchEvent;
 	import cc.varga.mvc.events.system.SystemEvent;
 	import cc.varga.mvc.models.data.AppDataModel;
 	import cc.varga.mvc.models.player.PlayerModel;
@@ -87,6 +89,11 @@ package cc.varga.mvc
 			
 			Logger.tracing("Application Startup", this.toString());
 			
+			commandMap.mapEvent(PlaylistURLEvent.PLAYLIST_LOAD, LoadPlaylistCommand);
+			commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, LoadArtistDataCommand);
+			commandMap.mapEvent(SystemEvent.DRAW_PLAYLIST, DrawPlaylist, SystemEvent);
+			commandMap.mapEvent(SearchEvent.SEARCH_QUERY, SearchCommand);
+			
 			injector.mapSingleton(PlaylistModel);
 			injector.mapSingleton(SoundModel);
 			injector.mapSingleton(PlayerModel);
@@ -100,10 +107,6 @@ package cc.varga.mvc
 			mediatorMap.mapView(Menu, MenuMediator);
 			mediatorMap.mapView(FeedLoader, FeedLoaderMediator);
 			mediatorMap.mapView(Search, SearchMediator);
-			
-			commandMap.mapEvent(PlaylistURLEvent.PLAYLIST_LOAD, LoadPlaylistCommand);
-			commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, LoadArtistDataCommand);
-			commandMap.mapEvent(SystemEvent.DRAW_PLAYLIST, DrawPlaylist);
 			
 			dispatchEvent(new ContextEvent(ContextEvent.STARTUP_COMPLETE));
 			
