@@ -1,23 +1,20 @@
 ENV["AIRAKE_ROOT"] = File.dirname(__FILE__)
 ENV["AIRAKE_ENV"] = "development"
 require File.join(ENV["AIRAKE_ROOT"],"config","boot")
-#require 'sprout'
-
-#require 'flexPartyPlayer/tasks'
 
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gemspec|
-    gemspec.name = "flexPartyPlayer"
+    gemspec.name = "grammophon"
     gemspec.summary = "A Flex Frontend to KitNo"
     gemspec.description = "A Flex Frontend to KitNo"
     gemspec.email = "github@varga-net"
-    gemspec.homepage = "http://github.com/FrancisVarga/flexPartyPlayer/"
-    gemspec.authors = ["Francis Varga"]
+    gemspec.homepage = "http://github.com/lennart/grammophon/"
+    gemspec.authors = ["Francis Varga", "Lennart Melzer"]
     gemspec.add_dependency("sprout")
     gemspec.add_dependency('rake')
 
-    files = FileList[%w{src/**/* test/* views/* lib/* script/* sample.json airake.yml Gemfile}]
+    files = FileList[%w{src/**/* test/* views/* lib/* script/* Gemfile}]
     gemspec.files = files.to_a
   end
   Rake.application.jeweler.gemspec.executables = []
@@ -64,9 +61,6 @@ document :doc
 
 desc 'Compile a SWC file'
 swc :swc
-
-desc 'Compile and run the test harness for Ci'
-ci :cruise
 
 # set up the default rake task
 task :default => :debug
