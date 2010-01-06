@@ -6,3 +6,4 @@ vendor/gems/*
 public/jukebox
 lib/robotlegs
 lib/swiftsuspenders
+bin-release/*
