@@ -44,8 +44,8 @@ package cc.varga.mvc
 	import cc.varga.mvc.models.player.PlayerModel;
 	import cc.varga.mvc.models.playlist.PlaylistModel;
 	import cc.varga.mvc.models.sound.SoundModel;
-	import cc.varga.mvc.views.blipfm.feedloader.FeedLoader;
-	import cc.varga.mvc.views.blipfm.feedloader.FeedLoaderMediator;
+	import cc.varga.mvc.views.blipfm.FeedLoader;
+	import cc.varga.mvc.views.blipfm.FeedLoaderMediator;
 	import cc.varga.mvc.views.controllers.Controllers;
 	import cc.varga.mvc.views.controllers.ControllersMediator;
 	import cc.varga.mvc.views.menu.Menu;
