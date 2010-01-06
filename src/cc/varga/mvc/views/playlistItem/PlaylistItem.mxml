@@ -8,12 +8,15 @@
 		<![CDATA[
 			import cc.varga.mvc.events.playlist.controller.PlaylistControllerEvent;
 			
+			import com.adobe.serialization.json.JSON;
+			
 			import mx.rpc.events.ResultEvent;
 			import mx.rpc.http.mxml.HTTPService;
 			
 			[Bindable]
 			private var content : Object;
 			
+			[Bindable]
 			private var _artist : String;
 			
 			public function set state(value : String):void{
@@ -40,7 +43,8 @@
 			}
 			
 			private function onResult(event : ResultEvent):void{
-				_artist = event.result as String;	
+				var obj	= JSON.decode(event.result as String);
+				_artist = obj["name"];
 			}
 			
 			
@@ -76,12 +80,12 @@
 	</s:states>
 	
 	<s:layout><s:HorizontalLayout/></s:layout>
-	
+
 	<s:Group>
 		<s:layout><s:HorizontalLayout/></s:layout>
-		<s:Label id="artist" text="{this._artist}"  verticalAlign="middle" width="150"/>
-		<s:Label id="title" text="{this.content['title']}"  verticalAlign="middle" width="150"/>
-		<s:Label id="url" text="{this.content['source']}"  verticalAlign="middle" width="150"/>
+		<s:Label id="artist" text="{this._artist}"  width="100%" minWidth="50"/>
+		<s:Label id="title" text="{this.content['title']}"  width="100%" minWidth="50"/>
+		<s:Label id="url" text="{this.content['source']}"  width="100%"/>
 	</s:Group>
 	<s:Group width="100%" height="50">
 		<mx:ApplicationControlBar>
@@ -89,6 +93,7 @@
 			<s:Button id="play" label="Play" click="play_clickHandler(event)" />
 			<s:Button id="download" label="Download" click="download_clickHandler(event)" />
 		</mx:ApplicationControlBar>
-	</s:Group>	
+	</s:Group>
+	
 </s:Group>
 

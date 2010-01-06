@@ -36,13 +36,10 @@
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 package cc.varga.mvc
 {
+	import cc.varga.mvc.commands.data.LoadAlbumsData;
 	import cc.varga.mvc.commands.data.LoadArtistDataCommand;
 	import cc.varga.mvc.commands.playlist.LoadPlaylistCommand;
-	import cc.varga.mvc.commands.system.DrawPlaylist;
-	import cc.varga.mvc.commands.system.SearchCommand;
 	import cc.varga.mvc.events.playlist.PlaylistURLEvent;
-	import cc.varga.mvc.events.search.SearchEvent;
-	import cc.varga.mvc.events.system.SystemEvent;
 	import cc.varga.mvc.models.data.AppDataModel;
 	import cc.varga.mvc.models.player.PlayerModel;
 	import cc.varga.mvc.models.playlist.PlaylistModel;
@@ -59,6 +56,10 @@ package cc.varga.mvc
 	import cc.varga.mvc.views.playlist.PlaylistMediator;
 	import cc.varga.mvc.views.playlistItem.PlaylistItem;
 	import cc.varga.mvc.views.playlistItem.PlaylistItemMediator;
+	import cc.varga.mvc.views.playlistManager.PlaylistButton;
+	import cc.varga.mvc.views.playlistManager.PlaylistButtonMediator;
+	import cc.varga.mvc.views.playlistManager.PlaylistManager;
+	import cc.varga.mvc.views.playlistManager.PlaylistManagerMediator;
 	import cc.varga.mvc.views.playlisturl.PlaylistURL;
 	import cc.varga.mvc.views.playlisturl.PlaylistURLMediator;
 	import cc.varga.mvc.views.search.Search;
@@ -89,10 +90,9 @@ package cc.varga.mvc
 			
 			Logger.tracing("Application Startup", this.toString());
 			
-			commandMap.mapEvent(PlaylistURLEvent.PLAYLIST_LOAD, LoadPlaylistCommand);
-			commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, LoadArtistDataCommand);
-			commandMap.mapEvent(SystemEvent.DRAW_PLAYLIST, DrawPlaylist, SystemEvent);
-			commandMap.mapEvent(SearchEvent.SEARCH_QUERY, SearchCommand);
+			commandMap.mapEvent(PlaylistURLEvent.PLAYLIST_LOAD, LoadPlaylistCommand, null, true);
+			commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, LoadArtistDataCommand, null, true);
+			commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, LoadAlbumsData, null, true);
 			
 			injector.mapSingleton(PlaylistModel);
 			injector.mapSingleton(SoundModel);
@@ -107,6 +107,8 @@ package cc.varga.mvc
 			mediatorMap.mapView(Menu, MenuMediator);
 			mediatorMap.mapView(FeedLoader, FeedLoaderMediator);
 			mediatorMap.mapView(Search, SearchMediator);
+			mediatorMap.mapView(PlaylistManager, PlaylistManagerMediator);
+			mediatorMap.mapView(PlaylistButton, PlaylistButtonMediator);
 			
 			dispatchEvent(new ContextEvent(ContextEvent.STARTUP_COMPLETE));
 			

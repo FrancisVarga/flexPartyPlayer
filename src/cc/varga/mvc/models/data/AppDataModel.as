@@ -1,12 +1,16 @@
 package cc.varga.mvc.models.data
 {
-	import org.robotlegs.mvcs.Actor;
 	import flash.utils.Dictionary;
+	
+	import org.robotlegs.mvcs.Actor;
 	
 	public class AppDataModel extends Actor
 	{
+		[Bindable]
+		public var artistList : Array = new Array();
 		
-		public var artistList : Dictionary = new Dictionary;
+		[Bindable]
+		public var albumList : Array = new Array();
 		
 		public function AppDataModel()
 		{

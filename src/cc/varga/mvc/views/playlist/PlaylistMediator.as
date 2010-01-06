@@ -38,6 +38,7 @@ package cc.varga.mvc.views.playlist
 {
 	import cc.varga.mvc.events.playlist.PlaylistEvent;
 	import cc.varga.mvc.events.playlist.PlaylistURLEvent;
+	import cc.varga.mvc.events.system.SystemEvent;
 	import cc.varga.mvc.models.player.PlayerModel;
 	import cc.varga.mvc.models.playlist.PlaylistModel;
 	import cc.varga.mvc.models.sound.SoundModel;
@@ -74,6 +75,13 @@ package cc.varga.mvc.views.playlist
 			
 			eventMap.mapListener(eventDispatcher, PlaylistURLEvent.PLAYLIST_DISPLAYED, buildPlaylist); 
 			eventMap.mapListener(view, PlaylistEvent.ADD_ALL_TO_PLAYLIST, onAddAll);
+			eventMap.mapListener(eventDispatcher, SystemEvent.DRAW_PLAYLIST, drawPlaylist);
+			
+		}
+		
+		private function drawPlaylist(event : SystemEvent):void{
+			Logger.tracing("Draw playlist", this.toString());
+			
 			
 		}
 		

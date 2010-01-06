@@ -1,12 +1,11 @@
 package cc.varga.mvc.views.blipfm.feedloader
 {
 	import cc.varga.mvc.events.blipfm.feedloader.FeedLoaderEvent;
-	import cc.varga.mvc.events.system.SystemEvent;
+	import cc.varga.mvc.views.playlistItem.PlaylistItem;
 	import cc.varga.utils.logging.Logger;
 	
 	import com.adobe.serialization.json.*;
 	
-	import mx.collections.ArrayCollection;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
 	import mx.rpc.http.mxml.HTTPService;
@@ -52,11 +51,15 @@ package cc.varga.mvc.views.blipfm.feedloader
 		private function onResult(event : ResultEvent):void{
 			Logger.tracing("Result " + event, "");
 			
-			var jsonObj : Object = JSON.decode(event.result.toString());
+			var jsonObj : Array = JSON.decode(event.result as String) as Array;
 			
-			var sysEvent : SystemEvent = new SystemEvent(SystemEvent.DRAW_PLAYLIST);
-			sysEvent.sourcePlaylist = jsonObj as ArrayCollection;
-			dispatch(sysEvent);
+			if(jsonObj.length > 0){
+				for(var i:uint=0; i < jsonObj.length; i++){
+					var item : PlaylistItem = new PlaylistItem();
+					item.jsonObj = jsonObj[i];
+					view.listContainer.addElement(item);
+				}
+			}
 			
 		}
 		

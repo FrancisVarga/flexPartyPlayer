@@ -3,6 +3,10 @@ package cc.varga.mvc.views.search
 	import cc.varga.mvc.events.search.SearchEvent;
 	import cc.varga.utils.logging.Logger;
 	
+	import mx.rpc.events.FaultEvent;
+	import mx.rpc.events.ResultEvent;
+	import mx.rpc.http.mxml.HTTPService;
+	
 	import org.robotlegs.mvcs.Mediator;
 	
 	public class SearchMediator extends Mediator
@@ -27,7 +31,24 @@ package cc.varga.mvc.views.search
 		private function onSearch(event : SearchEvent):void{
 			
 			Logger.tracing("Search Request: " + event.search_query, this.toString());
-			dispatch(event);
+			var httpServ : HTTPService = new HTTPService();
+			httpServ.addEventListener(FaultEvent.FAULT, onFault);
+			httpServ.addEventListener(ResultEvent.RESULT, onResult);
+			httpServ.url = "http://aludose/web/search.json";
+			httpServ.method = "POST";
+			httpServ.send({query:event.search_query});
+		
+		}
+		
+		private function onResult(event : ResultEvent):void{
+			
+			Logger.tracing("Result: " + event.result.toString(), this.toString());
+			
+		}
+		
+		private function onFault(event : FaultEvent):void{
+			
+			Logger.tracing("onFault: " + event.message, this.toString());
 			
 		}
 		

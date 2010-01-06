@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/halo">
+	
+	<fx:Script>
+		<![CDATA[
+			import cc.varga.mvc.events.playlist.PlaylistEvent;
+			import cc.varga.utils.logging.Logger;
+			
+			[Bindable]
+			public var dataprovider : Object;
+
+
+			protected function button_clearHandler(event:Event):void
+			{
+				
+				Logger.tracing("Get Playlist: " + dataprovider["_id"], "");
+				
+				var myEvent : PlaylistEvent = new PlaylistEvent(PlaylistEvent.GET_ALBUM);
+				myEvent.albumID = dataprovider["_id"];
+				dispatchEvent(myEvent);
+			}
+
+		]]>
+	</fx:Script>
+	
+	<mx:LinkButton id="button" label="{dataprovider['title']}" click="button_clearHandler(event)" />
+	
+</s:Group>
