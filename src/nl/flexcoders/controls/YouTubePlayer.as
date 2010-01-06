@@ -22,6 +22,7 @@ package nl.flexcoders.controls{
 	
 	import mx.core.UIComponent;
 	
+	[ Event( name="complete", type="flash.events.Event") ]
 	public class YouTubePlayer extends UIComponent{
 		public static const PLAY_URL:String = "http://www.youtube.com/apiplayer?version=3";
 		
@@ -299,7 +300,10 @@ package nl.flexcoders.controls{
 			var stateIndex:Number = event["data"];
 			
 			switch(stateIndex){
-				case 0: clearInterval(this.updateInterval);break;
+				case 0: 
+					clearInterval(this.updateInterval);
+					onEnd();
+					break;
 				case 1: updateInterval = setInterval(function():void{
 					currentTime = player.getCurrentTime()*1000;
 				}, 500); break;
@@ -307,6 +311,10 @@ package nl.flexcoders.controls{
 			}
 			
 			this.dispatchEvent(event);
+		}
+		
+		private function onEnd():void{
+			dispatchEvent(new Event(Event.COMPLETE));
 		}
 		
 		private function onVideoPlaybackQualityChange(event:Event):void {
