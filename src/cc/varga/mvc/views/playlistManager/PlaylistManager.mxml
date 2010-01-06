@@ -3,5 +3,12 @@
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
 		 xmlns:mx="library://ns.adobe.com/flex/halo">
     
-
+	<s:layout><s:VerticalLayout/></s:layout>
+	
+	<s:Group id="listContainer">
+		
+		<s:layout><s:VerticalLayout/></s:layout>
+	
+	</s:Group>
+	
 </s:Group>

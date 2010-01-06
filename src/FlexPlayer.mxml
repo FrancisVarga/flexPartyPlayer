@@ -8,6 +8,7 @@
 			   xmlns:player="cc.varga.mvc.views.player.*"
                xmlns:menu="cc.varga.mvc.views.menu.*"
 			   xmlns:playlist="cc.varga.mvc.views.playlist.*"
+			   xmlns:controls="nl.flexcoders.controls.*"
 			   
 			   width="100%" height="100%">
 	
@@ -18,13 +19,15 @@
 	</fx:Declarations>
 	
 	<s:Group height="100%" width="100%">
-		<menu:Menu height="100%" width="350" />
+		<menu:Menu height="100%" width="450" />
 	</s:Group>
 	
 	<s:Group id="leftContainer" height="100%" width="100%">
-		<s:Scroller top="0" left="0" right="0"  bottom="0">
-			<playlist:Playlist id="playlist" height="100%" width="100%" />	
-		</s:Scroller>
+		
+		<s:layout><s:VerticalLayout/></s:layout>	
+		
+		<playlist:Playlist id="playlist" height="100%" width="100%" />	
+		
 	</s:Group>
 
 	<s:Scroller height="100%">
