@@ -10,6 +10,8 @@
 			   xmlns:playlist="cc.varga.mvc.views.playlist.*"
 			   xmlns:controls="nl.flexcoders.controls.*"
 			   
+			   xmlns:youtubePlayer="cc.varga.mvc.views.youtubePlayer.*"
+			   
 			   width="100%" height="100%">
 	
 	<s:layout><s:HorizontalLayout/></s:layout>
@@ -25,6 +27,8 @@
 	<s:Group id="leftContainer" height="100%" width="100%">
 		
 		<s:layout><s:VerticalLayout/></s:layout>	
+		
+		<youtubePlayer:YoutubePlayerContainer id="youtubePlayer" />
 		
 		<playlist:Playlist id="playlist" height="100%" width="100%" />	
 		

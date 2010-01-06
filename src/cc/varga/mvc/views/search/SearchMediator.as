@@ -3,11 +3,15 @@ package cc.varga.mvc.views.search
 	import cc.varga.mvc.events.search.SearchEvent;
 	import cc.varga.utils.logging.Logger;
 	
+	import com.adobe.serialization.json.*;
+	
+	import mx.collections.ArrayCollection;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
 	import mx.rpc.http.mxml.HTTPService;
 	
 	import org.robotlegs.mvcs.Mediator;
+	import cc.varga.mvc.views.playlistItem.PlaylistItem;
 	
 	public class SearchMediator extends Mediator
 	{
@@ -42,7 +46,24 @@ package cc.varga.mvc.views.search
 		
 		private function onResult(event : ResultEvent):void{
 			
-			Logger.tracing("Result: " + event.result.toString(), this.toString());
+			var result : Object = JSON.decode(event.result as String);
+			
+			drawSearchResult(result as Array);
+			
+		}
+		
+		private function drawSearchResult(list:Array):void{
+			
+			view.listContainer.removeAllElements();
+			
+			for(var i:uint=0; i < list.length; i++){
+				
+				var item : PlaylistItem = new PlaylistItem();
+				item.jsonObj = list[i];
+				
+				view.listContainer.addElement(item);
+				
+			}
 			
 		}
 		

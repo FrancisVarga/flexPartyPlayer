@@ -98,15 +98,14 @@ package cc.varga.mvc.models.sound
 			
 			if(playObj != null){
 				currentJSONObj = playObj;
-				if(playObj['video_id']){
+				if(playObj['_attachments']){
+					checkFileType();	
+				}else{
 					Logger.tracing("Is a youtube video", this.toString());
 					var event : PlayerEvent = new PlayerEvent(PlayerEvent.PLAY_YOUTUBE_VIDEO);
 					event.youtubeVideoID = playObj['video_id'] as String;
 					eventDispatcher.dispatchEvent(event);	
-				}else{
-					checkFileType();	
-				}
-				
+				}	
 			}else{
 				Alert.show("Something is wrong hit the developer FLEX!", "Error");
 			}

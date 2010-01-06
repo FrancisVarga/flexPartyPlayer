@@ -109,6 +109,7 @@ package cc.varga.mvc
 			mediatorMap.mapView(Search, SearchMediator);
 			mediatorMap.mapView(PlaylistManager, PlaylistManagerMediator);
 			mediatorMap.mapView(PlaylistButton, PlaylistButtonMediator);
+			mediatorMap.mapView(FlexPlayer, ApplicationMediator);
 			
 			dispatchEvent(new ContextEvent(ContextEvent.STARTUP_COMPLETE));
 			
