@@ -37,7 +37,7 @@ package cc.varga.mvc.views.blipfm.feedloader
 			Logger.tracing("onFeed Load", this.toString());
 			
 			var httpService : HTTPService = new HTTPService();
-			httpService.method = "POST";
+//			httpService.method = "POST";
 			httpService.addEventListener(FaultEvent.FAULT, onFault);
 			httpService.addEventListener(ResultEvent.RESULT, onResult);
 			httpService.url = "http://aludose/web/blip/" + event.blipNick + ".json";
@@ -55,14 +55,19 @@ package cc.varga.mvc.views.blipfm.feedloader
 			var jsonObj : Object = JSON.decode(event.result.toString());
 			
 			var sysEvent : SystemEvent = new SystemEvent(SystemEvent.DRAW_PLAYLIST);
-			sysEvent.sourcePlaylist = jsonObj as ArrayCollection;
-			dispatch(sysEvent);
-			
-		}
-		
-		public function toString():String{
-			return "cc.varga.mvc.views.blipfm.feedloader.FeedLoaderContext";
-		}
-		
-	}
+      if (jsonObj != null) {
+        sysEvent.sourcePlaylist = new ArrayCollection(jsonObj as Array);
+        dispatch(sysEvent);
+      }
+      else {
+        Logger.tracing("Failed to use this json stuff", this.toString());
+      }
+
+    }
+
+    public function toString():String{
+      return "cc.varga.mvc.views.blipfm.feedloader.FeedLoaderContext";
+    }
+
+  }
 }

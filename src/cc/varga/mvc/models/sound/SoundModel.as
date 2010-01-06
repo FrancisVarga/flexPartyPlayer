@@ -94,191 +94,203 @@ package cc.varga.mvc.models.sound
 			
 		}
 		
-		private function playSound(playObj:Object):void{
-			
-			if(playObj != null){
-				currentJSONObj = playObj;
-				if(playObj['video_id']){
-					Logger.tracing("Is a youtube video", this.toString());
-					var event : PlayerEvent = new PlayerEvent(PlayerEvent.PLAY_YOUTUBE_VIDEO);
-					event.youtubeVideoID = playObj['video_id'] as String;
-					eventDispatcher.dispatchEvent(event);	
-				}else{
-					checkFileType();	
-				}
-				
-			}else{
-				Alert.show("Something is wrong hit the developer FLEX!", "Error");
-			}
-			
-		}
-		
-		private function clearSound():void{
-			
-			Logger.tracing("Clear all sound", this.toString());
-			
-			soundChannel.stop();
-			soundChannel = null;
-			soundChannel = new SoundChannel();
-			sound = null;
-			sound = new Sound();
-			decoder = null;
-			decoder = new AudioDecoder();
-			
-			System.gc();
-			
-		}
-		
-		public function playPlaylist(playlist:ISound):void{
-			
-			clearSound();
-			
-			currentPlaylist = playlist;
-			
-			soundChannel.addEventListener(Event.SOUND_COMPLETE, onItemComplete);
-			sound.addEventListener(Event.COMPLETE, onItemComplete);
-			sound.addEventListener(Event.SOUND_COMPLETE, onItemComplete);
-			decoder.addEventListener(Event.COMPLETE, onItemComplete);
-			decoder.addEventListener(Event.SOUND_COMPLETE, onItemComplete);
-			
-			if(currentPlaylist.listlength() > 0){
-				playSound(currentPlaylist.getCurrentItem());
-			}else{
-				Alert.show("Playlist is null", "Error");
-			}
-			
-		}
-		
-		private function onItemComplete(event : *):void{
-			
-			Logger.tracing("Item Complete from Playlist", this.toString());
-			
-			clearSound();
-			
-			soundChannel.addEventListener(Event.SOUND_COMPLETE, onItemComplete);
-			sound.addEventListener(Event.COMPLETE, onItemComplete);
-			sound.addEventListener(Event.SOUND_COMPLETE, onItemComplete);
-			decoder.addEventListener(Event.COMPLETE, onItemComplete);
-			decoder.addEventListener(Event.SOUND_COMPLETE, onItemComplete);
-			
-			setCurrentJSONObj(currentPlaylist.getNextItem());
-			
-		}
-		
-		private function checkFileType(playTo : String = ""):void{
-			
-			Logger.tracing("check file type", this.toString());	
-			
-			for (var item : * in currentJSONObj){
-				
-				if(item == "_attachments"){
-					for(var att : * in currentJSONObj[item]){
-						var cont:String = att;
-						
-						if(cont.lastIndexOf(".ogg") >= 1){
-							Logger.tracing("Play OGG File", this.toString());
-							contentURL = cont;
-							currentCT = "ogg";
-							loadOGGFile();
-							break;
-						}else if(cont.indexOf(".mp3") >= 1){
-							Logger.tracing("Play Mp3 File", this.toString());
-							contentURL = cont;
-							currentCT = "mp3"
-							loadMp3File();
-							break;
-						}
-						
-					}
-				}
-				
-			}
-			
-		}
-		
-		private function loadmp4():void{
-			
-			var connect_nc:NetConnection = new NetConnection();
-			connect_nc.connect(null);
-			var stream_ns:NetStream = new NetStream(connect_nc);
-			var video : Video = new Video();
-			video.attachNetStream(stream_ns);
-			
-			stream_ns.play("D:\_Random\video.mp4");
-		}
-		
-		private function loadMp3File():void{
-			
-			sound.addEventListener(Event.COMPLETE, onLoadComplete_mp3);
-			sound.addEventListener(SampleDataEvent.SAMPLE_DATA, onSoundData);
-			sound.addEventListener(IOErrorEvent.IO_ERROR, onIOError_mp3);
-			//sound.load(new URLRequest("http://localserver:5984/musiclib/737fa73795ac1bff9f3c1145ccacd16c/04-gentleman_reg--when_heroes_change_professions-oma.mp3"));
-			sound.load(new URLRequest("http://aludose/" + currentJSONObj["_id"] + "/" + contentURL));
-			soundChannel = sound.play();
-			
-		}
-		
-		private function onSoundData(event : SampleDataEvent):void{
-			trace(event);
-		}
-		
-		private function onLoadComplete_mp3(event : Event):void{
-			Logger.tracing("mp3 file complete", this.toString());
-		}
-		
-		private function onIOError_mp3(event : IOErrorEvent):void{
-			
-		}
-		
-		private function loadOGGFile():void{	
-			decoder.addEventListener(Event.INIT, onDecoderInit);
-			/*decoder.addEventListener(IOErrorEvent.IO_ERROR, onDecoderIOError);
-			decoder.addEventListener(Event.COMPLETE, onComplete);
-			
-			soundChannel.addEventListener(Event.SOUND_COMPLETE, onComplete);*/
-			
-			var oggStream : URLStream = new URLStream();
-			
-			decoder.load(oggStream, OggVorbisDecoder, BUFFER_SIZE);
-			oggStream.load(new URLRequest("http://aludose/" + currentJSONObj["_id"] + "/" + contentURL));
-			Logger.tracing("Play File: " + "http://aludose/" + currentJSONObj["_id"] + "/" + contentURL, this.toString());
-		}
-		
-		private function onComplete(event : Event):void{
-			Logger.tracing("OGG File Complete: " + event + " || Target: " + event.currentTarget, this.toString());
-			clearSound();
-		}
-		
-		private function onDecoderInit(event : Event):void{
-			soundChannel = decoder.play();
-			Logger.tracing("Init OGG Decoder", this.toString());
-		}
-		
-		private function onDecoderIOError(event : Event):void{
-			Logger.tracing("IO Decoder Error", this.toString());	
-		}
-		
-		public function pause():void{
-			soundChannel.stop();
-		}
-		
-		public function stop():void{			
-			clearSound();
-		}
-		
-		public function next():void{
-			setCurrentJSONObj(currentPlaylist.getNextItem());
-		}
-		
-		public function prev():void{
-			setCurrentJSONObj(currentPlaylist.getPrevItem() );
-		}
-		
-		private function onSoundComplete(event : Event):void{
-				
-		}
-		
-		public function toString():String{ return "cc.varga.mvc.models.SoundModel"}
-	}
-	
+    private function playSound(playObj:Object):void{
+      if(playObj != null){
+        currentJSONObj = playObj;
+
+        if (!checkFileType()) {
+
+          if(playObj['video_id']){
+            Logger.tracing("Is a youtube video", this.toString());
+            var event : PlayerEvent = new PlayerEvent(PlayerEvent.PLAY_YOUTUBE_VIDEO);
+            event.youtubeVideoID = playObj['video_id'] as String;
+            eventDispatcher.dispatchEvent(event);	
+          }
+          else if(playObj['source']) {
+            Logger.tracing("This can only be played through remote HTTP", this.toString());
+            loadMp3File(true);
+          }
+          else {
+            Alert.show("Something is wrong hit the developer FLEX!", "Error");
+          }
+
+        }
+      }
+    }
+
+    private function clearSound():void{
+
+      Logger.tracing("Clear all sound", this.toString());
+
+      soundChannel.stop();
+      soundChannel = null;
+      soundChannel = new SoundChannel();
+      sound = null;
+      sound = new Sound();
+      decoder = null;
+      decoder = new AudioDecoder();
+
+      System.gc();
+
+    }
+
+    public function playPlaylist(playlist:ISound):void{
+
+      clearSound();
+
+      currentPlaylist = playlist;
+
+      soundChannel.addEventListener(Event.SOUND_COMPLETE, onItemComplete);
+      sound.addEventListener(Event.COMPLETE, onItemComplete);
+      sound.addEventListener(Event.SOUND_COMPLETE, onItemComplete);
+      decoder.addEventListener(Event.COMPLETE, onItemComplete);
+      decoder.addEventListener(Event.SOUND_COMPLETE, onItemComplete);
+
+      if(currentPlaylist.listlength() > 0){
+        playSound(currentPlaylist.getCurrentItem());
+      }else{
+        Alert.show("Playlist is null", "Error");
+      }
+
+    }
+
+    private function onItemComplete(event : *):void{
+
+      Logger.tracing("Item Complete from Playlist", this.toString());
+
+      clearSound();
+
+      soundChannel.addEventListener(Event.SOUND_COMPLETE, onItemComplete);
+      sound.addEventListener(Event.COMPLETE, onItemComplete);
+      sound.addEventListener(Event.SOUND_COMPLETE, onItemComplete);
+      decoder.addEventListener(Event.COMPLETE, onItemComplete);
+      decoder.addEventListener(Event.SOUND_COMPLETE, onItemComplete);
+
+      setCurrentJSONObj(currentPlaylist.getNextItem());
+
+    }
+
+    private function checkFileType(playTo : String = ""): Boolean {
+      Logger.tracing("check file type", this.toString());	
+
+      if (currentJSONObj.hasOwnProperty("_attachments")) {
+        for(var att : * in currentJSONObj["_attachments"]){
+          var cont:String = att;
+
+          if (cont.lastIndexOf(".ogg") >= 1) {
+            Logger.tracing("Play OGG File", this.toString());
+            contentURL = cont;
+            currentCT = "ogg";
+            loadOGGFile();
+            return true;
+          }
+          else if (cont.indexOf(".mp3") >= 1) {
+            Logger.tracing("Play Mp3 File", this.toString());
+            contentURL = cont;
+            currentCT = "mp3"
+              loadMp3File();
+            return true;
+          }
+          else {
+            return false;
+          }
+        }
+
+      }
+        return false;
+
+    }
+
+    private function loadmp4():void{
+
+      var connect_nc:NetConnection = new NetConnection();
+      connect_nc.connect(null);
+      var stream_ns:NetStream = new NetStream(connect_nc);
+      var video : Video = new Video();
+      video.attachNetStream(stream_ns);
+
+      stream_ns.play("D:\_Random\video.mp4");
+    }
+
+    private function loadMp3File(remote: Boolean = false):void{
+
+      sound.addEventListener(Event.COMPLETE, onLoadComplete_mp3);
+      sound.addEventListener(SampleDataEvent.SAMPLE_DATA, onSoundData);
+      sound.addEventListener(IOErrorEvent.IO_ERROR, onIOError_mp3);
+      //sound.load(new URLRequest("http://localserver:5984/musiclib/737fa73795ac1bff9f3c1145ccacd16c/04-gentleman_reg--when_heroes_change_professions-oma.mp3"));
+      var req:URLRequest = new URLRequest();
+      if (remote) {
+        req.url = currentJSONObj["url"];
+      }
+      else {
+        req.url ="http://aludose/" + currentJSONObj["_id"] + "/" + contentURL;
+      }
+      sound.load(req);
+      soundChannel = sound.play();
+
+    }
+
+    private function onSoundData(event : SampleDataEvent):void{
+      trace(event);
+    }
+
+    private function onLoadComplete_mp3(event : Event):void{
+      Logger.tracing("mp3 file fully loaded", this.toString());
+    }
+
+    private function onIOError_mp3(event : IOErrorEvent):void{
+
+    }
+
+    private function loadOGGFile():void{	
+      decoder.addEventListener(Event.INIT, onDecoderInit);
+      /*decoder.addEventListener(IOErrorEvent.IO_ERROR, onDecoderIOError);
+        decoder.addEventListener(Event.COMPLETE, onComplete);
+
+        soundChannel.addEventListener(Event.SOUND_COMPLETE, onComplete);*/
+
+      var oggStream : URLStream = new URLStream();
+
+      decoder.load(oggStream, OggVorbisDecoder, BUFFER_SIZE);
+      oggStream.load(new URLRequest("http://aludose/" + currentJSONObj["_id"] + "/" + contentURL));
+      Logger.tracing("Play File: " + "http://aludose/" + currentJSONObj["_id"] + "/" + contentURL, this.toString());
+    }
+
+    private function onComplete(event : Event):void{
+      Logger.tracing("OGG File Complete: " + event + " || Target: " + event.currentTarget, this.toString());
+      clearSound();
+    }
+
+    private function onDecoderInit(event : Event):void{
+      soundChannel = decoder.play();
+      Logger.tracing("Init OGG Decoder", this.toString());
+    }
+
+    private function onDecoderIOError(event : Event):void{
+      Logger.tracing("IO Decoder Error", this.toString());	
+    }
+
+    public function pause():void{
+      soundChannel.stop();
+    }
+
+    public function stop():void{			
+      clearSound();
+    }
+
+    public function next():void{
+      setCurrentJSONObj(currentPlaylist.getNextItem());
+    }
+
+    public function prev():void{
+      setCurrentJSONObj(currentPlaylist.getPrevItem() );
+    }
+
+    private function onSoundComplete(event : Event):void{
+
+    }
+
+    public function toString():String{ return "cc.varga.mvc.models.SoundModel"}
+  }
+
 }

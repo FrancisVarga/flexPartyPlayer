@@ -48,6 +48,7 @@ package cc.varga.mvc.events.controllers
 		public static const PREV_CLICK : String = "prev_click";
 		public static const SHUFFLE_CLICK : String = "shuffle_click";
 		public static const RANDOM_CLICK : String = "random_click";
+    public static const TOGGLE_SIDEBARS : String = "toggle_sidebars";
 		
 		public function ControllersEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{

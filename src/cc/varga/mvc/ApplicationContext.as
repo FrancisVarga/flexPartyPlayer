@@ -45,6 +45,7 @@ package cc.varga.mvc
 	import cc.varga.mvc.models.player.PlayerModel;
 	import cc.varga.mvc.models.playlist.PlaylistModel;
 	import cc.varga.mvc.models.sound.SoundModel;
+	import cc.varga.mvc.services.KeyboardControl;
 	import cc.varga.mvc.views.blipfm.feedloader.FeedLoader;
 	import cc.varga.mvc.views.blipfm.feedloader.FeedLoaderMediator;
 	import cc.varga.mvc.views.controllers.Controllers;
@@ -74,6 +75,7 @@ package cc.varga.mvc
 		
 		public static var INSTANCE : ApplicationContext;
 		
+
 		public function ApplicationContext(contextView:DisplayObjectContainer=null, autoStartup:Boolean=true)
 		{
 			super(contextView, autoStartup);
@@ -91,7 +93,12 @@ package cc.varga.mvc
 			injector.mapSingleton(SoundModel);
 			injector.mapSingleton(PlayerModel);
 			injector.mapSingleton(AppDataModel);
-			
+//      injector.mapSingleton(KeyboardControl);
+      
+//      injector.mapSingleton(
+
+	    mediatorMap.mapView(FlexPlayer, AppMediator);		
+      mediatorMap.createMediator(contextView);
 			mediatorMap.mapView(PlaylistURL, PlaylistURLMediator);
 			mediatorMap.mapView(PlaylistItem, PlaylistItemMediator);
 			mediatorMap.mapView(Controllers, ControllersMediator);

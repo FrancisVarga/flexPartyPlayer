@@ -11,6 +11,7 @@ package cc.varga.mvc.commands.data
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
 	import mx.rpc.http.mxml.HTTPService;
+	import cc.varga.mvc.services.KeyboardControl;
 	
 	import org.robotlegs.mvcs.Command;
 	
@@ -20,13 +21,16 @@ package cc.varga.mvc.commands.data
 		[Inject]
 		public var model : AppDataModel;
 		
+    [Inject]
+    public var keyboard : KeyboardControl;
+
 		public function LoadArtistDataCommand()
 		{
 			super();
 		}
 		
 		override public function execute() : void{
-			
+      keyboard.listen();
 			Logger.tracing("load artist command", this.toString());
 			
 			var service : HTTPService = new HTTPService();

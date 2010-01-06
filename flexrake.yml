@@ -3,10 +3,10 @@ mxml_path: src/FlexPlayer.mxml
 
 src_dirs:  
   - 'src'
-  - 'libs/extLib/httpclient/src/'
-  - 'libs/extLib/robo/src/'
-  - 'libs/extLib/swift/src/'
-  - 'libs/extLib/core/src/'
+  - 'libs/extLib/httpclient/src'
+  - 'libs/extLib/robo/src'
+  - 'libs/extLib/swift/src'
+  - 'libs/extLib/core/src'
 
 lib_dir: 
   - 'libs/extLib/'

@@ -50,7 +50,7 @@ package cc.varga.mvc.views.player
 	import org.robotlegs.mvcs.*;
 	
 	public class PlayerWindowMediator extends Mediator
-	{
+  {
 		
 		[Inject]
 		public var view : PlayerWindow;
