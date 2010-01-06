@@ -3,3 +3,6 @@ bin
 *.swo
 vendor/gems/*
 !vendor/gems/cache/
+public/jukebox
+lib/robotlegs
+lib/swiftsuspenders

@@ -24,7 +24,7 @@ end
 
 # Optionally load gems from a server other than rubyforge:
 # set_sources 'http://gems.projectsprouts.org'
-sprout 'as3'
+sprout 'flex4'
 
 project_model :model do |m|
   m.project_name            = 'FlexPlayer'
@@ -48,7 +48,11 @@ end
 
 
 desc 'Compile and debug the application'
-debug :debug 
+debug :debug do |m|
+  m.debug = true
+#  m.gem_name = "sprout-flex4sdk-tool" 
+#  m.input = "src/FlexPlayer.mxml"
+end
 
 desc 'Compile run the test harness'
 unit :test
