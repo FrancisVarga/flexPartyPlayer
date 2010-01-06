@@ -40,7 +40,7 @@ project_model :model do |m|
   # m.src_dir               = 'src'
   m.lib_dir               = 'lib'
   m.swc_dir               = 'lib/extLib'
-  # m.bin_dir               = 'bin'
+  m.bin_dir               = 'public/jukebox'
   # m.test_dir              = 'test'
   # m.doc_dir               = 'doc'
   # m.asset_dir             = 'assets'
