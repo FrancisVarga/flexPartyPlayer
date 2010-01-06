@@ -3,3 +3,4 @@ bin
 *.swo
 vendor/gems/*
 !vendor/gems/cache/
+bin-release/*

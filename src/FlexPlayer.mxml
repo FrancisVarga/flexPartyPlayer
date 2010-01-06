@@ -12,23 +12,36 @@
 			   
 			   xmlns:youtubePlayer="cc.varga.mvc.views.youtubePlayer.*"
 			   
-			   width="100%" height="100%">
+			   width="100%" height="100%"
+			   
+			   creationComplete="application1_creationCompleteHandler(event)">
 	
 	<s:layout><s:HorizontalLayout/></s:layout>
+	<fx:Script>
+		<![CDATA[
+			import mx.managers.SystemManager;
+			import mx.events.FlexEvent;
+
+			protected function application1_creationCompleteHandler(event:FlexEvent):void
+			{
+			}
+
+		]]>
+	</fx:Script>
 	
 	<fx:Declarations>
 		<mvc:ApplicationContext contextView="{this}" />
 	</fx:Declarations>
 	
 	<s:Group height="100%" width="100%">
-		<menu:Menu height="100%" width="450" />
+		<menu:Menu height="100%" width="100%" />
 	</s:Group>
 	
 	<s:Group id="leftContainer" height="100%" width="100%">
 		
 		<s:layout><s:VerticalLayout/></s:layout>	
 		
-		<youtubePlayer:YoutubePlayerContainer id="youtubePlayer" />
+		<youtubePlayer:YoutubePlayerContainer id="youtubePlayer" width="100%" height="100%" visible="false"/>
 		
 		<playlist:Playlist id="playlist" height="100%" width="100%" />	
 		

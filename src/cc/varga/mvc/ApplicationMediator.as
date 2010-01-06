@@ -4,6 +4,7 @@ package cc.varga.mvc
 	import cc.varga.mvc.events.player.PlayerEvent;
 	import cc.varga.utils.logging.Logger;
 	import cc.varga.mvc.events.sound.SoundEvent;
+	import flash.media.Sound;
 	
 	public class ApplicationMediator extends Mediator
 	{
@@ -21,13 +22,14 @@ package cc.varga.mvc
 			Logger.tracing("onRegister", this.toString());
 			
 			eventMap.mapListener(eventDispatcher, PlayerEvent.PLAY_YOUTUBE_VIDEO, onPlayYoutubeVideo); 
-			eventMap.mapListener(view, SoundEvent.SOUND_END, onEnd); 
+			eventMap.mapListener(view, SoundEvent.SOUND_END, onEnd);
 			
 		}
 		
 		private function onEnd(event : SoundEvent):void{
 			
 			Logger.tracing("on youtube video complete", this.toString());
+			view.youtubePlayer.visible = false;
 			
 		}
 		
@@ -36,6 +38,7 @@ package cc.varga.mvc
 			Logger.tracing("play youtube video", this.toString());
 			
 			view.youtubePlayer.player.videoID = event.youtubeVideoID;
+			view.youtubePlayer.visible = true;
 			
 		}
 		

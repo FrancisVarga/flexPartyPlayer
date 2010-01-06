@@ -71,6 +71,7 @@ package cc.varga.mvc
 	
 	import org.robotlegs.base.ContextEvent;
 	import org.robotlegs.mvcs.Context;
+	import flash.system.System;
 	
 	public class ApplicationContext extends Context
 	{
