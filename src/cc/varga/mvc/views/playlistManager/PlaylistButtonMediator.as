@@ -10,6 +10,7 @@ package cc.varga.mvc.views.playlistManager
 	import mx.rpc.http.mxml.HTTPService;
 	
 	import org.robotlegs.mvcs.Mediator;
+	import cc.varga.mvc.views.playlist.Playlist;
 	
 	public class PlaylistButtonMediator extends Mediator
 	{
@@ -48,6 +49,10 @@ package cc.varga.mvc.views.playlistManager
 			Logger.tracing("onResult: "	+ event.result, this.toString());
 			
 			var playlist : Object = JSON.decode(event.result as String);
+			
+			var drawPlaylistEvent : PlaylistEvent = new PlaylistEvent(PlaylistEvent.DRAW_PLAYLIST);
+			drawPlaylistEvent.playlistSource = playlist as Array;
+			dispatch(drawPlaylistEvent);
 			
 		}
 		
