@@ -4,7 +4,6 @@ if File.exists? bundler_env
   require bundler_env
   Bundler.require_env
   $LOAD_PATH << File.join(root_path,"lib")
-  require 'flexPartyPlayer'
 else
   puts "Run `gem bundle` first"
   exit

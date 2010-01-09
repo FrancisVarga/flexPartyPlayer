@@ -1,2 +1,0 @@
-mxmlc +configname=flex -include-libraries /Users/lenni/Source/flexPartyPlayer/libs/extLib/oggvorbis.swc -source-path /Users/lenni/Source/flexPartyPlayer/src /Users/lenni/Source/flexPartyPlayer/libs/extLib/httpclient/src/ /Users/lenni/Source/flexPartyPlayer/libs/extLib/robo/src/ /Users/lenni/Source/flexPartyPlayer/libs/extLib/swift/src/ /Users/lenni/Source/flexPartyPlayer/libs/extLib/core/src/ -output /Users/lenni/Source/flexPartyPlayer/bin/FlexPlayer.swf -debug=true -- /Users/lenni/Source/flexPartyPlayer/src/FlexPlayer.mxml
-
