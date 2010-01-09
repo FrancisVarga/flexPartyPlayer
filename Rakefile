@@ -36,22 +36,24 @@ project_model :model do |m|
   m.compiler_gem_version  = '>= 4.0.0'
   # m.src_dir               = 'src'
   m.lib_dir               = 'lib'
-  m.swc_dir               = 'lib/extLib'
+  m.swc_dir               = 'lib'
   m.bin_dir               = 'public/jukebox'
   # m.test_dir              = 'test'
   # m.doc_dir               = 'doc'
   # m.asset_dir             = 'assets'
   
   m.library_path.concat         FileList["#{m.lib_dir.to_s}/*.swc"].to_a
-  m.libraries.concat [:robotlegs, :swiftsuspenders, :corelib ]
+  m.libraries.concat [:robotlegs, :swiftsuspenders, :corelib, :"jukeboxapi-src"]
 end
 
 
 desc 'Compile and debug the application'
 debug :debug do |m|
   m.debug = true
-#  m.gem_name = "sprout-flex4sdk-tool" 
-#  m.input = "src/FlexPlayer.mxml"
+end
+
+deploy :grammophon do |m|
+  m.debug = true
 end
 
 desc 'Compile run the test harness'
@@ -67,4 +69,4 @@ desc 'Compile a SWC file'
 swc :swc
 
 # set up the default rake task
-task :default => :debug
+task :default => :grammophon
