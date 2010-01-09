@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<actionScriptProperties mainApplicationPath="FlexPlayer.mxml" projectUUID="50c0f7f7-d7c9-4f3a-bcae-944f301dbd57" version="6">
+<actionScriptProperties mainApplicationPath="JukeboxPlayer.mxml" projectUUID="1a190c95-b9ee-4041-a395-e7e149347896" version="6">
   <compiler additionalCompilerArguments="-locale en_US" autoRSLOrdering="true" copyDependentFiles="true" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="true" htmlHistoryManagement="true" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="bin-debug" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
     <compilerSourcePath>
-      <compilerSourcePathEntry kind="1" linkType="1" path="libs/extLib/core/src"/>
-      <compilerSourcePathEntry kind="1" linkType="1" path="libs/extLib/robo/src"/>
-      <compilerSourcePathEntry kind="1" linkType="1" path="libs/extLib/swift/src"/>
+      <compilerSourcePathEntry kind="1" linkType="1" path="flex-lib/razor/src"/>
+      <compilerSourcePathEntry kind="1" linkType="1" path="flex-lib/jukeapi/src"/>
+      <compilerSourcePathEntry kind="1" linkType="1" path="flex-lib/robo/src"/>
+      <compilerSourcePathEntry kind="1" linkType="1" path="flex-lib/swift/src"/>
     </compilerSourcePath>
     <libraryPath defaultLinkType="0">
       <libraryPathEntry kind="4" path="">
@@ -12,12 +13,12 @@
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/flex.swc" useDefaultLinkType="false"/>
         </excludedEntries>
       </libraryPathEntry>
-      <libraryPathEntry kind="1" linkType="1" path="libs"/>
+      <libraryPathEntry kind="1" linkType="1" path="flex-lib"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>
   <applications>
-    <application path="FlexPlayer.mxml"/>
+    <application path="Jukebox.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>
