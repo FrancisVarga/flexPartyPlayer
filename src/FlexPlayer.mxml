@@ -17,6 +17,7 @@
 			   creationComplete="application1_creationCompleteHandler(event)">
 	
 	<s:layout><s:HorizontalLayout/></s:layout>
+	
 	<fx:Script>
 		<![CDATA[
 			import mx.managers.SystemManager;
@@ -24,6 +25,7 @@
 
 			protected function application1_creationCompleteHandler(event:FlexEvent):void
 			{
+				leftContainer.setFocus();
 			}
 
 		]]>
@@ -33,11 +35,16 @@
 		<mvc:ApplicationContext contextView="{this}" />
 	</fx:Declarations>
 	
-	<s:Group height="100%" width="100%">
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="full" />
+	</s:states>
+	
+	<s:Group id="leftContainer" includeIn="normal" height="100%" width="100%">
 		<menu:Menu height="100%" width="100%" />
 	</s:Group>
 	
-	<s:Group id="leftContainer" height="100%" width="100%">
+	<s:Group id="mainContainer" height="100%" width="100%">
 		
 		<s:layout><s:VerticalLayout/></s:layout>	
 		
@@ -47,8 +54,8 @@
 		
 	</s:Group>
 
-	<s:Scroller height="100%">
-		<s:RichEditableText id="debug" width="350" height="100%" />
+	<s:Scroller id="rightContainer" height="100%" includeIn="normal">
+		<s:RichEditableText id="debug" width="350" height="100%" editable="false" />
 	</s:Scroller>
 		
 </s:Application>

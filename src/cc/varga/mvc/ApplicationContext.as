@@ -49,7 +49,6 @@ package cc.varga.mvc
 	import cc.varga.mvc.views.controllers.Controllers;
 	import cc.varga.mvc.views.controllers.ControllersMediator;
 	import cc.varga.mvc.views.menu.Menu;
-	import cc.varga.mvc.views.menu.MenuMediator;
 	import cc.varga.mvc.views.player.PlayerWindow;
 	import cc.varga.mvc.views.player.PlayerWindowMediator;
 	import cc.varga.mvc.views.playlist.Playlist;
@@ -105,7 +104,6 @@ package cc.varga.mvc
 			mediatorMap.mapView(Controllers, ControllersMediator);
 			mediatorMap.mapView(Playlist, PlaylistMediator);
 			mediatorMap.mapView(PlayerWindow, PlayerWindowMediator);
-			mediatorMap.mapView(Menu, MenuMediator);
 			mediatorMap.mapView(FeedLoader, FeedLoaderMediator);
 			mediatorMap.mapView(Search, SearchMediator);
 			mediatorMap.mapView(PlaylistManager, PlaylistManagerMediator);
