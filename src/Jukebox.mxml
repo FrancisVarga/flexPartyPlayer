@@ -2,8 +2,26 @@
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
 			   xmlns:mx="library://ns.adobe.com/flex/halo" 
-			   minWidth="1024" minHeight="768">
+			   minWidth="1024" minHeight="768"
+			   creationComplete="application1_creationCompleteHandler(event)" xmlns:mvc="cc.varga.mvc.*" xmlns:search="cc.varga.mvc.views.search.*">
+	<fx:Script>
+		<![CDATA[
+			import cc.varga.api.jukebox.JukeboxAPI;
+			
+			import mx.events.FlexEvent;
+
+			protected function application1_creationCompleteHandler(event:FlexEvent):void
+			{
+				JukeboxAPI.HOST = "http://aludose/";
+			}
+
+		]]>
+	</fx:Script>
 	
+	<fx:Declarations>
+		<mvc:ApplicationContext contextView="{this}" />
+	</fx:Declarations>
 	
+	<search:SearchSite id="searchSite"  horizontalCenter="0" verticalCenter="0" width="100%"/>
 	
 </s:Application>

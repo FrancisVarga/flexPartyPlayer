@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<actionScriptProperties mainApplicationPath="JukeboxPlayer.mxml" projectUUID="1a190c95-b9ee-4041-a395-e7e149347896" version="6">
-  <compiler additionalCompilerArguments="-locale en_US" autoRSLOrdering="true" copyDependentFiles="true" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="true" htmlHistoryManagement="true" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="bin-debug" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
+<actionScriptProperties mainApplicationPath="Jukebox.mxml" projectUUID="1a190c95-b9ee-4041-a395-e7e149347896" version="6">
+  <compiler additionalCompilerArguments="-locale en_US -keep-as3-metadata" autoRSLOrdering="true" copyDependentFiles="true" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="true" htmlHistoryManagement="true" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="bin-debug" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
     <compilerSourcePath>
       <compilerSourcePathEntry kind="1" linkType="1" path="flex-lib/razor/src"/>
       <compilerSourcePathEntry kind="1" linkType="1" path="flex-lib/jukeapi/src"/>
       <compilerSourcePathEntry kind="1" linkType="1" path="flex-lib/robo/src"/>
       <compilerSourcePathEntry kind="1" linkType="1" path="flex-lib/swift/src"/>
+      <compilerSourcePathEntry kind="1" linkType="1" path="flex-lib/as3Core/src"/>
     </compilerSourcePath>
     <libraryPath defaultLinkType="0">
       <libraryPathEntry kind="4" path="">

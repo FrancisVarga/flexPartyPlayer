@@ -1,8 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:mx="library://ns.adobe.com/flex/halo">
-	<fx:Declarations>
-		<!-- Place non-visual elements (e.g., services, value objects) here -->
-	</fx:Declarations>
+		 xmlns:mx="library://ns.adobe.com/flex/halo"
+		 width="100%" height="100%">
+
+	<fx:Script>
+		<![CDATA[
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				var searchEvent : SearchSiteEvent = new SearchSiteEvent(SearchSiteEvent.SEARCH_CLICKED);
+				searchEvent.search_query = searchText.text;
+				dispatchEvent(searchEvent);
+			}
+
+			protected function load_blipfm_clickHandler(event:MouseEvent):void
+			{
+				var searchEvent : SearchSiteEvent = new SearchSiteEvent(SearchSiteEvent.LOAD_BLIP_FM_FEED);
+				searchEvent.blipFM_Nick = searchText.text;
+				dispatchEvent(searchEvent);
+			}
+
+		]]>
+	</fx:Script>
+
+	<s:Group verticalCenter="0" horizontalCenter="0" width="100%" height="100%">
+		<s:layout><s:VerticalLayout/></s:layout>
+		<s:Group width="100%">
+			<s:layout><s:HorizontalLayout/></s:layout>
+			<s:TextInput id="searchText" fontSize="16" width="100%" textAlign="center" />
+			<s:Button label="Search" fontSize="16" click="button1_clickHandler(event)" />
+			<s:Button id="load_blipfm" label="Load Blip.fm Feed" fontSize="16" click="load_blipfm_clickHandler(event)" />
+		</s:Group>
+		<s:Scroller height="100%" width="100%">
+			<s:Group id="searchResultContainer" height="100%" width="100%">
+				<s:layout><s:VerticalLayout rowHeight="50"/></s:layout>
+			</s:Group>
+		</s:Scroller>
+	</s:Group>
+	
 </s:Group>
