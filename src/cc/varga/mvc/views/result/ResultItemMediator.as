@@ -1,7 +1,7 @@
 package cc.varga.mvc.views.result
 {
 	import org.robotlegs.mvcs.Mediator;
-	import cc.varga.mvc.service.playlist.Playlist;
+	import cc.varga.mvc.service.playlist.*;
 	import cc.varga.mvc.*;
 	
 	public class ResultItemMediator extends Mediator
@@ -11,7 +11,7 @@ package cc.varga.mvc.views.result
 		public var view : ResultItem;
 		
 		[Inject]
-		public var model : Playlist;
+		public var model : PlaylistService;
 		
 		public function ResultItemMediator()
 		{
@@ -26,11 +26,9 @@ package cc.varga.mvc.views.result
 		
 		private function onAddToPlaylist(event : ResultItemEvent):void{
 			
-			model.addToPlaylist(event.jsonObj);	
-			
-			var appEvent : ApplicationEvent = new ApplicationEvent(ApplicationEvent.SWITCH_TO_PLAYER);
-			appEvent.stage = ApplicationStateList.PLAYER_STATE;
-			dispatch(appEvent);
+			var playlistEvent : PlaylistEvent = new PlaylistEvent(PlaylistEvent.ADD_TO_PLAYLIST);
+			playlistEvent.addToPlaylistObj = view.jsonObj;
+			dispatch(playlistEvent);
 			
 		}
 		

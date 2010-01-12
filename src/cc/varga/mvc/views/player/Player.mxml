@@ -2,19 +2,25 @@
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
 		 xmlns:mx="library://ns.adobe.com/flex/halo"
-		 height="50">
+		 height="50" xmlns:views="cc.varga.mvc.views.*">
 	
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	
-	<s:layout><s:HorizontalLayout/></s:layout>
+	<s:layout><s:VerticalLayout/></s:layout>
 	
-	<s:Button label="Play" />
-	<s:Button label="Pause" />
-	<s:Button label="Next" />
-	<s:Button label="Prev" />
-	<s:Button label="Shuffle" />
-	<s:Button label="Repeat" />
+	<s:Group>		
+		<s:layout><s:HorizontalLayout/></s:layout>
+		
+		<s:Button label="Play" />
+		<s:Button label="Pause" />
+		<s:Button label="Next" />
+		<s:Button label="Prev" />
+		<s:Button label="Shuffle" />
+		<s:Button label="Repeat" />
+	</s:Group>
+	
+	<views:ListContainer id="playlist" />
 	
 </s:Group>

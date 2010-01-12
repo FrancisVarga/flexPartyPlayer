@@ -7,12 +7,16 @@ package cc.varga.mvc.commands
 	import cc.varga.mvc.views.result.ResultItem;
 	import mx.events.FlexEvent;
 	import mx.controls.Alert;
+	import cc.varga.mvc.service.*;
 	
 	public class DrawResultCommand extends Command
 	{
 		
 		[Inject]
 		public var event : SearchSiteEvent;
+		
+		[Inject]
+		public var stageService : StateChangerService;
 		
 		private var resultArray : Array;
 		private var mainView : Jukebox;
@@ -27,7 +31,7 @@ package cc.varga.mvc.commands
 			mainView.addEventListener(StateChangeEvent.CURRENT_STATE_CHANGE, onChange);
 			mainView.addEventListener(StateChangeEvent.CURRENT_STATE_CHANGING, onChanging);
 			
-			mainView.currentState = ApplicationStateList.RESULT_STATE;
+			stageService.switchToStage(ApplicationStateList.RESULT_STATE);
 			
 		}
 		

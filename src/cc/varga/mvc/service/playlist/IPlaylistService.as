@@ -2,7 +2,7 @@ package cc.varga.mvc.service.playlist
 {
 	import mx.collections.ArrayCollection;
 
-	public interface IPlaylist
+	public interface IPlaylistService
 	{
 		function addToPlaylist(item : Object):void
 		function removeFromPlaylist(item : Object):void

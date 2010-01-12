@@ -26,11 +26,13 @@ package cc.varga.mvc.views.navigation
 		}
 		
 		private function onLeftClick(naviEvent : NavigationEvent):void{
-			
+			var event : NavigationEvent = new NavigationEvent(NavigationEvent.LEFT_CLICK);
+			dispatch(event);
 		}
 		
 		private function onRightClick(naviEvent : NavigationEvent):void{
-			
+			var event : NavigationEvent = new NavigationEvent(NavigationEvent.RIGHT_CLICK);
+			dispatch(event);
 		}
 		
 	}

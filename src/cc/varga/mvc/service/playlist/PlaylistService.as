@@ -3,12 +3,12 @@ package cc.varga.mvc.service.playlist
 	import org.robotlegs.mvcs.Actor;
 	import mx.collections.ArrayCollection;
 	
-	public class Playlist extends Actor implements IPlaylist
+	public class PlaylistService extends Actor implements IPlaylistService
 	{
 		[Bindable]
 		private var playlist : ArrayCollection = new ArrayCollection();		
 		
-		public function Playlist()
+		public function PlaylistService()
 		{
 			super();
 		}

@@ -4,9 +4,20 @@ package cc.varga.mvc
 	
 	public class ApplicationMediator extends Mediator
 	{
+		
+		[Inject]
+		public var view : Jukebox;
+		
 		public function ApplicationMediator()
 		{
 			super();
 		}
+		
+		override public function onRegister():void{
+			
+			
+			
+		}
+		
 	}
 }
