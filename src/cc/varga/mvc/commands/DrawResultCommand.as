@@ -61,7 +61,7 @@ package cc.varga.mvc.commands
 		}
 		
 		private function onChanging(event : StateChangeEvent):void{
-			trace("State Changing");	
+			
 		}
 		
 	}

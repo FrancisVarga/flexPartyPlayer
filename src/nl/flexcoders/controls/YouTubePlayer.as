@@ -1,16 +1,14 @@
 /**
- * 
  * YouTubePlayer!!!
- *
+ * 
  * Do you like it? Hate it? Please leave a comment.
  * And do whatever with it whatever you like.
- *
- *
+ * 
+ * 
  * Just Remember My Name: MAIKEL J. SIBBALD
  * LOL! I'm so Funny.
- * 
  * */
-package cc.varga.utils{
+package nl.flexcoders.controls{
 	import flash.display.Loader;
 	import flash.display.Stage;
 	import flash.display.StageDisplayState;
@@ -25,8 +23,8 @@ package cc.varga.utils{
 	public class YouTubePlayer extends UIComponent{
 		public static const PLAY_URL:String = "http://www.youtube.com/apiplayer?version=3";
 		
-		[Bindable]public var qualityLevels:Array = ["default", "small", "medium", "large", "hd720"];
-		[Bindable]public var videoStates:Array = ["unstarted", "ended", "playing", "paused", "buffering", "video cued"];
+		[Bindable]public var qualityLevels:Array = ["default", "small", "medium", "large", "hd720"]; 
+		[Bindable]public var videoStates:Array = ["unstarted", "ended", "playing", "paused", "buffering", "video cued"]; 
 		
 		public var player:Object;
 		
@@ -223,7 +221,7 @@ package cc.varga.utils{
 		override public function invalidateProperties():void{
 			super.invalidateProperties();
 			if(this.player){
-				var reset:Boolean = false;
+				var reset:Boolean =  false;
 				if(this.videoIDChanged){
 					this.stop();
 					this.player.loadVideoById(this.videoID);
@@ -279,7 +277,7 @@ package cc.varga.utils{
 			this.loader.content.addEventListener("onReady", onPlayerReady);
 			this.loader.content.addEventListener("onError", onPlayerError);
 			this.loader.content.addEventListener("onStateChange", onPlayerStateChange);
-			this.loader.content.addEventListener("onPlaybackQualityChange", onVideoPlaybackQualityChange);
+			this.loader.content.addEventListener("onPlaybackQualityChange",  onVideoPlaybackQualityChange);
 		}
 		
 		private function onPlayerReady(event:Event):void {
@@ -312,6 +310,6 @@ package cc.varga.utils{
 		private function onVideoPlaybackQualityChange(event:Event):void {
 			// Event.data contains the event parameter, which is the new video quality
 			this.dispatchEvent(event);
-		}
+		} 
 	}
 }

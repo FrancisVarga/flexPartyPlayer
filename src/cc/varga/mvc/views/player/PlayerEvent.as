@@ -6,6 +6,9 @@ package cc.varga.mvc.views.player
 	{
 		
 		public static const PLAY_ITEM : String = "play_item";
+		public static const PLAY_YOUTUBE_VIDEO = "play_youtube_video";
+		
+		public var youTubeID : String;
 		
 		public function PlayerEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{

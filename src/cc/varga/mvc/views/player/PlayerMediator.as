@@ -20,7 +20,15 @@ package cc.varga.mvc.views.player
 		
 		override public function onRegister() : void{
 			
+			eventMap.mapListener(eventDispatcher, PlayerEvent.PLAY_YOUTUBE_VIDEO, playYouTubeVideo);
+			
 			drawPlaylist();	
+			
+		}
+		
+		private function playYouTubeVideo(event:PlayerEvent):void{
+		
+			view.youtubePlayer.videoID = event.youTubeID;
 			
 		}
 		
