@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/halo">
+
+	<fx:Script>
+		<![CDATA[
+			protected function leftButton_rollOverHandler(event:MouseEvent):void
+			{
+				(event.currentTarget as Button).visible = true;
+			}
+
+			protected function rightButton_rollOverHandler(event:MouseEvent):void
+			{
+				(event.currentTarget as Button).visible = true;
+			}
+
+
+			protected function leftButton_clickHandler(event:MouseEvent):void
+			{
+				var naviEvent : NavigationEvent = new NavigationEvent(NavigationEvent.LEFT_CLICK);
+				dispatchEvent(naviEvent);
+			}
+
+
+			protected function rightButton_clickHandler(event:MouseEvent):void
+			{
+				var naviEvent : NavigationEvent = new NavigationEvent(NavigationEvent.RIGHT_CLICK);
+				dispatchEvent(naviEvent);
+			}
+
+		]]>
+	</fx:Script>
+
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<s:Button left="0" top="0" bottom="0" width="150" id="leftButton" rollOver="leftButton_rollOverHandler(event)" click="leftButton_clickHandler(event)" />
+	<s:Button right="0" top="0" bottom="0" width="150" id="rightButton" rollOver="rightButton_rollOverHandler(event)" click="rightButton_clickHandler(event)"/>
+	
+	
+</s:Group>

@@ -31,7 +31,7 @@ package cc.varga.mvc.views.search
 		}
 		
 		private function onFaultService(event:JukeboxAPIEvent):void{
-			trace(event.fault.message);
+			trace("OnFaultService: " + event.fault.message);
 		}
 		
 		private function onDownloadComplete(event:JukeboxAPIEvent):void{
@@ -47,27 +47,15 @@ package cc.varga.mvc.views.search
 		}
 		
 		private function onSearchedClicked(event : SearchSiteEvent):void{
-			service.search({query: event.search_query});
+			service.search({query: event.search_query, limit:20});
 		}
 		
 		private function drawResult(event : JukeboxAPIEvent):void{
 			
-			var result : Array = event.result as Array;
-			view.searchResultContainer.removeAllElements();
-			
-			for(var i:uint=0; i < result.length; i++){
-				var item : SearchItem = new SearchItem();
-				item.jsonObj = result[i];
-				item.width = 450;
-				item.position = i;
-				item.horizontalCenter = 0;
-				view.searchResultContainer.addElement(item);
-			}
-			
-		}
-		
-		private function onFault(event : JukeboxAPIEvent):void{
-			trace(event.fault.message);
+			var searchEvent : SearchSiteEvent = new SearchSiteEvent(SearchSiteEvent.DRAW_RESULT);
+			searchEvent.resultJSON = event.result;
+			dispatch(searchEvent);
+	
 		}
 		
 		

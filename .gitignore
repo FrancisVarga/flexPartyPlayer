@@ -1,11 +1,13 @@
 bin
 *.swp
 *.swo
+vendor/*
 vendor/gems/*
-!vendor/gems/cache/
+vendor/gems/cache/*
 public/jukebox
 lib/robotlegs
 lib/swiftsuspenders
 bin-release/*
 html-template/*
 flex-lib/*
+

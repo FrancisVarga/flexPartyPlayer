@@ -7,6 +7,7 @@
       <compilerSourcePathEntry kind="1" linkType="1" path="flex-lib/robo/src"/>
       <compilerSourcePathEntry kind="1" linkType="1" path="flex-lib/swift/src"/>
       <compilerSourcePathEntry kind="1" linkType="1" path="flex-lib/as3Core/src"/>
+      <compilerSourcePathEntry kind="1" linkType="1" path="flex-lib/efflex"/>
     </compilerSourcePath>
     <libraryPath defaultLinkType="0">
       <libraryPathEntry kind="4" path="">

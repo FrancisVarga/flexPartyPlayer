@@ -27,7 +27,7 @@ end
 sprout 'flex4'
 
 project_model :model do |m|
-  m.project_name            = 'FlexPlayer'
+  m.project_name            = 'Jukebox'
   m.language                = 'mxml'
   m.background_color        = '#FFFFFF'
   m.width                   = 970
