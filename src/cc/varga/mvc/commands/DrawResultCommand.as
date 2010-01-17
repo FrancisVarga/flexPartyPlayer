@@ -33,13 +33,14 @@ package cc.varga.mvc.commands
 			
 			stageService.switchToStage(ApplicationStateList.RESULT_STATE);
 			
+			mainView.listContainer.removeAllElements();
 		}
 		
 		private function onChange(stateEvent : StateChangeEvent):void{
 			
 			resultArray = event.resultJSON as Array;
 			drawResults();
-				
+			
 		}
 		
 		private function drawResults(event : * = null):void{

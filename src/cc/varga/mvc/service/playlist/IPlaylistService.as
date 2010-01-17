@@ -10,5 +10,8 @@ package cc.varga.mvc.service.playlist
 		function repeatPlaylist():void
 		function removeAll():void
 		function getAll():ArrayCollection
+		function getNext():Object
+		function getPrev():Object
+			
 	}
 }

@@ -8,6 +8,7 @@
       <compilerSourcePathEntry kind="1" linkType="1" path="flex-lib/swift/src"/>
       <compilerSourcePathEntry kind="1" linkType="1" path="flex-lib/as3Core/src"/>
       <compilerSourcePathEntry kind="1" linkType="1" path="flex-lib/efflex"/>
+      <compilerSourcePathEntry kind="1" linkType="1" path="flex-lib/roboeyes/src"/>
     </compilerSourcePath>
     <libraryPath defaultLinkType="0">
       <libraryPathEntry kind="4" path="">
@@ -16,6 +17,9 @@
         </excludedEntries>
       </libraryPathEntry>
       <libraryPathEntry kind="1" linkType="1" path="flex-lib"/>
+      <libraryPathEntry kind="1" linkType="1" path="${FLEXUNIT_LIB_LOCATION}/version4libs/Common/"/>
+      <libraryPathEntry kind="1" linkType="1" path="${FLEXUNIT_LIB_LOCATION}/version4libs/FlexProject/"/>
+      <libraryPathEntry kind="1" linkType="1" path="${FLEXUNIT_LOCALE_LOCATION}/version4locale/"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>

@@ -1,7 +1,10 @@
 package cc.varga.mvc.service.playlist
 {
-	import org.robotlegs.mvcs.Actor;
+	import flash.utils.Dictionary;
+	
 	import mx.collections.ArrayCollection;
+	
+	import org.robotlegs.mvcs.Actor;
 	
 	public class PlaylistService extends Actor implements IPlaylistService
 	{
@@ -25,15 +28,27 @@ package cc.varga.mvc.service.playlist
 		
 		public function shufflePlaylist():void
 		{
+			
 		}
 		
 		public function repeatPlaylist():void
 		{
+			
 		}
 		
 		public function removeAll():void
 		{
 			
+		}
+		
+		public function getPrev():Object{
+			
+			return {};
+			
+		}
+		
+		public function getNext():Object{
+			return {};	
 		}
 		
 		public function getAll():ArrayCollection

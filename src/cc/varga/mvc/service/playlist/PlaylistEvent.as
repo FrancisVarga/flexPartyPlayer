@@ -14,5 +14,11 @@ package cc.varga.mvc.service.playlist
 		{
 			super(type, bubbles, cancelable);
 		}
+		
+		override public function clone() : Event
+		{
+			return new PlaylistEvent(this.type);
+		}
+		
 	}
 }

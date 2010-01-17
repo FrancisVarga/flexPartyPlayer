@@ -1,8 +1,9 @@
 package cc.varga.mvc.views.player
 {
-	import org.robotlegs.mvcs.Mediator;
 	import cc.varga.mvc.service.playlist.*;
 	import cc.varga.mvc.views.result.*;
+	
+	import org.robotlegs.mvcs.Mediator;
 	
 	public class PlayerMediator extends Mediator
 	{
@@ -38,7 +39,7 @@ package cc.varga.mvc.views.player
 			
 			for(var i:uint=0; i < playlistModel.getAll().length; i++){
 			
-				var item : ResultItem = new ResultItem();
+				var item : PlayerItem = new PlayerItem();
 				item.jsonObj = playlistModel.getAll().getItemAt(i);
 				view.playlist.addElement(item);
 				

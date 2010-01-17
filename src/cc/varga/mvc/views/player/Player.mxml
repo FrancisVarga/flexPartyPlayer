@@ -14,19 +14,19 @@
 		
 		<s:layout><s:VerticalLayout/></s:layout>
 		
-		<controls:YouTubePlayer id="youtubePlayer" width="450" height="350" />
+		<controls:YouTubePlayer id="youtubePlayer" width="100%" height="350" />
 		
-		<s:Group>
+		<s:Group height="55">
 			<s:layout><s:HorizontalLayout/></s:layout>
-			<s:Button label="Play" height="55" />
-			<s:Button label="Pause" height="55" />
-			<s:Button label="Next" height="55" />
-			<s:Button label="Prev" height="55" />
-			<s:Button label="Shuffle" height="55" />
-			<s:Button label="Repeat" height="55" />
+			<s:Button label="Play" height="100%" />
+			<s:Button label="Pause" height="100%" />
+			<s:Button label="Next" height="100%" />
+			<s:Button label="Prev" height="100%" />
+			<s:Button label="Shuffle" height="100%" />
+			<s:Button label="Repeat" height="100%" />
 		</s:Group>
 	</s:Group>
 	
-	<views:ListContainer id="playlist" />
+	<views:ListContainer id="playlist" width="100%" height="100%" />
 	
 </s:Group>

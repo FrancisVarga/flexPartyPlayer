@@ -12,8 +12,10 @@
 		<![CDATA[
 			import mx.rpc.events.ResultEvent;
 			import cc.varga.mvc.views.search.SearchSiteEvent;
-			
+			import cc.varga.mvc.views.player.*;
 			import mx.events.FlexEvent;
+			import cc.varga.mvc.views.player.*;
+			import cc.varga.mvc.service.playlist.*;
 			
 			[Bindable]
 			public var jsonObj : Object;
@@ -27,14 +29,17 @@
 
 			protected function btn_play_clickHandler(event:MouseEvent):void
 			{
-			
+				var playerEvent : PlayerEvent = new PlayerEvent(PlayerEvent.PLAY_ITEM);
+				playerEvent.itemObj = this.jsonObj;
+				dispatchEvent(playerEvent);
 			}
 			
 			protected function btn_addplaylist_clickHandler(event:MouseEvent):void
 			{
-				var resultEvent : ResultItemEvent = new ResultItemEvent(ResultItemEvent.ADD_TO_PLAYLIST);
-				resultEvent.jsonObj = this.jsonObj;
-				dispatchEvent(resultEvent);
+				
+				var playlistEvent : PlaylistEvent = new PlaylistEvent(PlaylistEvent.ADD_TO_PLAYLIST);
+				playlistEvent.addToPlaylistObj = this.jsonObj;
+				this.dispatchEvent(playlistEvent);
 				
 				(event.currentTarget as Button).enabled = false;
 			}

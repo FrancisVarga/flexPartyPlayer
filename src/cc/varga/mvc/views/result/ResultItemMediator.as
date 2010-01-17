@@ -3,6 +3,7 @@ package cc.varga.mvc.views.result
 	import org.robotlegs.mvcs.Mediator;
 	import cc.varga.mvc.service.playlist.*;
 	import cc.varga.mvc.*;
+	import cc.varga.mvc.views.player.*;
 	
 	public class ResultItemMediator extends Mediator
 	{
@@ -20,16 +21,17 @@ package cc.varga.mvc.views.result
 		
 		override public function onRegister() : void{
 
-			eventMap.mapListener(view, ResultItemEvent.ADD_TO_PLAYLIST, onAddToPlaylist); 
+			eventMap.mapListener(view, PlaylistEvent.ADD_TO_PLAYLIST, onAddToPlaylist);  
+			eventMap.mapListener(view, PlayerEvent.PLAY_ITEM, onPlayYouTube);
 			
 		}
 		
-		private function onAddToPlaylist(event : ResultItemEvent):void{
-			
-			var playlistEvent : PlaylistEvent = new PlaylistEvent(PlaylistEvent.ADD_TO_PLAYLIST);
-			playlistEvent.addToPlaylistObj = view.jsonObj;
-			dispatch(playlistEvent);
-			
+		private function onPlayYouTube(event : PlayerEvent):void{
+			dispatch(event);
+		}
+		
+		private function onAddToPlaylist(event : PlaylistEvent):void{
+			dispatch(event);			
 		}
 		
 	}

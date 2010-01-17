@@ -5,5 +5,10 @@
 		 verticalCenter="0" horizontalCenter="0">
 	
 	<s:layout><s:VerticalLayout /></s:layout>
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+		]]>
+	</fx:Script>
 	
 </s:Group>

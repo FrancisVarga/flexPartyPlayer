@@ -4,6 +4,7 @@
 			   xmlns:mx="library://ns.adobe.com/flex/halo" 
 			   minWidth="1024" minHeight="768"
 			   creationComplete="application1_creationCompleteHandler(event)" 
+			   applicationComplete="application1_applicationCompleteHandler(event)"
 			   xmlns:mvc="cc.varga.mvc.*" 
 			   xmlns:search="cc.varga.mvc.views.search.*" 
 			   xmlns:views="cc.varga.mvc.views.*" 
@@ -14,12 +15,25 @@
 		<![CDATA[
 			import cc.varga.api.jukebox.JukeboxAPI;
 			
+			import mx.core.Application;
 			import mx.events.FlexEvent;
-
+			
 			protected function application1_creationCompleteHandler(event:FlexEvent):void
 			{
 				JukeboxAPI.HOST = "http://iris/";
 				//JukeboxAPI.HOST = "http://aludose/";
+			}
+			
+
+			protected function application1_applicationCompleteHandler(event:FlexEvent):void
+			{
+				//stage.displayState = StageDisplayState.FULL_SCREEN;
+			}
+
+
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				stage.displayState = StageDisplayState.FULL_SCREEN;
 			}
 
 		]]>
@@ -28,12 +42,6 @@
 	<fx:Declarations>
 		<mvc:ApplicationContext contextView="{this}" />
 	</fx:Declarations>
- 
-	<s:transitions> 
-		<s:Transition fromState="searchState"> 
-			<s:Wipe duration="1000" direction="right" targets="{[searchSite, resultContainer, playerGroup]}" />
-		</s:Transition>
-	</s:transitions>
 	
 	<s:states>
 		<s:State name="searchState" />
