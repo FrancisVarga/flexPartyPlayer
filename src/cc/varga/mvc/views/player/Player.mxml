@@ -2,31 +2,64 @@
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
 		 xmlns:mx="library://ns.adobe.com/flex/halo"
-		 height="50" xmlns:views="cc.varga.mvc.views.*" xmlns:controls="nl.flexcoders.controls.*">
-	
-	<fx:Declarations>
-		<!-- Place non-visual elements (e.g., services, value objects) here -->
-	</fx:Declarations>
+		 xmlns:views="cc.varga.mvc.views.*" 
+		 xmlns:controls="nl.flexcoders.controls.*">
 	
 	<s:layout><s:VerticalLayout/></s:layout>
+
+	<fx:Script>
+		<![CDATA[
+			protected function playBtn_clickHandler(event:MouseEvent):void
+			{
+				var playerEvent : PlayerEvent = new PlayerEvent(PlayerEvent.PLAY_PLAYLIST);
+				dispatchEvent(playerEvent);
+			}
+
+			protected function pauseBtn_clickHandler(event:MouseEvent):void
+			{
+
+			}
+
+			protected function nextBtn_clickHandler(event:MouseEvent):void
+			{
+
+			}
+
+			protected function prevBtn_clickHandler(event:MouseEvent):void
+			{
+
+			}
+
+			protected function shuffleBtn_clickHandler(event:MouseEvent):void
+			{
+
+			}
+
+			protected function repeatBtn_clickHandler(event:MouseEvent):void
+			{
+				
+			}
+
+		]]>
+	</fx:Script>
+
 	
-	<s:Group>		
-		
+	<s:Group>				
 		<s:layout><s:VerticalLayout/></s:layout>
 		
 		<controls:YouTubePlayer id="youtubePlayer" width="100%" height="350" />
 		
 		<s:Group height="55">
 			<s:layout><s:HorizontalLayout/></s:layout>
-			<s:Button label="Play" height="100%" />
-			<s:Button label="Pause" height="100%" />
-			<s:Button label="Next" height="100%" />
-			<s:Button label="Prev" height="100%" />
-			<s:Button label="Shuffle" height="100%" />
-			<s:Button label="Repeat" height="100%" />
+			<s:Button id="playBtn" label="Play" height="100%" click="playBtn_clickHandler(event)" />
+			<s:Button id="pauseBtn" label="Pause" height="100%" click="pauseBtn_clickHandler(event)" />
+			<s:Button id="nextBtn" label="Next" height="100%" click="nextBtn_clickHandler(event)" />
+			<s:Button id="prevBtn" label="Prev" height="100%" click="prevBtn_clickHandler(event)"/>
+			<s:Button id="shuffleBtn" label="Shuffle" height="100%" click="shuffleBtn_clickHandler(event)" />
+			<s:Button id="repeatBtn" label="Repeat" height="100%" click="repeatBtn_clickHandler(event)"/>
 		</s:Group>
 	</s:Group>
 	
-	<views:ListContainer id="playlist" width="100%" height="100%" />
+	<views:ListContainer id="playlist" width="100%" height="100%" contentBackgroundColor="#DB1C1C" />
 	
 </s:Group>

@@ -11,6 +11,8 @@ package cc.varga.mvc.service.playlist
 		[Bindable]
 		private var playlist : ArrayCollection = new ArrayCollection();		
 		
+		private var itemDict : Dictionary = new Dictionary();
+		
 		public function PlaylistService()
 		{
 			super();
@@ -19,6 +21,7 @@ package cc.varga.mvc.service.playlist
 		public function addToPlaylist(item : Object):void
 		{
 			playlist.addItem(item);
+			itemDict[item] = item;
 		}
 		
 		public function removeFromPlaylist(item : Object):void
@@ -38,7 +41,8 @@ package cc.varga.mvc.service.playlist
 		
 		public function removeAll():void
 		{
-			
+			playlist = new ArrayCollection();
+			itemDict = new Dictionary();
 		}
 		
 		public function getPrev():Object{

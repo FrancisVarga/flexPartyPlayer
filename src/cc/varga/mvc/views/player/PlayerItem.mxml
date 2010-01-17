@@ -11,6 +11,9 @@
 			[Bindable]
 			public  var jsonObj : Object;
 			
+			[Bindable]
+			public var position : uint;
+			
 			protected function group1_creationCompleteHandler(event:FlexEvent):void
 			{
 				trace("Player Item Complete");
@@ -25,6 +28,7 @@
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	
+	<s:Label text="{position}" height="100%" fontSize="16" width="100%" />
 	<s:Label text="{jsonObj['title']}" width="100%" height="100%" fontSize="24" />
 	<s:Label text="{jsonObj['source']}" width="100%" height="100%" fontSize="12" />
 	

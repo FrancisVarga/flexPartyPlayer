@@ -7,6 +7,7 @@ package cc.varga.mvc.views.player
 		
 		public static const PLAY_ITEM : String = "play_item";
 		public static const PLAY_YOUTUBE_VIDEO = "play_youtube_video";
+		public static const PLAY_PLAYLIST : String = "play_playlist";
 		
 		public var youTubeID : String;
 		public var itemObj : Object;
@@ -18,7 +19,10 @@ package cc.varga.mvc.views.player
 		
 		override public function clone() : Event
 		{
-			return new PlayerEvent(this.type);
+			var cloneEvent : PlayerEvent = new PlayerEvent(this.type);
+			cloneEvent.youTubeID = this.youTubeID;
+			cloneEvent.itemObj = this.itemObj;
+			return cloneEvent;
 		}
 	}
 }

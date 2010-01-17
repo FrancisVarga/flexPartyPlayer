@@ -22,8 +22,13 @@ package cc.varga.mvc.views.player
 		override public function onRegister() : void{
 			
 			eventMap.mapListener(eventDispatcher, PlayerEvent.PLAY_YOUTUBE_VIDEO, playYouTubeVideo);
+			eventMap.mapListener(view, PlayerEvent.PLAY_PLAYLIST, onPlayPlaylist);
 			
 			drawPlaylist();	
+			
+		}
+		
+		private function onPlayPlaylist(event : PlayerEvent):void{
 			
 		}
 		
@@ -41,6 +46,7 @@ package cc.varga.mvc.views.player
 			
 				var item : PlayerItem = new PlayerItem();
 				item.jsonObj = playlistModel.getAll().getItemAt(i);
+				item.position = i;
 				view.playlist.addElement(item);
 				
 			}

@@ -17,7 +17,9 @@ package cc.varga.mvc.service.playlist
 		
 		override public function clone() : Event
 		{
-			return new PlaylistEvent(this.type);
+			var playEvent : PlaylistEvent = new PlaylistEvent(this.type);
+			playEvent.addToPlaylistObj = this.addToPlaylistObj;
+			return playEvent;
 		}
 		
 	}
