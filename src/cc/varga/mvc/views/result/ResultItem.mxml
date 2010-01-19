@@ -9,12 +9,9 @@
 	
 	<fx:Script>
 		<![CDATA[
-			import mx.rpc.events.ResultEvent;
-			import cc.varga.mvc.views.search.SearchSiteEvent;
-			import cc.varga.mvc.views.player.*;
-			import mx.events.FlexEvent;
-			import cc.varga.mvc.views.player.*;
 			import cc.varga.mvc.service.playlist.*;
+			import cc.varga.mvc.views.player.*;
+
 			
 			[Bindable]
 			public var jsonObj : Object;
@@ -23,9 +20,9 @@
 
 			protected function btn_play_clickHandler(event:MouseEvent):void
 			{
-				var playerEvent : PlayerEvent = new PlayerEvent(PlayerEvent.PLAY_ITEM);
-				playerEvent.itemObj = this.jsonObj;
-				dispatchEvent(playerEvent);
+				var itemEvent : ResultItemEvent = new ResultItemEvent(ResultItemEvent.PLAY_ITEM);
+				itemEvent.itemObj = this.jsonObj;
+				dispatchEvent(itemEvent);
 			}
 			
 			protected function btn_addplaylist_clickHandler(event:MouseEvent):void

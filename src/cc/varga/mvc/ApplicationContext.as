@@ -1,21 +1,19 @@
 package cc.varga.mvc
 {
+	import cc.varga.mvc.commands.*;
+	import cc.varga.mvc.service.*;
+	import cc.varga.mvc.service.playlist.*;
+	import cc.varga.mvc.views.navigation.*;
+	import cc.varga.mvc.views.player.*;
+	import cc.varga.mvc.views.result.ResultItem;
+	import cc.varga.mvc.views.result.ResultItemMediator;
+	import cc.varga.mvc.views.search.SearchSite;
+	import cc.varga.mvc.views.search.SearchSiteEvent;
+	import cc.varga.mvc.views.search.SearchSiteMediator;
+	
 	import flash.display.DisplayObjectContainer;
 	
 	import org.robotlegs.mvcs.Context;
-	import cc.varga.mvc.views.search.SearchSite;
-	import cc.varga.mvc.views.search.SearchSiteMediator;
-	import cc.varga.mvc.views.search.SearchSiteEvent;
-	import cc.varga.mvc.views.result.ResultItem;
-	import cc.varga.mvc.views.result.ResultItemMediator;
-	import cc.varga.mvc.views.navigation.*;
-	
-	import cc.varga.mvc.commands.*;
-	
-	import cc.varga.mvc.service.playlist.*;
-	import cc.varga.mvc.service.*;
-	import cc.varga.mvc.commands.NavigationCommand;
-	import cc.varga.mvc.views.player.*;
 
 	public class ApplicationContext extends Context
 	{

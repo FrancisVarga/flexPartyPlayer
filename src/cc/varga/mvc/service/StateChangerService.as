@@ -1,8 +1,14 @@
 package cc.varga.mvc.service
 {
 	import cc.varga.mvc.*;
+	import cc.varga.utils.Logger;
 	
-	import flash.display.DisplayObject;
+	import flash.events.Event;
+	import flash.events.IEventDispatcher;
+	
+	import flashx.textLayout.tlf_internal;
+	
+	import mx.events.StateChangeEvent;
 	
 	import org.robotlegs.mvcs.Actor;
 	
@@ -13,17 +19,17 @@ package cc.varga.mvc.service
 		public var contextView : Jukebox;
 		
 		private var stateList : Array = ApplicationStateList.stateList;
-		private var currentPos : int;		
+		private var currentPos : int;
 		
-		public function StateChangerService()
-		{
-			super();
-		}
-		
-		public function switchToStage(stageName : String):void{
+		public function StateChangerService(){ super(); }
+	
+		public function switchToStage(stageName : String, callBack : Function = null):void{
 		
 			getCurrentPostion(stageName);
 			contextView.currentState = stageName;
+			if(callBack){
+				callBack();
+			}
 		}
 		
 		public function switchToLeft():void{

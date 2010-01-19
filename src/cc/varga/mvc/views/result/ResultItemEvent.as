@@ -9,7 +9,7 @@ package cc.varga.mvc.views.result
 		public static const ADD_TO_PLAYLIST : String = "add_to_playlist";
 		public static const DOWNLOAD_ITEM : String = "donwload_item";
 		
-		public var jsonObj : Object;
+		public var itemObj : Object;
 		
 		public function ResultItemEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{

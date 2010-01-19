@@ -59,5 +59,15 @@ package cc.varga.mvc.service.playlist
 		{
 			return playlist;
 		}
+		
+		public function play():void{
+			
+		}
+		
+		private function checkFileType(jsonObj : Object):void{
+			
+		}
+	
+		
 	}
 }

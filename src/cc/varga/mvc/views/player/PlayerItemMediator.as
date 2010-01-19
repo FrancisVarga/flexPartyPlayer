@@ -19,8 +19,6 @@ package cc.varga.mvc.views.player
 		
 		override public function onRegister():void{
 			
-			eventMap.mapListener(view, PlayerEvent.PLAY_ITEM, onPlayItem);
-			
 		}
 		
 		private function onPlayItem(event:PlayerEvent):void{

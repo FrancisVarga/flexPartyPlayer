@@ -2,6 +2,7 @@ package cc.varga.mvc.views.player
 {
 	import cc.varga.mvc.service.playlist.*;
 	import cc.varga.mvc.views.result.*;
+	import cc.varga.utils.Logger;
 	
 	import org.robotlegs.mvcs.Mediator;
 	
@@ -28,12 +29,18 @@ package cc.varga.mvc.views.player
 			
 		}
 		
-		private function onPlayPlaylist(event : PlayerEvent):void{
+		private function onPlayItem(event : PlayerEvent):void{
+			Logger.log("PlayItem Event", "");
 			
+		}
+		
+		private function onPlayPlaylist(event : PlayerEvent):void{
+			playlistModel.play();
 		}
 		
 		private function playYouTubeVideo(event:PlayerEvent):void{
 		
+			Logger.log("Play YouTube Video", "");
 			view.youtubePlayer.videoID = event.youTubeID;
 			
 		}

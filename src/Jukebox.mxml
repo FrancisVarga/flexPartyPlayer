@@ -29,7 +29,6 @@
 				//stage.displayState = StageDisplayState.FULL_SCREEN;
 			}
 
-
 			protected function button1_clickHandler(event:MouseEvent):void
 			{
 				stage.displayState = StageDisplayState.FULL_SCREEN;
