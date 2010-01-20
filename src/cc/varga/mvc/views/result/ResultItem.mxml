@@ -52,7 +52,6 @@
 		</s:Group>
 		<s:Group id="controllerContainer">
 			<s:layout><s:HorizontalLayout/></s:layout>
-			<s:Button id="btn_play" label="Play" click="btn_play_clickHandler(event)" />
 			<s:Button id="btn_addplaylist" label="Add to Playlist" click="btn_addplaylist_clickHandler(event)" />
 			<s:Button id="btn_download" label="Download" click="btn_download_clickHandler(event)" />
 		</s:Group>

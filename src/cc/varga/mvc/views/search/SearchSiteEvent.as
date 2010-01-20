@@ -10,6 +10,7 @@ package cc.varga.mvc.views.search
 		public static const DOWNLOAD_SONG : String = "download_song";
 		public static const LOAD_REMOTE_PLAYLIST : String = "load_remote_playlist";
 		public static const DRAW_RESULT : String = "draw_result";
+		public static const POLL_COLLECTION : String = "poll_collection";
 		
 		public var search_query : String;
 		public var blipFM_Nick : String;

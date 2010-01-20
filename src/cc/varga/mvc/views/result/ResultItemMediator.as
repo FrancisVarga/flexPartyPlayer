@@ -19,10 +19,7 @@ package cc.varga.mvc.views.result
 		[Inject]
 		public var stateService : StateChangerService;
 		
-		public function ResultItemMediator()
-		{
-			super();
-		}
+		public function ResultItemMediator(){ super(); }
 		
 		override public function onRegister() : void{
 

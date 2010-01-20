@@ -278,6 +278,7 @@ package nl.flexcoders.controls{
 			this.loader.content.addEventListener("onError", onPlayerError);
 			this.loader.content.addEventListener("onStateChange", onPlayerStateChange);
 			this.loader.content.addEventListener("onPlaybackQualityChange",  onVideoPlaybackQualityChange);
+		
 		}
 		
 		private function onPlayerReady(event:Event):void {
@@ -301,7 +302,12 @@ package nl.flexcoders.controls{
 				case 1: updateInterval = setInterval(function():void{
 					currentTime = player.getCurrentTime()*1000;
 				}, 500); break;
-				case 3: this.duration = this.player.getDuration()*1000; break;
+				case 2:
+					dispatchEvent(new Event(Event.COMPLETE));
+					break;
+				case 3: 
+					this.duration = this.player.getDuration()*1000; 
+					break;
 			}
 			
 			this.dispatchEvent(event);

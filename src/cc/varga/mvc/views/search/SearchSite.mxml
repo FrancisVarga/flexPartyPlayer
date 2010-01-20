@@ -20,6 +20,13 @@
 				dispatchEvent(searchEvent);
 			}
 
+
+			protected function pollCollection_clickHandler(event:MouseEvent):void
+			{
+				var myEvent : SearchSiteEvent = new SearchSiteEvent(SearchSiteEvent.POLL_COLLECTION);
+				
+			}
+
 		]]>
 	</fx:Script>
 
@@ -28,6 +35,7 @@
 		<s:TextInput id="searchText" fontSize="28" width="400" textAlign="center" height="100%" />
 		<s:Button label="Search" fontSize="16" click="button1_clickHandler(event)" height="100%" width="150" />
 		<s:Button id="load_blipfm" label="Load Blip.fm Feed" fontSize="16" click="load_blipfm_clickHandler(event)" width="150" height="100%"  />
+		<s:Button id="pollCollection" label="Poll Collection" fontSize="16" click="pollCollection_clickHandler(event)" width="150" height="100%" />
 	</s:Group>
 	
 </s:Group>

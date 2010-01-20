@@ -3,6 +3,7 @@ package cc.varga.mvc.service.playlist
 	import flash.utils.Dictionary;
 	
 	import mx.collections.ArrayCollection;
+	import mx.controls.Alert;
 	
 	import org.robotlegs.mvcs.Actor;
 	
@@ -11,7 +12,11 @@ package cc.varga.mvc.service.playlist
 		[Bindable]
 		private var playlist : ArrayCollection = new ArrayCollection();		
 		
+		[Bindable]
+		public var repeat : Boolean = false;
+		
 		private var itemDict : Dictionary = new Dictionary();
+		private var currentPos : uint = 0;
 		
 		public function PlaylistService()
 		{
@@ -29,6 +34,10 @@ package cc.varga.mvc.service.playlist
 			
 		}
 		
+		public function getItem(index : uint):Object{
+			return playlist.getItemAt(index);
+		}
+		
 		public function shufflePlaylist():void
 		{
 			
@@ -36,7 +45,11 @@ package cc.varga.mvc.service.playlist
 		
 		public function repeatPlaylist():void
 		{
-			
+			if(repeat){
+				repeat = false;
+			} else {
+				repeat = true;
+			}
 		}
 		
 		public function removeAll():void
@@ -46,13 +59,20 @@ package cc.varga.mvc.service.playlist
 		}
 		
 		public function getPrev():Object{
-			
-			return {};
+			currentPos--;
+			if(currentPos < 0){
+				currentPos = 0;
+			}
+			return getItem(currentPos);
 			
 		}
 		
 		public function getNext():Object{
-			return {};	
+			currentPos++;
+			if(currentPos == getAll().length){
+				Alert.show("End of the Playlist", "Info");
+			}
+			return getItem(currentPos);
 		}
 		
 		public function getAll():ArrayCollection
@@ -60,11 +80,22 @@ package cc.varga.mvc.service.playlist
 			return playlist;
 		}
 		
-		public function play():void{
-			
+		public function play(itemToPlayObj : Object = null):void{ 
+			if(itemToPlayObj){
+				checkFileType(itemToPlayObj);
+			}else{
+				checkFileType(this.getItem(0));
+			}
 		}
 		
+		import cc.varga.mvc.views.player.*;
 		private function checkFileType(jsonObj : Object):void{
+			
+			if(jsonObj["video_id"]){
+				var event : PlayerEvent = new PlayerEvent(PlayerEvent.PLAY_YOUTUBE_VIDEO);
+				event.itemObj = jsonObj;
+				dispatch(event);
+			}
 			
 		}
 	
