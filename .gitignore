@@ -10,4 +10,5 @@ lib/swiftsuspenders
 bin-release/*
 html-template/*
 flex-lib/*
+bin-debug/*
 

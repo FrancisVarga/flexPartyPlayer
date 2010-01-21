@@ -95,6 +95,17 @@ package cc.varga.mvc.service.playlist
 				var event : PlayerEvent = new PlayerEvent(PlayerEvent.PLAY_YOUTUBE_VIDEO);
 				event.itemObj = jsonObj;
 				dispatch(event);
+			} else if(jsonObj["url"]){
+				var url : String = jsonObj["url"];
+				if(url.indexOf(".mp3") > 3){
+					var event : PlayerEvent = new PlayerEvent(PlayerEvent.PLAY_MP3);
+					event.itemObj = jsonObj;
+					dispatch(event);
+				}else if(url.indexOf(".ogg") > 3){
+					var event : PlayerEvent = new PlayerEvent(PlayerEvent.PLAY_OGG);
+					event.itemObj = jsonObj;
+					dispatch(event);
+				}
 			}
 			
 		}

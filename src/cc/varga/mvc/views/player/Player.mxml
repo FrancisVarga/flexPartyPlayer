@@ -63,7 +63,8 @@
 
 			protected function button1_clickHandler(event:MouseEvent):void
 			{
-				
+				var myEvent : PlayerEvent = new PlayerEvent(PlayerEvent.PLAYER_SAVE_COLLECTION);
+				dispatchEvent(myEvent);
 			}
 
 		]]>
