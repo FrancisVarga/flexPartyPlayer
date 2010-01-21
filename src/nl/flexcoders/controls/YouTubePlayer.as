@@ -52,6 +52,11 @@ package nl.flexcoders.controls{
 		private var oldParent:*;
 		
 		[Bindable]
+		public function get playTime():Number{
+			return player.getCurrentTime();
+		}
+		
+		[Bindable]
 		public function set videoID(value:String):void{
 			this._videoID = value;
 			this.videoIDChanged = true;
@@ -111,6 +116,7 @@ package nl.flexcoders.controls{
 			this.invalidateProperties();
 		}
 		
+		[Bindable]
 		public function get duration():Number{
 			return this._duration;
 		}
@@ -121,6 +127,7 @@ package nl.flexcoders.controls{
 			this.invalidateProperties();
 		}
 		
+		[Bindable]
 		public function get currentTime():Number{
 			return this._currentTime;
 		}

@@ -1,5 +1,7 @@
 package cc.varga.mvc
 {
+	import flash.events.KeyboardEvent;
+	
 	import org.robotlegs.mvcs.Mediator;
 	
 	public class ApplicationMediator extends Mediator
@@ -13,9 +15,10 @@ package cc.varga.mvc
 			super();
 		}
 		
-		override public function onRegister():void{
-			
-			
+		override public function onRegister():void{	
+		}
+		
+		private function onKeyDown(event : KeyboardEvent):void{
 			
 		}
 		

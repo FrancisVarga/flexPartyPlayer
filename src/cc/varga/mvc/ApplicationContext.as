@@ -36,6 +36,7 @@ package cc.varga.mvc
 			mediatorMap.mapView(Navigation, NavigationMediator);
 			mediatorMap.mapView(Player, PlayerMediator);
 			mediatorMap.mapView(PlayerItem, PlayerItemMediator);
+			mediatorMap.mapView(Jukebox, ApplicationMediator);
 			
 			//Injections
 			injector.mapSingleton(PlaylistService);

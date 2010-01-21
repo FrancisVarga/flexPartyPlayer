@@ -17,6 +17,7 @@ package cc.varga.mvc.views.player
 		public static const PLAYER_PREV : String = "player_prev";
 		public static const PLAYER_REPEAT : String = "player_repeat";
 		public static const PLAYER_SHUFFLE : String = "player_shuffle";
+		public static const PLAYER_SAVE_COLLECTION : String = "save_collection";
 		
 		private var _youTubeID : String;
 		public var itemObj : Object;
