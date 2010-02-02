@@ -13,15 +13,13 @@
 	
 	<fx:Script>
 		<![CDATA[
-			import cc.varga.api.jukebox.JukeboxAPI;
-			
 			import mx.core.Application;
 			import mx.events.FlexEvent;
 			
 			protected function application1_creationCompleteHandler(event:FlexEvent):void
 			{
         //JukeboxAPI.HOST = "http://iris/";
-				JukeboxAPI.HOST = "http://aludose/";
+        //JukeboxAPI.HOST = "http://aludose/";
 			}			
 
 			protected function application1_applicationCompleteHandler(event:FlexEvent):void

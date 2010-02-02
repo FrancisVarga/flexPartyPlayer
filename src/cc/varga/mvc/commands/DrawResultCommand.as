@@ -38,7 +38,7 @@ package cc.varga.mvc.commands
 		
 		private function onChange(stateEvent : StateChangeEvent):void{
 			
-			resultArray = event.resultJSON as Array;
+			resultArray = event.result as Array;
 			drawResults();
 			
 		}
@@ -54,7 +54,7 @@ package cc.varga.mvc.commands
 		private function drawItem(jsonItem : Object):void{
 			
 			var item : ResultItem = new ResultItem();
-			item.jsonObj = event.resultJSON[currentPos];
+			item.jsonObj = resultArray[currentPos];
 			item.position = currentPos;
 			item.addEventListener(FlexEvent.CREATION_COMPLETE, drawResults);
 			mainView.listContainer.addElement( item );

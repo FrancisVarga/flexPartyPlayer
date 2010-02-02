@@ -16,7 +16,7 @@ package cc.varga.mvc.views.search
 		public var blipFM_Nick : String;
 		public var jsonObj:Object;
 		public var remotePlaylistURL : String;
-		public var resultJSON : Object;
+		public var result : *;
 		
 		public function SearchSiteEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
