@@ -28,7 +28,6 @@ package cc.varga.mvc.views.player
 			eventMap.mapListener(view, PlayerEvent.PLAY_PLAYLIST, onPlayPlaylist);
 			eventMap.mapListener(view, PlayerEvent.PLAY_END, onPlayEnd);
 			eventMap.mapListener(view, PlayerEvent.PLAYER_PAUSE, onPause);
-			eventMap.mapListener(view, KeyboardEvent
 			
 			drawPlaylist();	
 			
