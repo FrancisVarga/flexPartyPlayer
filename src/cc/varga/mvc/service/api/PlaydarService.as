@@ -1,4 +1,12 @@
+/*
+* This source is heavily based on Lucas Hrabovsky (imlucas) as3playdar.
+* The Original Source can be found at http://github.com/imlucas/as3playdar/blob/master/src/org/playdar/Playdar.as
+*/
 package cc.varga.mvc.service.api {
+	import cc.varga.mvc.service.ISearchService;
+	import cc.varga.mvc.service.ISoundService;
+	import cc.varga.utils.Logger;
+	
 	import com.adobe.serialization.json.*;
 	
 	import flash.display.Sprite;
@@ -13,9 +21,9 @@ package cc.varga.mvc.service.api {
 	import flash.net.URLVariables;
 	import flash.utils.Timer;
 	import flash.utils.setTimeout;
-  import cc.varga.utils.Logger;
     
-	public class Playdar extends Sprite implements ISearchService, ISoundService {
+	public class Playdar extends Sprite implements ISearchService, ISoundService{
+
 		public var sounds:Object = {};
         public var channels:Object = {};
         public var pauses:Object = {};

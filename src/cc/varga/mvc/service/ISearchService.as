@@ -1,4 +1,4 @@
-package cc.varga.mvc.service.api
+package cc.varga.mvc.service
 {
 	public interface ISearchService
 	{

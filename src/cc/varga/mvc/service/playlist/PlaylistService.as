@@ -1,5 +1,7 @@
 package cc.varga.mvc.service.playlist
 {
+	import cc.varga.mvc.service.IPlaylistService;
+	
 	import flash.utils.Dictionary;
 	
 	import mx.collections.ArrayCollection;
@@ -92,6 +94,8 @@ package cc.varga.mvc.service.playlist
 		private function checkFileType(jsonObj : Object):void{
 			
       var event : PlayerEvent = new PlayerEvent(PlayerEvent.PLAY_MP3);
+      event.result = jsonObj.sid;
+      dispatch(event);
 	//		if(jsonObj["video_id"]){
 	//			var event : PlayerEvent = new PlayerEvent(PlayerEvent.PLAY_YOUTUBE_VIDEO);
 	//			event.itemObj = jsonObj;

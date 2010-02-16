@@ -11,8 +11,8 @@ package cc.varga.mvc
 	import cc.varga.mvc.views.search.SearchSiteEvent;
 	import cc.varga.mvc.views.search.SearchSiteMediator;
 	import cc.varga.mvc.service.api.Playdar;
-	import cc.varga.mvc.service.api.ISearchService;
-	import cc.varga.mvc.service.api.ISoundService;
+	import cc.varga.mvc.service.ISearchService;
+	import cc.varga.mvc.service.ISoundService;
 	import flash.display.DisplayObjectContainer;
 	
 	import org.robotlegs.mvcs.Context;
