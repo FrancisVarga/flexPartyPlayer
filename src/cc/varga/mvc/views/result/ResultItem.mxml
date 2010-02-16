@@ -3,7 +3,9 @@
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
 		 xmlns:mx="library://ns.adobe.com/flex/halo"
 		 xmlns:utils="cc.varga.utils.*"
-		 rollOverColor="#DD1F1F" contentBackgroundColor="#CA7878">
+     rollOverColor="#DD1F1F" contentBackgroundColor="#CA7878" 
+     addedToStage="loadedResult(event)"
+    >
 	
 	<s:layout><s:HorizontalLayout/></s:layout>
 	
@@ -16,7 +18,11 @@
 			[Bindable]
 			public var jsonObj : Object;
 			
-			public var position : uint;
+      public var position : uint;
+
+      protected function loadedResult(event : Event) : void {
+      trace("U got loaded"+jsonObj.track[0]);
+      }
 
 			protected function btn_play_clickHandler(event:MouseEvent):void
 			{
@@ -24,6 +30,7 @@
 				itemEvent.itemObj = this.jsonObj;
 				dispatchEvent(itemEvent);
 			}
+
 			
 			protected function btn_addplaylist_clickHandler(event:MouseEvent):void
 			{
@@ -42,13 +49,20 @@
 
 		]]>
 	</fx:Script>
-	
+  <s:states>
+    <s:State name="playdar"/>
+    <s:State name="tunejuggler"/>
+  </s:states>
+
 	<s:Group>
 		<s:layout><s:VerticalLayout/></s:layout>
 		<s:Group id="infoContainer">
 			<s:layout><s:HorizontalLayout/></s:layout>
-			<s:Label id="title" text="{jsonObj['title']}" fontSize="14" minWidth="450" width="100%" fontWeight="bold" />
-			<s:Label id="source" text="{jsonObj['source']}" fontSize="14" minWidth="150" width="100%" fontWeight="bold" />
+      <s:Label text="WHAT THE FUK SONG" />
+			<s:Label id="title" text="{jsonObj['title']}" fontSize="14" minWidth="450" width="100%" fontWeight="bold" includeIn="tunejuggler"/>
+      <s:Label id="track"  text="{jsonObj['track'][0]}" fontSize="14" minWidth="450" width="100%" fontWeight="bold" includeIn="playdar"/>
+      <s:Label id="artist"  text="{jsonObj['artist'][0]}" fontSize="14" minWidth="450" width="100%" fontWeight="bold" includeIn="playdar"/>
+      <s:Label id="source" text="{jsonObj['source']}" fontSize="14" minWidth="150" width="100%" fontWeight="bold" />
 		</s:Group>
 		<s:Group id="controllerContainer">
 			<s:layout><s:HorizontalLayout/></s:layout>

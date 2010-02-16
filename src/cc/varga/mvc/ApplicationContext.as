@@ -10,7 +10,8 @@ package cc.varga.mvc
 	import cc.varga.mvc.views.search.SearchSite;
 	import cc.varga.mvc.views.search.SearchSiteEvent;
 	import cc.varga.mvc.views.search.SearchSiteMediator;
-	
+	import cc.varga.mvc.service.api.Playdar;
+	import cc.varga.mvc.service.api.ISearchService;
 	import flash.display.DisplayObjectContainer;
 	
 	import org.robotlegs.mvcs.Context;
@@ -42,6 +43,7 @@ package cc.varga.mvc
 			injector.mapSingleton(PlaylistService);
 			injector.mapSingleton(StateChangerService);
 			injector.mapValue(Jukebox, contextView );
+			injector.mapSingletonOf(ISearchService, Playdar);
 			
 			super.startup();
 			

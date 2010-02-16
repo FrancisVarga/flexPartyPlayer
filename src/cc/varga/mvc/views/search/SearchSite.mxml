@@ -6,36 +6,38 @@
 	<fx:Script>
 		<![CDATA[
 			
-			protected function button1_clickHandler(event:MouseEvent):void
-			{
-				var searchEvent : SearchSiteEvent = new SearchSiteEvent(SearchSiteEvent.SEARCH_CLICKED);
-				searchEvent.search_query = searchText.text;
-				dispatchEvent(searchEvent);
-			}
+      protected function searchHandler(event:MouseEvent):void
+      {
+        if (searchText.text.length != 0) {
+                var searchEvent : SearchSiteEvent = new SearchSiteEvent(SearchSiteEvent.SEARCH_CLICKED);
+                searchEvent.search_query = searchText.text;
+                dispatchEvent(searchEvent);
+        } else { searchText.text = 'U Failed'; }
+      }
 
-			protected function load_blipfm_clickHandler(event:MouseEvent):void
-			{
-				var searchEvent : SearchSiteEvent = new SearchSiteEvent(SearchSiteEvent.LOAD_BLIP_FM_FEED);
-				searchEvent.blipFM_Nick = searchText.text;
-				dispatchEvent(searchEvent);
-			}
+      protected function load_blipfm_clickHandler(event:MouseEvent):void
+      {
+        var searchEvent : SearchSiteEvent = new SearchSiteEvent(SearchSiteEvent.LOAD_BLIP_FM_FEED);
+        searchEvent.blipFM_Nick = searchText.text;
+        dispatchEvent(searchEvent);
+      }
 
 
-			protected function pollCollection_clickHandler(event:MouseEvent):void
-			{
-				var myEvent : SearchSiteEvent = new SearchSiteEvent(SearchSiteEvent.POLL_COLLECTION);
-				
-			}
+      protected function pollCollection_clickHandler(event:MouseEvent):void
+      {
+        var myEvent : SearchSiteEvent = new SearchSiteEvent(SearchSiteEvent.POLL_COLLECTION);
 
-		]]>
-	</fx:Script>
+      }
 
-	<s:Group width="60%" height="80">
-		<s:layout><s:HorizontalLayout/></s:layout>
-		<s:TextInput id="searchText" fontSize="28" width="400" textAlign="center" height="100%" />
-		<s:Button label="Search" fontSize="16" click="button1_clickHandler(event)" height="100%" width="150" />
-		<s:Button id="load_blipfm" label="Load Blip.fm Feed" fontSize="16" click="load_blipfm_clickHandler(event)" width="150" height="100%"  />
-		<s:Button id="pollCollection" label="Poll Collection" fontSize="16" click="pollCollection_clickHandler(event)" width="150" height="100%" />
-	</s:Group>
-	
+    ]]>
+  </fx:Script>
+
+  <s:Group width="60%" height="80">
+    <s:layout><s:HorizontalLayout/></s:layout>
+    <s:TextInput id="searchText" fontSize="28" width="400" textAlign="center" height="100%" />
+    <s:Button label="Search" fontSize="16" click="searchHandler(event)" height="100%" width="150" />
+    <s:Button id="load_blipfm" label="Load Blip.fm Feed" fontSize="16" click="load_blipfm_clickHandler(event)" width="150" height="100%"  />
+    <s:Button id="pollCollection" label="Poll Collection" fontSize="16" click="pollCollection_clickHandler(event)" width="150" height="100%" />
+  </s:Group>
+
 </s:Group>

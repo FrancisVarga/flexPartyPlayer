@@ -37,28 +37,24 @@ package cc.varga.mvc.commands
 		}
 		
 		private function onChange(stateEvent : StateChangeEvent):void{
-			
 			resultArray = event.result as Array;
 			drawResults();
-			
 		}
 		
 		private function drawResults(event : * = null):void{
-			
 			if(resultArray.length > 0){	
 				drawItem(resultArray.shift());
 			}
-			
 		}
 		
 		private function drawItem(jsonItem : Object):void{
-			
 			var item : ResultItem = new ResultItem();
-			item.jsonObj = resultArray[currentPos];
+			item.jsonObj = jsonItem;
+      trace("Item: "+item.jsonObj.track[0]);
+      item.currentState = "playdar";
 			item.position = currentPos;
 			item.addEventListener(FlexEvent.CREATION_COMPLETE, drawResults);
 			mainView.listContainer.addElement( item );
-			
 		}
 		
 		private function onChanging(event : StateChangeEvent):void{

@@ -58,7 +58,7 @@
 			<views:ListContainer id="listContainer" left="50"/>
 		</s:Scroller>
 	</s:Group>
-	
+
 	<s:Group id="playerGroup" left="180" right="180" width="150" includeIn="playerState">
 		<player:Player width="150" height="70" />
 	</s:Group>
