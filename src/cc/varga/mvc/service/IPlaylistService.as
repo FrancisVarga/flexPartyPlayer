@@ -1,4 +1,4 @@
-package cc.varga.mvc.service.playlist
+package cc.varga.mvc.service
 {
 	import mx.collections.ArrayCollection;
 

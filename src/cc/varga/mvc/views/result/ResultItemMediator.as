@@ -6,10 +6,10 @@ package cc.varga.mvc.views.result
 	import cc.varga.mvc.views.player.*;
 	
 	import org.robotlegs.mvcs.Mediator;
+  import cc.varga.utils.Logger;
 	
 	public class ResultItemMediator extends Mediator
 	{
-		
 		[Inject]
 		public var view : ResultItem;
 		
@@ -19,19 +19,25 @@ package cc.varga.mvc.views.result
 		[Inject]
 		public var stateService : StateChangerService;
 		
-		public function ResultItemMediator(){ super(); }
+		public function ResultItemMediator() { super(); }
 		
 		override public function onRegister() : void{
-
-			eventMap.mapListener(view, PlaylistEvent.ADD_TO_PLAYLIST, onAddToPlaylist);  
-			eventMap.mapListener(view, ResultItemEvent.PLAY_ITEM, onPlayYouTube);
-			
+      Logger.log("Registered","Result Mediator");
+			eventMap.mapListener(view, PlaylistEvent.ADD_TO_PLAYLIST, onAddToPlaylist);   
+			eventMap.mapListener(view, ResultItemEvent.PLAY_ITEM, onPlay);
+      eventMap.mapListener(eventDispatcher, ResultItemEvent.DRAW_RESULTS, drawResults);
+      
 		}
+
+    private function drawResults(event : ResultItemEvent) : void {
+      Logger.log("Drawing Results","Result Mediator");
+      view.dg.dataProvider = event.result;
+    }
 		
-		private function onPlayYouTube(event : ResultItemEvent):void{
+		private function onPlay(event : ResultItemEvent):void{
 			stateService.switchToStage(ApplicationStateList.PLAYER_STATE);
 			var playerEvent : PlayerEvent = new PlayerEvent(PlayerEvent.PLAY_YOUTUBE_VIDEO);
-			playerEvent.itemObj = event.itemObj;
+			playerEvent.result = event.result;
 			dispatch(playerEvent);
 		}
 		

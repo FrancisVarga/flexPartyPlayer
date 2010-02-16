@@ -23,10 +23,8 @@ package cc.varga.mvc.commands
 		}
 		
 		override public function execute() : void{
-			
 			playlistService.addToPlaylist(event.addToPlaylistObj);
 			stageSwitcherService.switchToStage(ApplicationStateList.PLAYER_STATE);
-			
 		}
 	}
 }

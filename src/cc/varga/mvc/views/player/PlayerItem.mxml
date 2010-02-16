@@ -23,7 +23,7 @@
 	</fx:Declarations>
 	
 	<s:Label text="{position}" height="100%" fontSize="16" width="100%" />
-	<s:Label text="{jsonObj['title']}" width="100%" height="100%" fontSize="24" />
+	<s:Label text="{jsonObj['track']}" width="100%" height="100%" fontSize="24" />
 	<s:Label text="{jsonObj['source']}" width="100%" height="100%" fontSize="12" />
 	
 </s:Group>

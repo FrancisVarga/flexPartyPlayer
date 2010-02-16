@@ -20,7 +20,7 @@ package cc.varga.mvc.views.player
 		public static const PLAYER_SAVE_COLLECTION : String = "save_collection";
 		
 		private var _youTubeID : String;
-		public var itemObj : Object;
+		public var result : Object;
 		
 		public function PlayerEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
@@ -32,14 +32,14 @@ package cc.varga.mvc.views.player
 		}
 		
 		public function get youTubeID():String{
-			return itemObj["video_id"];
+			return result["video_id"];
 		}
 		
 		override public function clone() : Event
 		{
 			var cloneEvent : PlayerEvent = new PlayerEvent(this.type);
 			cloneEvent.youTubeID = this.youTubeID;
-			cloneEvent.itemObj = this.itemObj;
+			cloneEvent.result = this.result;
 			return cloneEvent;
 		}
 	}

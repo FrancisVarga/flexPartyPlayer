@@ -5,6 +5,8 @@ package cc.varga.mvc.views.player
 	import cc.varga.utils.Logger;
 	
 	import org.robotlegs.mvcs.Mediator;
+  import cc.varga.mvc.service.api.Playdar;
+  import cc.varga.mvc.service.sound.ISoundService;
 	
 	public class PlayerMediator extends Mediator
 	{
@@ -12,6 +14,10 @@ package cc.varga.mvc.views.player
 		[Inject]
 		public var playlistModel : PlaylistService;
 		
+
+    [Inject]
+    public var soundService : ISoundService;
+
 		[Inject]
 		public var view : Player;
 		
@@ -26,6 +32,7 @@ package cc.varga.mvc.views.player
 			
 			eventMap.mapListener(eventDispatcher, PlayerEvent.PLAY_YOUTUBE_VIDEO, playYouTubeVideo);
 			eventMap.mapListener(view, PlayerEvent.PLAY_PLAYLIST, onPlayPlaylist);
+			eventMap.mapListener(eventDispatcher, PlayerEvent.PLAY_MP3, onPlayMP3);
 			eventMap.mapListener(view, PlayerEvent.PLAY_END, onPlayEnd);
 			eventMap.mapListener(view, PlayerEvent.PLAYER_PAUSE, onPause);
 			
@@ -62,6 +69,10 @@ package cc.varga.mvc.views.player
 			view.youtubePlayer.videoID = event.youTubeID;
 			
 		}
+
+    private function onPlayMP3(event:PlayerEvent) : void {
+      soundService.playMP3(event.result as String);
+    }
 		
 		private function drawPlaylist():void{
 			

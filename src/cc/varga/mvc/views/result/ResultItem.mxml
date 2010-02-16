@@ -13,34 +13,30 @@
 		<![CDATA[
 			import cc.varga.mvc.service.playlist.*;
 			import cc.varga.mvc.views.player.*;
-
+      import mx.collections.ArrayCollection;
 			
-			[Bindable]
-			public var jsonObj : Object;
 			
       public var position : uint;
 
       protected function loadedResult(event : Event) : void {
-      trace("U got loaded"+jsonObj.track[0]);
       }
 
-			protected function btn_play_clickHandler(event:MouseEvent):void
-			{
-				var itemEvent : ResultItemEvent = new ResultItemEvent(ResultItemEvent.PLAY_ITEM);
-				itemEvent.itemObj = this.jsonObj;
-				dispatchEvent(itemEvent);
-			}
-
 			
-			protected function btn_addplaylist_clickHandler(event:MouseEvent):void
+			protected function addToPlaylist(item:Object):void
 			{
-				
 				var playlistEvent : PlaylistEvent = new PlaylistEvent(PlaylistEvent.ADD_TO_PLAYLIST);
-				playlistEvent.addToPlaylistObj = this.jsonObj;
+				playlistEvent.addToPlaylistObj = item;
 				this.dispatchEvent(playlistEvent);
 				
-				(event.currentTarget as Button).enabled = false;
+      //	(event.currentTarget as Button).enabled = false;
 			}
+
+      protected function playIt(sid : String) : void {
+				var itemEvent : ResultItemEvent = new ResultItemEvent(ResultItemEvent.PLAY_ITEM);
+        itemEvent.result = sid;
+				dispatchEvent(itemEvent);
+      }
+
 
 			protected function btn_download_clickHandler(event:MouseEvent):void
 			{
@@ -49,26 +45,37 @@
 
 		]]>
 	</fx:Script>
+
   <s:states>
     <s:State name="playdar"/>
     <s:State name="tunejuggler"/>
   </s:states>
 
-	<s:Group>
-		<s:layout><s:VerticalLayout/></s:layout>
-		<s:Group id="infoContainer">
-			<s:layout><s:HorizontalLayout/></s:layout>
+  <s:Group>
+    <mx:DataGrid id="dg" width="100%" height="100%" paddingLeft="10" paddingRight="10" itemClick="addToPlaylist(dg.selectedItem);">
+      <mx:columns>
+        <mx:DataGridColumn headerText="Artist" dataField="artist"/>
+        <mx:DataGridColumn headerText="Track" dataField="track"/>
+      </mx:columns>
+    </mx:DataGrid>
+
+  </s:Group>
+  <!--	<s:Group includeIn="tunejuggler,playdar">
+    <s:layout><s:VerticalLayout/></s:layout>
+    <s:Group id="infoContainer" includeIn="tunejuggler,playdar">
+      <s:layout><s:HorizontalLayout/></s:layout>
       <s:Label text="WHAT THE FUK SONG" />
-			<s:Label id="title" text="{jsonObj['title']}" fontSize="14" minWidth="450" width="100%" fontWeight="bold" includeIn="tunejuggler"/>
-      <s:Label id="track"  text="{jsonObj['track'][0]}" fontSize="14" minWidth="450" width="100%" fontWeight="bold" includeIn="playdar"/>
-      <s:Label id="artist"  text="{jsonObj['artist'][0]}" fontSize="14" minWidth="450" width="100%" fontWeight="bold" includeIn="playdar"/>
+      <s:Label id="title" text="{jsonObj['title']}" fontSize="14" minWidth="450" width="100%" fontWeight="bold" includeIn="tunejuggler,playdar"/>
+      <s:Label id="track"  text="{jsonObj['track'][0]}" fontSize="14" minWidth="450" width="100%" fontWeight="bold" includeIn="playdar,playdar"/>
+      <s:Label id="artist"  text="{jsonObj['artist'][0]}" fontSize="14" minWidth="450" width="100%" fontWeight="bold" includeIn="playdar,tunejuggler"/>
       <s:Label id="source" text="{jsonObj['source']}" fontSize="14" minWidth="150" width="100%" fontWeight="bold" />
-		</s:Group>
-		<s:Group id="controllerContainer">
-			<s:layout><s:HorizontalLayout/></s:layout>
-			<s:Button id="btn_addplaylist" label="Add to Playlist" click="btn_addplaylist_clickHandler(event)" />
-			<s:Button id="btn_download" label="Download" click="btn_download_clickHandler(event)" />
-		</s:Group>
-	</s:Group>
-		
+    </s:Group>
+    <s:Group id="controllerContainer" includeIn="tunejuggler,playdar">
+      <s:layout><s:HorizontalLayout/></s:layout>
+      <s:Button id="btn_addplaylist" label="Add to Playlist" click="btn_addplaylist_clickHandler(event)" />
+      <s:Button id="btn_download" label="Download" click="btn_download_clickHandler(event)" />
+    </s:Group>
+  </s:Group>
+-->
+
 </s:Group>

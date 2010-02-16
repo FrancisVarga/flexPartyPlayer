@@ -15,7 +15,7 @@ package cc.varga.mvc.service.api {
 	import flash.utils.setTimeout;
   import cc.varga.utils.Logger;
     
-	public class Playdar extends Sprite implements ISearchService {
+	public class Playdar extends Sprite implements ISearchService, ISoundService {
 		public var sounds:Object = {};
         public var channels:Object = {};
         public var pauses:Object = {};
@@ -70,6 +70,13 @@ package cc.varga.mvc.service.api {
 		    sounds[sid] = snd;
 		    state = "playing";
 		}
+
+    public function playMP3(uid : String) : void {
+      play(uid);
+    }
+
+    public function playOGG(uid : String) : void {
+    }
 		
 		public function pause(sid:String):void{
 		    pauses[sid] = SoundChannel(channels[sid]).position;

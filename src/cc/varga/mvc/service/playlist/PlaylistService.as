@@ -91,11 +91,12 @@ package cc.varga.mvc.service.playlist
 		import cc.varga.mvc.views.player.*;
 		private function checkFileType(jsonObj : Object):void{
 			
-			if(jsonObj["video_id"]){
-				var event : PlayerEvent = new PlayerEvent(PlayerEvent.PLAY_YOUTUBE_VIDEO);
-				event.itemObj = jsonObj;
-				dispatch(event);
-			}
+      var event : PlayerEvent = new PlayerEvent(PlayerEvent.PLAY_MP3);
+	//		if(jsonObj["video_id"]){
+	//			var event : PlayerEvent = new PlayerEvent(PlayerEvent.PLAY_YOUTUBE_VIDEO);
+	//			event.itemObj = jsonObj;
+	//			dispatch(event);
+	//		}
 			
 		}
 	
