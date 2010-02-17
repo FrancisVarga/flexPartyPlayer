@@ -27,7 +27,7 @@ package cc.varga.mvc.service
 		
 			getCurrentPostion(stageName);
 			contextView.currentState = stageName;
-			if(callBack){
+			if(callBack != null){
 				callBack();
 			}
 		}

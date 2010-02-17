@@ -6,7 +6,8 @@ package cc.varga.mvc.service.playlist
 	{
 		
 		
-		public static const ADD_TO_PLAYLIST : String = "add_to_playlist";
+		public static const PLAYLIST_ADD : String = "playlist_add";
+    public static const PLAYLIST_REMOVE : String = "playlist_remove";
 		
 		public var addToPlaylistObj : Object;
 		

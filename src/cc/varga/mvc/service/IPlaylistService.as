@@ -4,14 +4,13 @@ package cc.varga.mvc.service
 
 	public interface IPlaylistService
 	{
-		function addToPlaylist(item : Object):void
-		function removeFromPlaylist(item : Object):void
-		function shufflePlaylist():void
-		function repeatPlaylist():void
-		function removeAll():void
-		function getAll():ArrayCollection
-		function getNext():Object
-		function getPrev():Object
-			
+		function add(item : Object) : void;
+		function remove(item : Object) : void;
+		function clear() : void;
+
+    function get current() : Object;
+		function get all() : ArrayCollection;
+		function get next() : Object;
+		function get prev() : Object;
 	}
 }

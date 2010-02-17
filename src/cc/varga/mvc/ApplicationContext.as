@@ -14,6 +14,7 @@ package cc.varga.mvc
 	import cc.varga.mvc.service.ISearchService;
 	import cc.varga.mvc.service.ISoundService;
 	import flash.display.DisplayObjectContainer;
+  import cc.varga.mvc.service.DisorderStylePlayer;
   import cc.varga.api.jukebox.JukeboxAPIConfig;
 	
 	import org.robotlegs.mvcs.Context;
@@ -31,7 +32,7 @@ package cc.varga.mvc
 			commandMap.mapEvent(SearchSiteEvent.DRAW_RESULT, DrawResultCommand, SearchSiteEvent);
 			commandMap.mapEvent(NavigationEvent.LEFT_CLICK, NavigationCommand, NavigationEvent);
 			commandMap.mapEvent(NavigationEvent.RIGHT_CLICK, NavigationCommand, NavigationEvent);
-			commandMap.mapEvent(PlaylistEvent.ADD_TO_PLAYLIST, AddToPlaylistCommand, PlaylistEvent);
+			commandMap.mapEvent(PlaylistEvent.PLAYLIST_ADD, AddToPlaylistCommand, PlaylistEvent);
 			
 			//Views
 			mediatorMap.mapView(SearchSite, SearchSiteMediator);
@@ -45,10 +46,11 @@ package cc.varga.mvc
       var config : JukeboxAPIConfig = new JukeboxAPIConfig();
       config.loadConfig();
 
-			injector.mapSingleton(PlaylistService);
+			injector.mapSingletonOf(IPlaylistService, PlaylistService);
       injector.mapValue(JukeboxAPIConfig, config);
 			injector.mapSingleton(StateChangerService);
 			injector.mapValue(Jukebox, contextView );
+      injector.mapSingletonOf(IPlayerService, DisorderStylePlayer);
 			injector.mapSingletonOf(ISearchService, PlaydarService);
 			injector.mapSingletonOf(ISoundService, PlaydarService);
 			

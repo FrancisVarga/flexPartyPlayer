@@ -16,10 +16,11 @@ package cc.varga.mvc.service.api {
 
     private var playdar : Playdar;
     private var _currentlyPlaying : String;
-
+    private var _onComplete : Function;
+    private var _onError : Function;
     public function PlaydarService() {
       playdar = new Playdar();
-      playdar.addEventListener(Event.COMPLETE,onSongComplete);
+        playdar.addEventListener(Event.COMPLETE,onSongComplete);
       super();
     }
 
@@ -27,16 +28,28 @@ package cc.varga.mvc.service.api {
       playdar.resolve(artist, track, onSuccess, onError);
     }
 
-    public function playMP3(uid : String) : void {
+    public function play(uid : String, onComplete : Function, onError : Function) : void {
+      _onComplete = onComplete;
+      _onError = onError;
       playdar.play(uid);
       _currentlyPlaying = uid;
     }
 
+    public function stop() : void {
+      playdar.stop(_currentlyPlaying);
+    }
+
     private function onSongComplete(event : Event) : void {
       playdar.stop(_currentlyPlaying);
-      var playerEvent: PlayerEvent = new PlayerEvent(PlayerEvent.PLAY_END);
-      dispatch(playerEvent);
+      if (_onComplete != null) {
+        _onComplete();
+      }
     }
+
+    private function onError(event : Event) : void {
+      trace("Something failed: "+event.toString());
+    }
+
 
     public function playOGG(uid : String) : void {
     }

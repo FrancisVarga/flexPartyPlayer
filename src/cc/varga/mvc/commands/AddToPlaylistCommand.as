@@ -1,6 +1,7 @@
 package cc.varga.mvc.commands
 {
 	import org.robotlegs.mvcs.Command;
+	import cc.varga.mvc.service.*;
 	import cc.varga.mvc.service.playlist.*;
 	import cc.varga.mvc.service.StateChangerService;
 	import cc.varga.mvc.*;
@@ -9,7 +10,7 @@ package cc.varga.mvc.commands
 	{
 	
 		[Inject]
-		public var playlistService : PlaylistService;
+		public var playlistService : IPlaylistService;
 		
 		[Inject]
 		public var event : PlaylistEvent;
@@ -23,7 +24,7 @@ package cc.varga.mvc.commands
 		}
 		
 		override public function execute() : void{
-			playlistService.addToPlaylist(event.addToPlaylistObj);
+			playlistService.add(event.addToPlaylistObj);
 			stageSwitcherService.switchToStage(ApplicationStateList.PLAYER_STATE);
 		}
 	}

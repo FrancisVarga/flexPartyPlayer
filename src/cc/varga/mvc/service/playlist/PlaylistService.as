@@ -19,28 +19,31 @@ package cc.varga.mvc.service.playlist
 		
 		private var itemDict : Dictionary = new Dictionary();
 		private var currentPos : uint = 0;
+    private var _current : Object;
+    private var _previous : Object;
+    private var _next : Object;
 		
 		public function PlaylistService()
 		{
 			super();
 		}
 		
-		public function addToPlaylist(item : Object):void
+		public function add(item : Object) : void
 		{
 			playlist.addItem(item);
 			itemDict[item] = item;
 		}
 		
-		public function removeFromPlaylist(item : Object):void
+		public function remove(item : Object) : void
 		{
 			
 		}
 		
-		public function getItem(index : uint):Object{
+/*		public function getItem(index : uint) : Object{
 			return playlist.getItemAt(index);
 		}
-		
-		public function shufflePlaylist():void
+	*/	
+		/*public function shufflePlaylist():void
 		{
 			
 		}
@@ -52,50 +55,49 @@ package cc.varga.mvc.service.playlist
 			} else {
 				repeat = true;
 			}
-		}
+		}*/
 		
-		public function removeAll():void
+		public function clear() : void
 		{
 			playlist = new ArrayCollection();
 			itemDict = new Dictionary();
 		}
 		
-		public function getPrev():Object{
-			currentPos--;
-			if(currentPos < 0){
-				currentPos = 0;
-			}
-			return getItem(currentPos);
-			
+		public function get prev() : Object{
+      if(currentPos > 1) {
+        currentPos -= 1;
+        return playlist.getItemAt(currentPos);
+      }
+      else {
+        return null;
+      }
 		}
 		
-		public function getNext():Object{
-			currentPos++;
-			if(currentPos == getAll().length){
-				Alert.show("End of the Playlist", "Info");
-			}
-			return getItem(currentPos);
+		public function get next() : Object{
+      if(currentPos < playlist.length) {
+        return playlist.getItemAt(currentPos++);
+      }
+      else {
+        return null;
+      }
 		}
 		
-		public function getAll():ArrayCollection
+		public function get all() : ArrayCollection
 		{
 			return playlist;
 		}
 		
-		public function play(itemToPlayObj : Object = null):void{ 
-			if(itemToPlayObj){
-				checkFileType(itemToPlayObj);
-			}else{
-				checkFileType(this.getItem(0));
-			}
-		}
-		
+
+    public function get current() : Object {
+      return playlist.getItemAt(currentPos);
+    }
+
 		import cc.varga.mvc.views.player.*;
 		private function checkFileType(jsonObj : Object):void{
 			
-      var event : PlayerEvent = new PlayerEvent(PlayerEvent.PLAY_MP3);
-      event.result = jsonObj.sid;
-      dispatch(event);
+//      var event : PlayerEvent = new PlayerEvent(PlayerEvent.PLAY_MP3);
+//      event.result = jsonObj.sid;
+//      dispatch(event);
 	//		if(jsonObj["video_id"]){
 	//			var event : PlayerEvent = new PlayerEvent(PlayerEvent.PLAY_YOUTUBE_VIDEO);
 	//			event.itemObj = jsonObj;
@@ -107,3 +109,4 @@ package cc.varga.mvc.service.playlist
 		
 	}
 }
+

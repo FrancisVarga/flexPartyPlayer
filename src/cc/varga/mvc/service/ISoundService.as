@@ -1,8 +1,9 @@
 package cc.varga.mvc.service
 {
-	public interface ISoundService
+
+	public interface ISoundService 
 	{
-		function playOGG(uid : String):void
-		function playMP3(uid : String):void
+		function play(uid : String, onComplete : Function, onError : Function) : void;
+    function stop() : void;
 	}
 }

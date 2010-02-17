@@ -24,7 +24,7 @@
 			
 			protected function addToPlaylist(item:Object):void
 			{
-				var playlistEvent : PlaylistEvent = new PlaylistEvent(PlaylistEvent.ADD_TO_PLAYLIST);
+				var playlistEvent : PlaylistEvent = new PlaylistEvent(PlaylistEvent.PLAYLIST_ADD);
 				playlistEvent.addToPlaylistObj = item;
 				this.dispatchEvent(playlistEvent);
 				

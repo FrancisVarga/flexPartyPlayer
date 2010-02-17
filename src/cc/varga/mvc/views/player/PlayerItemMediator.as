@@ -1,7 +1,7 @@
 package cc.varga.mvc.views.player
 {
 	import org.robotlegs.mvcs.Mediator;
-	import cc.varga.mvc.service.sound.*;
+	import cc.varga.mvc.service.*;
 	
 	public class PlayerItemMediator extends Mediator
 	{
@@ -10,7 +10,7 @@ package cc.varga.mvc.views.player
 		public var view : PlayerItem;
 		
 		[Inejct]
-		public var soundService : SoundService;
+		public var soundService : ISoundService;
 		
 		public function PlayerItemMediator()
 		{
