@@ -10,10 +10,11 @@ package cc.varga.mvc
 	import cc.varga.mvc.views.search.SearchSite;
 	import cc.varga.mvc.views.search.SearchSiteEvent;
 	import cc.varga.mvc.views.search.SearchSiteMediator;
-	import cc.varga.mvc.service.api.Playdar;
+	import cc.varga.mvc.service.api.PlaydarService;
 	import cc.varga.mvc.service.ISearchService;
 	import cc.varga.mvc.service.ISoundService;
 	import flash.display.DisplayObjectContainer;
+  import cc.varga.api.jukebox.JukeboxAPIConfig;
 	
 	import org.robotlegs.mvcs.Context;
 
@@ -41,11 +42,15 @@ package cc.varga.mvc
 			mediatorMap.mapView(Jukebox, ApplicationMediator);
 			
 			//Injections
+      var config : JukeboxAPIConfig = new JukeboxAPIConfig();
+      config.loadConfig();
+
 			injector.mapSingleton(PlaylistService);
+      injector.mapValue(JukeboxAPIConfig, config);
 			injector.mapSingleton(StateChangerService);
 			injector.mapValue(Jukebox, contextView );
-			injector.mapSingletonOf(ISearchService, Playdar);
-			injector.mapSingletonOf(ISoundService, Playdar);
+			injector.mapSingletonOf(ISearchService, PlaydarService);
+			injector.mapSingletonOf(ISoundService, PlaydarService);
 			
 			super.startup();
 			

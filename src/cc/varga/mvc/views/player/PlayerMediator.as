@@ -5,7 +5,7 @@ package cc.varga.mvc.views.player
 	import cc.varga.utils.Logger;
 	
 	import org.robotlegs.mvcs.Mediator;
-	import cc.varga.mvc.service.api.Playdar;
+	import cc.varga.mvc.service.api.PlaydarService;
 	import cc.varga.mvc.service.ISoundService;
 	
 	public class PlayerMediator extends Mediator
@@ -33,7 +33,7 @@ package cc.varga.mvc.views.player
 			eventMap.mapListener(eventDispatcher, PlayerEvent.PLAY_YOUTUBE_VIDEO, playYouTubeVideo);
 			eventMap.mapListener(view, PlayerEvent.PLAY_PLAYLIST, onPlayPlaylist);
 			eventMap.mapListener(eventDispatcher, PlayerEvent.PLAY_MP3, onPlayMP3);
-			eventMap.mapListener(view, PlayerEvent.PLAY_END, onPlayEnd);
+			eventMap.mapListener(eventDispatcher, PlayerEvent.PLAY_END, onPlayEnd);
 			eventMap.mapListener(view, PlayerEvent.PLAYER_PAUSE, onPause);
 			
 			drawPlaylist();	

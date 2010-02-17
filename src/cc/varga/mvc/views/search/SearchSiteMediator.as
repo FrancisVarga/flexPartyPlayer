@@ -3,6 +3,7 @@ package cc.varga.mvc.views.search
 	import cc.varga.api.jukebox.IRESTful;
 	import cc.varga.api.jukebox.JukeboxAPIEvent;
 	import cc.varga.api.jukebox.JukeboxAPIVO;
+	import cc.varga.api.jukebox.JukeboxAPIConfig;
 	import cc.varga.api.jukebox.services.JukeboxService;
 	import cc.varga.mvc.service.ISearchService;
 	import cc.varga.utils.Logger
@@ -19,8 +20,13 @@ package cc.varga.mvc.views.search
 		[Inject]
 		public var playdar : ISearchService;
 		
+    [Inject]
+    public var config : JukeboxAPIConfig;
+
 		private var searchService : IRESTful; 
 		private var blipService : IRESTful; 
+    private var leftToResolve : uint;
+    private var resolvedBlips : Array;
 		
 		public function SearchSiteMediator()
 		{
@@ -51,10 +57,52 @@ package cc.varga.mvc.views.search
 		}
 		
 		private function onLoadBlipFmFeed(event : SearchSiteEvent):void{
-			/*var vo:JukeboxAPIVO = new JukeboxAPIVO({type: JukeboxAPIVO.BLIP_TYPE, path: [event.blipFM_Nick]});
-			createAndRegisterService(vo,onFaultService,drawResult).fetch();*/
+			var vo:JukeboxAPIVO = new JukeboxAPIVO(config, {type: JukeboxAPIVO.BLIP_TYPE, path: [event.blipFM_Nick]});
+			createAndRegisterService(vo,onFaultService,resolveResults).fetch();
 		}
-		
+	
+    private function resolveResults(vo : JukeboxAPIVO) : void {
+      Logger.log("Resolving Blips",this.toString());
+      var blips:Array = vo.data as Array;
+      resolvedBlips = [];
+      leftToResolve = blips.length;
+
+      for(var i = 0; i < blips.length; i++) {
+        var blip:Object = blips[i];
+        if((blip.artist == "") || (blip.artist == null)) {
+          blip.artist = blip.title
+        }
+        playdar.resolve(blip.artist,blip.title,onResolvedBlip,onUnresolvedBlip);
+      }
+    }
+
+    private function onUnresolvedBlip(response : Object) : void {
+      leftToResolve -= 1;
+      if(leftToResolve == 0) {
+			var searchEvent : SearchSiteEvent = new SearchSiteEvent(SearchSiteEvent.DRAW_RESULT);
+			searchEvent.result = resolvedBlips;
+			dispatch(searchEvent);
+      
+      }
+      else {
+        Logger.log("Unresolved Blip "+leftToResolve+" left to go",this.toString());
+      }
+    }
+
+    private function onResolvedBlip(response : Object) : void {
+      leftToResolve -= 1;
+      resolvedBlips.push(response.results[0]);
+      if(leftToResolve == 0) {
+			var searchEvent : SearchSiteEvent = new SearchSiteEvent(SearchSiteEvent.DRAW_RESULT);
+			searchEvent.result = resolvedBlips;
+			dispatch(searchEvent);
+      
+      }
+      else {
+        Logger.log("Resolved Blip "+leftToResolve+" left to go",this.toString());
+      }
+    }
+
 		private function onSearchClicked(event : SearchSiteEvent):void {
 			
 			Logger.log(event.toString(),this.toString());

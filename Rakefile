@@ -36,11 +36,13 @@ project_model :model do |m|
   m.height                  = 550
   m.compiler_gem_name     = 'sprout-flex4sdk-tool'
   m.compiler_gem_version  = '>= 4.0.0'
-  # m.src_dir               = 'src'
+  m.source_path               << 'lib/as3playdar/src'
   m.lib_dir               = 'lib'
   m.swc_dir               = 'lib'
   m.bin_dir               = 'public/jukebox'
-  m.use_fcsh = true unless ENV["FCSH"] == "no"
+if ENV["FCSH"] 
+  m.use_fcsh = true
+end
   # m.test_dir              = 'test'
   # m.doc_dir               = 'doc'
   # m.asset_dir             = 'assets'

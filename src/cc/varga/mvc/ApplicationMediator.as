@@ -10,6 +10,7 @@ package cc.varga.mvc
 		[Inject]
 		public var view : Jukebox;
 		
+
 		public function ApplicationMediator()
 		{
 			super();
